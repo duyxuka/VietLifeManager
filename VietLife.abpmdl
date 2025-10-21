@@ -1,0 +1,108 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.3.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.3.4",
+      "isInstalled": true,
+      "creationTime": "10/01/2025 03:38:10 +00:00"
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.3.4",
+      "isInstalled": true,
+      "creationTime": "10/01/2025 03:38:10 +00:00"
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.3.4",
+      "isInstalled": true,
+      "creationTime": "10/01/2025 03:38:10 +00:00"
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.3.4",
+      "isInstalled": true,
+      "creationTime": "10/01/2025 03:38:10 +00:00"
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.3.4",
+      "isInstalled": true,
+      "creationTime": "10/01/2025 03:38:10 +00:00"
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.3.4",
+      "isInstalled": true,
+      "creationTime": "10/01/2025 03:38:10 +00:00"
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.3.4",
+      "isInstalled": true,
+      "creationTime": "10/01/2025 03:38:10 +00:00"
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "VietLife.Application": {
+      "path": "src/VietLife.Application/VietLife.Application.abppkg",
+      "folder": "src"
+    },
+    "VietLife.Application.Tests": {
+      "path": "test/VietLife.Application.Tests/VietLife.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "VietLife.Domain.Shared": {
+      "path": "src/VietLife.Domain.Shared/VietLife.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "VietLife.Application.Contracts": {
+      "path": "src/VietLife.Application.Contracts/VietLife.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "VietLife.HttpApi": {
+      "path": "src/VietLife.HttpApi/VietLife.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "VietLife.HttpApi.Client": {
+      "path": "src/VietLife.HttpApi.Client/VietLife.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "VietLife.EntityFrameworkCore.Tests": {
+      "path": "test/VietLife.EntityFrameworkCore.Tests/VietLife.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "VietLife.EntityFrameworkCore": {
+      "path": "src/VietLife.EntityFrameworkCore/VietLife.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "VietLife.TestBase": {
+      "path": "test/VietLife.TestBase/VietLife.TestBase.abppkg",
+      "folder": "test"
+    },
+    "VietLife.Domain.Tests": {
+      "path": "test/VietLife.Domain.Tests/VietLife.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "VietLife.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/VietLife.HttpApi.Client.ConsoleTestApp/VietLife.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "VietLife.DbMigrator": {
+      "path": "src/VietLife.DbMigrator/VietLife.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "VietLife.HttpApi.Host": {
+      "path": "src/VietLife.HttpApi.Host/VietLife.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "VietLife.Domain": {
+      "path": "src/VietLife.Domain/VietLife.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

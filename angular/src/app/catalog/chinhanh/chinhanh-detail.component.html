@@ -1,0 +1,34 @@
+<form [formGroup]="form" skipValidation (ngSubmit)="saveChange()">
+  <p-panel #pnl header="Chi tiết chi nhánh">
+    <!--form grid-->
+    <div class="formgrid grid">
+      <div class="field col-12">
+        <label for="tenChiNhanh" class="block">Tên chi nhánh <span class="required">*</span></label>
+        <input id="tenChiNhanh" pInputText type="text" formControlName="tenChiNhanh" class="w-full"/>
+        <app-validation-message
+          [entityForm]="form"
+          fieldName="tenChiNhanh"
+          [validationMessages]="validationMessages"
+        ></app-validation-message>
+      </div>
+      <div class="field col-12">
+        <label for="note" class="block">Mô tả</label>
+        <textarea id="note" pInputTextarea class="w-full" formControlName="moTa"></textarea>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <button
+        type="submit"
+        [disabled]="!form.valid || btnDisabled"
+        pButton
+        icon="fa fa-save"
+        iconPos="left"
+        label="Lưu lại"
+      ></button>
+    </ng-template>
+    <!--Block UI-->
+    <p-blockUI [blocked]="blockedPanel" [target]="pnl">
+      <p-progressSpinner></p-progressSpinner>
+    </p-blockUI>
+  </p-panel>
+</form>

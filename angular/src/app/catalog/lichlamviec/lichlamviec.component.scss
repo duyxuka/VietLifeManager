@@ -1,0 +1,10 @@
+/* Styles for the home component */
+::ng-deep .p-calendar,
+::ng-deep .p-dropdown {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block;
+}
+:host ::ng-deep .p-datepicker {
+  z-index: 2000 !important;
+}
