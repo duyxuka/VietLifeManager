@@ -9,7 +9,7 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
   model: any[] = [];
 
-  constructor(public layoutService: LayoutService) {}
+  constructor(public layoutService: LayoutService) { }
 
   ngOnInit() {
     this.model = [
@@ -18,19 +18,25 @@ export class AppMenuComponent implements OnInit {
         items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }],
       },
       {
-        label: 'Sản phẩm',
+        label: 'Nhân Sự',
         items: [
+          // {
+          //   label: 'Danh sách sản phẩm',
+          //   icon: 'pi pi-fw pi-circle',
+          //   routerLink: ['/catalog/product'],
+          //   permission: 'VietLifeAdminCatalog.Product',
+          // },
+          // {
+          //   label: 'Danh sách thuộc tính',
+          //   icon: 'pi pi-fw pi-circle',
+          //   routerLink: ['/catalog/attribute'],
+          //   permission: 'VietLifeAdminCatalog.Attribute',
+          // },
           {
-            label: 'Danh sách sản phẩm',
+            label: 'Danh sách chi nhánh',
             icon: 'pi pi-fw pi-circle',
-            routerLink: ['/catalog/product'],
-            permission: 'VietLifeAdminCatalog.Product',
-          },
-          {
-            label: 'Danh sách thuộc tính',
-            icon: 'pi pi-fw pi-circle',
-            routerLink: ['/catalog/attribute'],
-            permission: 'VietLifeAdminCatalog.Attribute',
+            routerLink: ['/catalog/chinhanh'],
+            // permission: 'VietLifeAdminCatalog.Attribute',
           },
           {
             label: 'Danh sách phòng ban',
@@ -51,33 +57,67 @@ export class AppMenuComponent implements OnInit {
             // permission: 'VietLifeAdminCatalog.Attribute',
           },
           {
-            label: 'Danh sách chi nhánh',
-            icon: 'pi pi-fw pi-circle',
-            routerLink: ['/catalog/chinhanh'],
-            // permission: 'VietLifeAdminCatalog.Attribute',
-          },
-          {
             label: 'Danh sách lịch làm việc',
             icon: 'pi pi-fw pi-circle',
             routerLink: ['/catalog/lichlamviec'],
             // permission: 'VietLifeAdminCatalog.Attribute',
           },
           {
-            label: 'Danh sách loại chế độ',
-            icon: 'pi pi-fw pi-circle',
-            routerLink: ['/catalog/loaichedo'],
-            // permission: 'VietLifeAdminCatalog.Attribute',
+            label: 'Chế độ làm việc',
+            items: [
+              {
+                label: 'Danh sách loại chế độ',
+                icon: 'pi pi-fw pi-circle',
+                routerLink: ['/catalog/loaichedo'],
+                // permission: 'VietLifeAdminCatalog.Attribute',
+              },
+              {
+                label: 'Danh sách chế độ nhân viên',
+                icon: 'pi pi-fw pi-circle',
+                routerLink: ['/catalog/chedonhanvien'],
+                // permission: 'VietLifeAdminCatalog.Attribute',
+              },
+            ]
           },
           {
-            label: 'Danh sách chế độ nhân viên',
-            icon: 'pi pi-fw pi-circle',
-            routerLink: ['/catalog/chedonhanvien'],
-            // permission: 'VietLifeAdminCatalog.Attribute',
+            label: 'KPI',
+            items: [
+              {
+                label: 'KPI nhân viên',
+                icon: 'pi pi-fw pi-circle',
+                routerLink: ['/catalog/kpis/kpinhanvien'],
+                // permission: 'VietLifeAdminCatalog.Attribute',
+              },
+              {
+                label: 'Kế hoạch công việc',
+                icon: 'pi pi-fw pi-circle',
+                routerLink: ['/catalog/kpis/kehoachcongviec'],
+                // permission: 'VietLifeAdminCatalog.Attribute',
+              },
+              {
+                label: 'Mục tiêu KPI',
+                icon: 'pi pi-fw pi-circle',
+                routerLink: ['/catalog/kpis/muctieukpi'],
+                // permission: 'VietLifeAdminCatalog.Attribute',
+              },
+              {
+                label: 'Tiến độ làm việc',
+                icon: 'pi pi-fw pi-circle',
+                routerLink: ['/catalog/kpis/tiendolamviec'],
+                // permission: 'VietLifeAdminCatalog.Attribute',
+              },
+              {
+                label: 'Đánh giá KPI',
+                icon: 'pi pi-fw pi-circle',
+                routerLink: ['/catalog/kpis/danhgiakpi'],
+                // permission: 'VietLifeAdminCatalog.Attribute',
+              },
+            ]
           },
           {
-            label: 'Danh sách chế độ nhân viên',
+            label: 'Lương nhân viên',
             icon: 'pi pi-fw pi-circle',
-            routerLink: ['/catalog/phucapnhanvien'],
+            routerLink: ['/catalog/luongnhanvien'],
             // permission: 'VietLifeAdminCatalog.Attribute',
           },
         ],

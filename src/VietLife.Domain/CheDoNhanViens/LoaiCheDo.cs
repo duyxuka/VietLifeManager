@@ -14,5 +14,10 @@ namespace VietLife.CheDoNhanViens
         public string MoTa { get; set; }
 
         public virtual ICollection<CheDoNhanVien> CheDoNhanViens { get; set; }
+
+        public LoaiCheDo()
+        {
+            CheDoNhanViens = new HashSet<CheDoNhanVien>();
+        }
     }
 }

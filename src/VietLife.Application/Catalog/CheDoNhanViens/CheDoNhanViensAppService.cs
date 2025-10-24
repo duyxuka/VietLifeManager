@@ -58,7 +58,7 @@ namespace VietLife.Catalog.CheDoNhanViens
                         {
                             Id = cd.Id,
                             NhanVienId = cd.NhanVienId,
-                            TenNhanVien = nv != null ? (nv.Surname + " " + nv.Name) : "N/A",
+                            TenNhanVien = nv != null ? nv.HoTen : "N/A",
                             TenLoaiCheDo = lcd != null ? lcd.TenLoaiCheDo : "N/A",
                             SoNgay = cd.SoNgay,
                             SoCong = cd.SoCong,
@@ -84,8 +84,21 @@ namespace VietLife.Catalog.CheDoNhanViens
             {
                 input.NhanVienId = CurrentUser.Id.Value;
             }
+            var entity = await base.MapToEntityAsync(input);
+            var loaiCheDo = await _loaiCheDoRepository.GetAsync(input.LoaiCheDoId);
+            entity.LoaiCheDo = loaiCheDo;
 
-            return await base.CreateAsync(input);
+            // 🔹 Lấy hệ số lương từ nhân viên (DonGiaCong)
+            var nhanVien = await _userRepository.GetAsync(entity.NhanVienId);
+            var heSoLuong = nhanVien?.DonGiaCong ?? 0;
+
+            // 🔹 Gọi hàm tính Thành tiền
+            entity.TinhThanhTien(heSoLuong);
+
+            await Repository.InsertAsync(entity);
+            await UnitOfWorkManager.Current.SaveChangesAsync();
+
+            return await MapToGetOutputDtoAsync(entity);
         }
 
         public override async Task<CheDoNhanVienDto> UpdateAsync(Guid id, CreateUpdateCheDoNhanVienDto input)
@@ -96,7 +109,23 @@ namespace VietLife.Catalog.CheDoNhanViens
                 input.NhanVienId = CurrentUser.Id.Value;
             }
 
-            return await base.UpdateAsync(id, input);
+            var entity = await GetEntityByIdAsync(id);
+            await MapToEntityAsync(input, entity);
+
+            // 🔹 Load lại LoaiCheDo
+            var loaiCheDo = await _loaiCheDoRepository.GetAsync(input.LoaiCheDoId);
+            entity.LoaiCheDo = loaiCheDo;
+
+            var nhanVien = await _userRepository.GetAsync(entity.NhanVienId);
+            var heSoLuong = nhanVien?.DonGiaCong ?? 0;
+
+            // 🔹 Tính lại Thành tiền
+            entity.TinhThanhTien(heSoLuong);
+
+            await Repository.UpdateAsync(entity);
+            await UnitOfWorkManager.Current.SaveChangesAsync();
+
+            return await MapToGetOutputDtoAsync(entity);
         }
     }
 }

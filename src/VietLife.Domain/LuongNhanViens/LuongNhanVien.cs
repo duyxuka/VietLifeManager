@@ -13,7 +13,6 @@ namespace VietLife.LuongNhanViens
         public Guid NhanVienId { get; set; }
         public int Thang { get; set; }
         public int Nam { get; set; }
-        public decimal LuongCoBan { get; set; }  // Lương cơ bản
         public decimal? LuongTheoNgayCong { get; set; }  // Lương theo ngày công (từ ChamCong.CongNgay * NhanVien.DonGiaCong)
         public decimal? PhuCap { get; set; }  // Tổng phụ cấp (từ PhuCapNhanVien.SoTien)
         public decimal? ThuongKpi { get; set; }  // Thưởng KPI (từ KpiNhanVien.ThuongKpi)
@@ -26,5 +25,15 @@ namespace VietLife.LuongNhanViens
         public string GhiChu { get; set; }
 
         public virtual NhanVien NhanVien { get; set; }
+        public void TinhTongLuong(decimal luongCoBan)
+        {
+            TongLuong = luongCoBan
+                      + (LuongTheoNgayCong ?? 0)
+                      + (PhuCap ?? 0)
+                      + (ThuongKpi ?? 0)
+                      + (ThuongKhac ?? 0)
+                      + (CongTruCheDo ?? 0)
+                      - (KhauTru ?? 0);
+        }
     }
 }

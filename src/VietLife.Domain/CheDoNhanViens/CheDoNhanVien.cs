@@ -26,5 +26,13 @@ namespace VietLife.CheDoNhanViens
 
         public virtual NhanVien NhanVien { get; set; }
         public virtual LoaiCheDo LoaiCheDo { get; set; }
+        public void TinhThanhTien(decimal heSoLuong)
+        {
+            if (LoaiCheDo != null && SoCong.HasValue)
+            {
+                ThanhTien = SoCong.Value * heSoLuong * LoaiCheDo.HeSoCong;
+            }
+        }
     }
+
 }

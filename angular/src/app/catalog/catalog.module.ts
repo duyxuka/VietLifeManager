@@ -42,6 +42,18 @@ import { CheDoNhanVienComponent } from './chedonhanvien/chedonhanvien.component'
 import { CheDoNhanVienDetailComponent } from './chedonhanvien/chedonhanvien-detail.component';
 import { PhuCapNhanVienComponent } from './phucapnhanvien/phucapnhanvien.component';
 import { PhuCapNhanVienDetailComponent } from './phucapnhanvien/phucapnhanvien-detail.component';
+import { KpiNhanVienComponent } from './kpis/kpinhanvien/kpinhanvien.component';
+import { KpiNhanVienDetailComponent } from './kpis/kpinhanvien/kpinhanvien-detail.component';
+import { KeHoachCongViecComponent } from './kpis/kehoachcongviec/kehoachcongviec.component';
+import { KeHoachCongViecDetailComponent } from './kpis/kehoachcongviec/kehoachcongviec-detail.component';
+import { DanhGiaKpiComponent } from './kpis/danhgiakpi/danhgiakpi.component';
+import { DanhGiaKpiDetailComponent } from './kpis/danhgiakpi/danhgiakpi-detail.component';
+import { MucTieuKpiComponent } from './kpis/muctieukpi/muctieukpi.component';
+import { MucTieuKpiDetailComponent } from './kpis/muctieukpi/muctieukpi-detail.component';
+import { TienDoLamViecComponent } from './kpis/tiendolamviec/tiendolamviec.component';
+import { TienDoLamViecDetailComponent } from './kpis/tiendolamviec/tiendolamviec-detail.component';
+import { LuongNhanvienComponent } from './luongnhanvien/luongnhanvien.component';
+import { LuongNhanVienDetailComponent } from './luongnhanvien/luongnhanvien-detail.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +77,19 @@ import { PhuCapNhanVienDetailComponent } from './phucapnhanvien/phucapnhanvien-d
     CheDoNhanVienComponent,
     CheDoNhanVienDetailComponent,
     PhuCapNhanVienComponent,
-    PhuCapNhanVienDetailComponent
+    PhuCapNhanVienDetailComponent,
+    KpiNhanVienComponent,
+    KpiNhanVienDetailComponent,
+    KeHoachCongViecComponent,
+    KeHoachCongViecDetailComponent,
+    DanhGiaKpiComponent,
+    DanhGiaKpiDetailComponent,
+    MucTieuKpiComponent,
+    MucTieuKpiDetailComponent,
+    TienDoLamViecComponent,
+    TienDoLamViecDetailComponent,
+    LuongNhanvienComponent,
+    LuongNhanVienDetailComponent
   ],
   imports: [
     SharedModule,
@@ -102,7 +126,13 @@ import { PhuCapNhanVienDetailComponent } from './phucapnhanvien/phucapnhanvien-d
     LichLamViecDetailComponent,
     LoaiCheDoDetailComponent,
     CheDoNhanVienDetailComponent,
-    PhuCapNhanVienDetailComponent
+    PhuCapNhanVienDetailComponent,
+    KpiNhanVienDetailComponent,
+    KeHoachCongViecDetailComponent,
+    MucTieuKpiDetailComponent,
+    DanhGiaKpiDetailComponent,
+    TienDoLamViecDetailComponent,
+    LuongNhanVienDetailComponent
   ],
 })
 export class CatalogModule { }

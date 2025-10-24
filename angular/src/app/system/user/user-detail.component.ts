@@ -73,6 +73,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     ],
     maNv: [{ type: 'required', message: 'Bạn phải nhập mã nhân viên' }],
     hoTen: [{ type: 'required', message: 'Bạn phải nhập họ tên' }],
+    luongCoBan: [{ type: 'required', message: 'Bạn phải nhập lương cơ bản' }],
+    donGiaCong: [{ type: 'required', message: 'Bạn phải nhập đơn giá công' }],
     ngaySinh: [{ type: 'required', message: 'Bạn phải chọn ngày sinh' }],
     gioiTinh: [{ type: 'required', message: 'Bạn phải chọn giới tính' }],
     soCmnd: [{ type: 'pattern', message: 'Số CMND/CCCD không hợp lệ' }],
@@ -247,6 +249,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       maNv: new FormControl(this.selectedEntity.maNv || null, Validators.required),
       hoTen: new FormControl(this.selectedEntity.hoTen || null, Validators.required),
       ngaySinh: new FormControl(this.selectedEntity.ngaySinh ? new Date(this.selectedEntity.ngaySinh) : null),
+      luongCoBan: new FormControl(this.selectedEntity.luongCoBan || null),
+      donGiaCong: new FormControl(this.selectedEntity.donGiaCong || null),
       gioiTinh: new FormControl(this.selectedEntity.gioiTinh ?? true), // true = Nam
       soCmnd: new FormControl(this.selectedEntity.soCmnd || null, Validators.pattern('^[0-9]{9,12}$')),
       ngayCapCmnd: new FormControl(this.selectedEntity.ngayCapCmnd ? new Date(this.selectedEntity.ngayCapCmnd) : null),

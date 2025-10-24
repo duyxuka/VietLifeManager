@@ -21,5 +21,15 @@ namespace VietLife.ChamCongs
         public bool TrangThai { get; set; }
 
         public virtual NhanVien NhanVien { get; set; }
+
+        public void TinhCongNgay(TimeSpan gioLamChuan = default) // gioLamChuan mặc định 8 giờ
+        {
+            if (GioVao.HasValue && GioRa.HasValue)
+            {
+                var thoiGianLam = GioRa.Value - GioVao.Value;
+                SoGioLam = (decimal)thoiGianLam.TotalHours;
+                CongNgay = SoGioLam / (gioLamChuan.TotalHours > 0 ? (decimal)gioLamChuan.TotalHours : 8m); // Ví dụ: 8 giờ = 1 công
+            }
+        }
     }
 }

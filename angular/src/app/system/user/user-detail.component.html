@@ -62,6 +62,18 @@
         <app-validation-message [entityForm]="form" fieldName="hoTen" [validationMessages]="validationMessages"></app-validation-message>
       </div>
 
+      <div class="field col-12 md:col-6">
+        <label for="luongCoBan">Lương cơ bản <span class="required">*</span></label>
+        <p-inputNumber id="luongCoBan" type="text" formControlName="luongCoBan" class="w-full"></p-inputNumber>
+        <app-validation-message [entityForm]="form" fieldName="luongCoBan" [validationMessages]="validationMessages"></app-validation-message>
+      </div>
+
+      <div class="field col-12 md:col-6">
+        <label for="donGiaCong">Đơn giá công <span class="required">*</span></label>
+        <p-inputNumber id="donGiaCong" type="text" formControlName="donGiaCong" class="w-full"></p-inputNumber>
+        <app-validation-message [entityForm]="form" fieldName="donGiaCong" [validationMessages]="validationMessages"></app-validation-message>
+      </div>
+
       <!-- Giới tính -->
       <div class="field col-12 md:col-6">
         <label for="gioiTinh">Giới tính <span class="required">*</span></label>

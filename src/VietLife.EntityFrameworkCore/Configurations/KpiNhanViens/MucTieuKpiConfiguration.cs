@@ -20,6 +20,7 @@ namespace VietLife.Configurations.KpiNhanViens
             builder.Property(x => x.TrongSo).IsRequired();
 
             builder.HasOne(x => x.KpiNhanVien).WithMany(x => x.MucTieuKpis).HasForeignKey(x => x.KpiNhanVienId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.KeHoachCongViec).WithMany(x => x.MucTieuKpis).HasForeignKey(x => x.KeHoachCongViecId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace VietLife.Catalog.ChamCongs
                         {
                             Id = cc.Id,
                             NhanVienId = cc.NhanVienId,
-                            TenNhanVien = nv != null ? (nv.Surname + " " + nv.Name) : "N/A",
+                            TenNhanVien = nv != null ? nv.HoTen : "N/A",
                             NgayLam = cc.NgayLam,
                             GioVao = cc.GioVao,
                             GioRa = cc.GioRa,
@@ -147,7 +147,7 @@ namespace VietLife.Catalog.ChamCongs
             chamCong.GioRa = now;
             chamCong.SoGioLam = soGioLam;
             chamCong.SoPhutVeSom = soPhutVeSom;
-            chamCong.CongNgay = soGioLam >= 8 ? 1 : soGioLam / 8; // 8 giờ = 1 công
+            chamCong.TinhCongNgay(new TimeSpan(8, 0, 0)); // 8 giờ = 1 công
             chamCong.TrangThai = false;
 
             await Repository.UpdateAsync(chamCong);

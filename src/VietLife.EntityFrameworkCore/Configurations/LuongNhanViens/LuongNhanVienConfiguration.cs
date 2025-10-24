@@ -18,7 +18,6 @@ namespace VietLife.Configurations.LuongNhanViens
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.LuongCoBan).HasColumnType("decimal(18,2)");
             builder.Property(x => x.PhuCap).HasColumnType("decimal(18,2)");
             builder.Property(x => x.TongLuong).HasColumnType("decimal(18,2)");
 

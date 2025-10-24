@@ -4,7 +4,13 @@ using VietLife.Catalog.CheDos.CheDoNhanViens;
 using VietLife.Catalog.CheDos.LoaiCheDos;
 using VietLife.Catalog.ChiNhanhs;
 using VietLife.Catalog.ChucVus;
+using VietLife.Catalog.KPIs.DanhGiaKpis;
+using VietLife.Catalog.KPIs.KeHoachCongViecs;
+using VietLife.Catalog.KPIs.KpiNhanViens;
+using VietLife.Catalog.KPIs.MucTieuKpis;
+using VietLife.Catalog.KPIs.TienDoLamViecs;
 using VietLife.Catalog.LichLamViecs;
+using VietLife.Catalog.LuongNhanViens;
 using VietLife.Catalog.Manufacturers;
 using VietLife.Catalog.PhongBans;
 using VietLife.Catalog.PhuCapNhanViens;
@@ -15,7 +21,9 @@ using VietLife.ChamCongs;
 using VietLife.CheDoNhanViens;
 using VietLife.ChiNhanhs;
 using VietLife.Chucvus;
+using VietLife.KPINhanViens;
 using VietLife.LichLamViecs;
+using VietLife.LuongNhanViens;
 using VietLife.Manufacturers;
 using VietLife.NhanViens;
 using VietLife.PhongBans;
@@ -95,6 +103,28 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         CreateMap<PhuCapNhanVien, PhuCapNhanVienDto>();
         CreateMap<PhuCapNhanVien, PhuCapNhanVienInListDto>();
         CreateMap<CreateUpdatePhuCapNhanVienDto, PhuCapNhanVien>();
+
+        //KPI
+        CreateMap<DanhGiaKpi, DanhGiaKpiDto>();
+        CreateMap<DanhGiaKpi, DanhGiaKpiInListDto>();
+        CreateMap<CreateUpdateDanhGiaKpiDto, DanhGiaKpi>();
+        CreateMap<KeHoachCongViec, KeHoachCongViecDto>();
+        CreateMap<KeHoachCongViec, KeHoachCongViecInListDto>();
+        CreateMap<CreateUpdateKeHoachCongViecDto, KeHoachCongViec>();
+        CreateMap<KpiNhanVien, KpiNhanVienDto>();
+        CreateMap<KpiNhanVien, KpiNhanVienInListDto>();
+        CreateMap<CreateUpdateKpiNhanVienDto, KpiNhanVien>();
+        CreateMap<MucTieuKpi, MucTieuKpiDto>();
+        CreateMap<MucTieuKpi, MucTieuKpiInListDto>();
+        CreateMap<CreateUpdateMucTieuKpiDto, MucTieuKpi>();
+        CreateMap<TienDoLamViec, TienDoLamViecDto>();
+        CreateMap<TienDoLamViec, TienDoLamViecInListDto>();
+        CreateMap<CreateUpdateTienDoLamViecDto, TienDoLamViec>();
+
+        //LuongNhanVien
+        CreateMap<LuongNhanVien, LuongNhanVienDto>();
+        CreateMap<LuongNhanVien, LuongNhanVienInListDto>();
+        CreateMap<CreateUpdateLuongNhanVienDto, LuongNhanVien>();
 
         //Role
         CreateMap<IdentityRole, RoleDto>().ForMember(x => x.Description,

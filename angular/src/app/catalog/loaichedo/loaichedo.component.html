@@ -57,6 +57,7 @@
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
         <th>Tên loại chế độ</th>
+        <th>Hệ số công</th>
         <th>Mô tả</th>
         <th>Trạng thái</th>
       </tr>
@@ -68,6 +69,7 @@
           <p-tableCheckbox [value]="row"></p-tableCheckbox>
         </td>
         <td>{{ row.tenLoaiCheDo }}</td>
+        <td>{{ row.heSoCong }}</td>
         <td>{{ row.moTa }}</td>
         <td>
           <p-badge *ngIf="row.trangThai == 1" severity="success" value="Hoạt động"></p-badge>

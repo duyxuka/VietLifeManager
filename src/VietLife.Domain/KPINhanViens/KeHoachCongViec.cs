@@ -15,8 +15,12 @@ namespace VietLife.KPINhanViens
         public DateTime? NgayBatDau { get; set; }
         public DateTime? NgayKetThuc { get; set; }
         public decimal TrongSo { get; set; }
-
+        public int? SoMucTieu { get; set; }
         public virtual KpiNhanVien KpiNhanVien { get; set; }
         public virtual ICollection<MucTieuKpi> MucTieuKpis { get; set; }
+        public KeHoachCongViec()
+        {
+            MucTieuKpis = new HashSet<MucTieuKpi>();
+        }
     }
 }

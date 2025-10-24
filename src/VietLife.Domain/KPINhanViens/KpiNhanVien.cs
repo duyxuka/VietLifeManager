@@ -26,5 +26,29 @@ namespace VietLife.KPINhanViens
         public virtual ICollection<MucTieuKpi> MucTieuKpis { get; set; }  // Mục tiêu KPI
         public virtual ICollection<TienDoLamViec> TienDoLamViecs { get; set; }  // Tiến độ làm việc
         public virtual ICollection<DanhGiaKpi> DanhGiaKpis { get; set; }
+        public KpiNhanVien()
+        {
+            KeHoachCongViecs = new HashSet<KeHoachCongViec>();
+            MucTieuKpis = new HashSet<MucTieuKpi>();
+            TienDoLamViecs = new HashSet<TienDoLamViec>();
+            DanhGiaKpis = new HashSet<DanhGiaKpi>();
+        }
+
+        // Method tính ThuongKpi
+        public void TinhPhanTramHoanThanh(decimal tongTrongSo, decimal tongDiem)
+        {
+            if (tongTrongSo == 0)
+                PhanTramHoanThanh = 0;
+            else
+                PhanTramHoanThanh = (tongDiem / tongTrongSo) * 100;
+        }
+
+        public void TinhThuongKpi()
+        {
+            if (MucLuongKpi > 0 && PhanTramHoanThanh > 0)
+                ThuongKpi = MucLuongKpi * (PhanTramHoanThanh / 100);
+            else
+                ThuongKpi = 0;
+        }
     }
 }

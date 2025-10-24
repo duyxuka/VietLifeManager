@@ -30,6 +30,8 @@ namespace VietLife.NhanViens
         public Guid? ChiNhanhId { get; set; }
         public DateTime? NgayVaoLam { get; set; }
         public string TrangThai { get; set; }
+        public decimal LuongCoBan { get; set; } // Lương cơ bản cố định, lưu ở đây vì per nhân viên
+        public decimal DonGiaCong { get; set; } // Đơn giá công ngày, dùng để tính LuongTheoNgayCong
         public virtual PhongBan PhongBan { get; set; }
         public virtual ChucVu ChucVu { get; set; }
         public virtual ChiNhanh ChiNhanh { get; set; }
@@ -41,8 +43,15 @@ namespace VietLife.NhanViens
         public NhanVien(Guid id, string userName, string email)
             : base(id, userName, email)
         {
+            UserName = userName;
+            Email = email;
+            ChamCongs = new HashSet<ChamCong>();
+            LuongNhanViens = new HashSet<LuongNhanVien>();
+            KpiNhanViens = new HashSet<KpiNhanVien>();
+            CheDoNhanViens = new HashSet<CheDoNhanVien>();
         }
-        public NhanVien()
+
+        public NhanVien() : base()
         {
             ChamCongs = new HashSet<ChamCong>();
             LuongNhanViens = new HashSet<LuongNhanVien>();

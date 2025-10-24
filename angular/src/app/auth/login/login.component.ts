@@ -17,18 +17,33 @@ import { TokenStorageService } from 'src/app/shared/services/token.service';
   templateUrl: './login.component.html',
   styles: [
     `
+      /* Bao ngoài của PrimeNG p-password */
+      :host ::ng-deep .p-password {
+        display: block;
+        width: 100% !important;
+      }
+      :host ::ng-deep .matkhau{
+        position: relative !important;
+        margin-bottom: 15px;
+      }
+      /* Div wrapper bên trong p-password */
+      :host ::ng-deep .p-password > div {
+        width: 100% !important;
+      }
+
+      /* Input bên trong p-password */
       :host ::ng-deep .p-password input {
-        width: 100%;
+        width: 100% !important;
         padding: 1rem;
+        box-sizing: border-box;
       }
 
-      :host ::ng-deep .pi-eye {
-        transform: scale(1.6);
-        margin-right: 1rem;
-        color: var(--primary-color) !important;
-      }
-
+      /* Icon con mắt */
+      :host ::ng-deep .pi-eye,
       :host ::ng-deep .pi-eye-slash {
+        position: absolute;
+        top: 36%;
+        right: 1%;
         transform: scale(1.6);
         margin-right: 1rem;
         color: var(--primary-color) !important;

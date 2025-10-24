@@ -667,6 +667,9 @@ namespace VietLife.Migrations
                     b.Property<DateTime?>("NgayKetThuc")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("SoMucTieu")
+                        .HasColumnType("int");
+
                     b.Property<string>("TenKeHoach")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -804,7 +807,10 @@ namespace VietLife.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<decimal?>("GiaTriMucTieu")
+                    b.Property<decimal>("GiaTriMucTieu")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("GiaTriThucHien")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsDeleted")
@@ -1044,9 +1050,6 @@ namespace VietLife.Migrations
                     b.Property<Guid?>("LastModifierId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
-
-                    b.Property<decimal>("LuongCoBan")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("LuongTheoNgayCong")
                         .HasColumnType("decimal(18,2)");
@@ -3848,12 +3851,18 @@ namespace VietLife.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<decimal>("DonGiaCong")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<bool>("GioiTinh")
                         .HasColumnType("bit");
 
                     b.Property<string>("HoTen")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal>("LuongCoBan")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MaNv")
                         .HasMaxLength(50)
@@ -3959,15 +3968,18 @@ namespace VietLife.Migrations
 
             modelBuilder.Entity("VietLife.KPINhanViens.MucTieuKpi", b =>
                 {
-                    b.HasOne("VietLife.KPINhanViens.KeHoachCongViec", null)
+                    b.HasOne("VietLife.KPINhanViens.KeHoachCongViec", "KeHoachCongViec")
                         .WithMany("MucTieuKpis")
-                        .HasForeignKey("KeHoachCongViecId");
+                        .HasForeignKey("KeHoachCongViecId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("VietLife.KPINhanViens.KpiNhanVien", "KpiNhanVien")
                         .WithMany("MucTieuKpis")
                         .HasForeignKey("KpiNhanVienId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("KeHoachCongViec");
 
                     b.Navigation("KpiNhanVien");
                 });

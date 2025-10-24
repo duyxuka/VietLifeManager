@@ -11,6 +11,12 @@ import { LichLamViecComponent } from './lichlamviec/lichlamviec.component';
 import { LoaiCheDoComponent } from './loaichedo/loaichedo.component';
 import { CheDoNhanVienComponent } from './chedonhanvien/chedonhanvien.component';
 import { PhuCapNhanVienComponent } from './phucapnhanvien/phucapnhanvien.component';
+import { KpiNhanVienComponent } from './kpis/kpinhanvien/kpinhanvien.component';
+import { KeHoachCongViecComponent } from './kpis/kehoachcongviec/kehoachcongviec.component';
+import { MucTieuKpiComponent } from './kpis/muctieukpi/muctieukpi.component';
+import { TienDoLamViecComponent } from './kpis/tiendolamviec/tiendolamviec.component';
+import { DanhGiaKpiComponent } from './kpis/danhgiakpi/danhgiakpi.component';
+import { LuongNhanvienComponent } from './luongnhanvien/luongnhanvien.component';
 
 const routes: Routes = [
   {
@@ -60,7 +66,21 @@ const routes: Routes = [
   {
     path: 'phucapnhanvien',
     component: PhuCapNhanVienComponent
-  }
+  },
+  {
+    path: 'kpis',
+    children: [
+      { path: 'kpinhanvien', component: KpiNhanVienComponent },
+      { path: 'kehoachcongviec', component: KeHoachCongViecComponent },
+      { path: 'muctieukpi', component: MucTieuKpiComponent },
+      { path: 'tiendolamviec', component: TienDoLamViecComponent },
+      { path: 'danhgiakpi', component: DanhGiaKpiComponent },
+    ],
+  },
+  {
+    path: 'luongnhanvien',
+    component: LuongNhanvienComponent
+  },
 ];
 
 @NgModule({
