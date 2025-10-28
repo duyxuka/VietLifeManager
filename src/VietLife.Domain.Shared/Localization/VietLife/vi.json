@@ -21,6 +21,78 @@
     "Permission:Catalog.ProductCategory": "Loại sản phẩm",
     "Permission:Catalog.ProductCategory.Create": "Tạo mới Loại sản phẩm",
     "Permission:Catalog.ProductCategory.Update": "Cập nhật Loại sản phẩm",
-    "Permission:Catalog.ProductCategory.Delete": "Xóa Loại sản phẩm"
+    "Permission:Catalog.ProductCategory.Delete": "Xóa Loại sản phẩm",
+
+    "Permission:Catalog.ChiNhanh": "Chi nhánh",
+    "Permission:Catalog.ChiNhanh.Create": "Tạo mới Chi nhánh",
+    "Permission:Catalog.ChiNhanh.Update": "Cập nhật Chi nhánh",
+    "Permission:Catalog.ChiNhanh.Delete": "Xóa Chi nhánh",
+
+    "Permission:Catalog.PhongBan": "Phòng ban",
+    "Permission:Catalog.PhongBan.Create": "Tạo mới Phòng ban",
+    "Permission:Catalog.PhongBan.Update": "Cập nhật Phòng ban",
+    "Permission:Catalog.PhongBan.Delete": "Xóa Phòng ban",
+
+    "Permission:Catalog.ChucVu": "Chức vụ",
+    "Permission:Catalog.ChucVu.Create": "Tạo mới Chức vụ",
+    "Permission:Catalog.ChucVu.Update": "Cập nhật Chức vụ",
+    "Permission:Catalog.ChucVu.Delete": "Xóa Chức vụ",
+
+    "Permission:Catalog.ChamCong": "Chấm công",
+    "Permission:Catalog.ChamCong.Create": "Tạo mới Chấm công",
+    "Permission:Catalog.ChamCong.Update": "Cập nhật Chấm công",
+    "Permission:Catalog.ChamCong.Delete": "Xóa Chấm công",
+    "Permission:Catalog.ChamCong.CheckIn": "Điểm danh (Check-in)",
+    "Permission:Catalog.ChamCong.CheckOut": "Ra ca (Check-out)",
+
+    "Permission:Catalog.LichLamViec": "Lịch làm việc",
+    "Permission:Catalog.LichLamViec.Create": "Tạo mới Lịch làm việc",
+    "Permission:Catalog.LichLamViec.Update": "Cập nhật Lịch làm việc",
+    "Permission:Catalog.LichLamViec.Delete": "Xóa Lịch làm việc",
+
+    "Permission:Catalog.LoaiCheDo": "Loại chế độ",
+    "Permission:Catalog.LoaiCheDo.Create": "Tạo mới Loại chế độ",
+    "Permission:Catalog.LoaiCheDo.Update": "Cập nhật Loại chế độ",
+    "Permission:Catalog.LoaiCheDo.Delete": "Xóa Loại chế độ",
+
+    "Permission:Catalog.CheDoNhanVien": "Chế độ nhân viên",
+    "Permission:Catalog.CheDoNhanVien.Create": "Tạo mới Chế độ nhân viên",
+    "Permission:Catalog.CheDoNhanVien.Update": "Cập nhật Chế độ nhân viên",
+    "Permission:Catalog.CheDoNhanVien.Delete": "Xóa Chế độ nhân viên",
+
+    "Permission:Catalog.PhuCapNhanVien": "Phụ cấp nhân viên",
+    "Permission:Catalog.PhuCapNhanVien.Create": "Tạo phụ cấp nhân viên",
+    "Permission:Catalog.PhuCapNhanVien.Update": "Cập nhật phụ cấp nhân viên",
+    "Permission:Catalog.PhuCapNhanVien.Delete": "Xóa phụ cấp nhân viên",
+
+    "Permission:Catalog.LuongNhanVien": "Lương nhân viên",
+    "Permission:Catalog.LuongNhanVien.Create": "Tạo lương nhân viên",
+    "Permission:Catalog.LuongNhanVien.Update": "Cập nhật lương nhân viên",
+    "Permission:Catalog.LuongNhanVien.Delete": "Xóa lương nhân viên",
+
+    "Permission:Catalog.KpiNhanVien": "KPI Nhân viên",
+    "Permission:Catalog.KpiNhanVien.Create": "Tạo KPI nhân viên",
+    "Permission:Catalog.KpiNhanVien.Update": "Cập nhật KPI nhân viên",
+    "Permission:Catalog.KpiNhanVien.Delete": "Xóa KPI nhân viên",
+
+    "Permission:Catalog.KpiNhanVien.KeHoachCongViec": "Kế hoạch công việc",
+    "Permission:Catalog.KpiNhanVien.KeHoachCongViec.Create": "Tạo kế hoạch công việc",
+    "Permission:Catalog.KpiNhanVien.KeHoachCongViec.Update": "Cập nhật kế hoạch công việc",
+    "Permission:Catalog.KpiNhanVien.KeHoachCongViec.Delete": "Xóa kế hoạch công việc",
+
+    "Permission:Catalog.KpiNhanVien.MucTieuKpi": "Mục tiêu KPI",
+    "Permission:Catalog.KpiNhanVien.MucTieuKpi.Create": "Tạo mục tiêu KPI",
+    "Permission:Catalog.KpiNhanVien.MucTieuKpi.Update": "Cập nhật mục tiêu KPI",
+    "Permission:Catalog.KpiNhanVien.MucTieuKpi.Delete": "Xóa mục tiêu KPI",
+
+    "Permission:Catalog.KpiNhanVien.TienDoLamViec": "Tiến độ làm việc",
+    "Permission:Catalog.KpiNhanVien.TienDoLamViec.Create": "Tạo tiến độ làm việc",
+    "Permission:Catalog.KpiNhanVien.TienDoLamViec.Update": "Cập nhật tiến độ làm việc",
+    "Permission:Catalog.KpiNhanVien.TienDoLamViec.Delete": "Xóa tiến độ làm việc",
+
+    "Permission:Catalog.KpiNhanVien.DanhGiaKpi": "Đánh giá KPI",
+    "Permission:Catalog.KpiNhanVien.DanhGiaKpi.Create": "Tạo đánh giá KPI",
+    "Permission:Catalog.KpiNhanVien.DanhGiaKpi.Update": "Cập nhật đánh giá KPI",
+    "Permission:Catalog.KpiNhanVien.DanhGiaKpi.Delete": "Xóa đánh giá KPI"
   }
 }

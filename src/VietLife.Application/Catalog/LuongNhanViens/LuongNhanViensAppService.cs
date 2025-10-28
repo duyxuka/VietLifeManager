@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using VietLife.Chucvus;
 using VietLife.KPINhanViens;
 using VietLife.LuongNhanViens;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using VietLife.PhuCapNhanViens;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -22,6 +24,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VietLife.Catalog.LuongNhanViens
 {
+    [Authorize(VietLifePermissions.LuongNhanVien.Default)]
     public class LuongNhanViensAppService : CrudAppService<
         LuongNhanVien,
         LuongNhanVienDto,
@@ -51,8 +54,15 @@ namespace VietLife.Catalog.LuongNhanViens
             _kpiRepository = kpiRepository;
             _cheDoRepository = cheDoRepository;
             _phuCapRepository = phuCapRepository;
+
+            GetPolicyName = VietLifePermissions.LuongNhanVien.Default;
+            GetListPolicyName = VietLifePermissions.LuongNhanVien.Default;
+            CreatePolicyName = VietLifePermissions.LuongNhanVien.Create;
+            UpdatePolicyName = VietLifePermissions.LuongNhanVien.Update;
+            DeletePolicyName = VietLifePermissions.LuongNhanVien.Delete;
         }
 
+        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
         public async Task<List<LuongNhanVienInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -62,6 +72,7 @@ namespace VietLife.Catalog.LuongNhanViens
             return ObjectMapper.Map<List<LuongNhanVien>, List<LuongNhanVienInListDto>>(data);
         }
 
+        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
         public async Task<PagedResultDto<LuongNhanVienInListDto>> GetListFilterAsync(LuongNhanVienListFilterDto input)
         {
             var luongQuery = await Repository.GetQueryableAsync();
@@ -104,13 +115,14 @@ namespace VietLife.Catalog.LuongNhanViens
         }
 
 
-
+        [Authorize(VietLifePermissions.LuongNhanVien.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
         [UnitOfWork]
         public async Task TinhLuongHangNgayAsync()
         {
@@ -180,6 +192,7 @@ namespace VietLife.Catalog.LuongNhanViens
             }
         }
 
+        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
         public async Task TinhLuongThangAsync(int thang, int nam)
         {
             // Tổng hợp logic tương tự, chỉ khác là tính trên toàn bộ tháng

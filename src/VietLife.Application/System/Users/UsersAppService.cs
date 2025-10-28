@@ -15,7 +15,7 @@ using VietLife.NhanViens;
 
 namespace VietLife.System.Users
 {
-    [Authorize(IdentityPermissions.Users.Default, Policy = "AdminOnly")]
+    [Authorize(IdentityPermissions.Users.Default)]
     public class UsersAppService : CrudAppService<NhanVien, UserDto, Guid, PagedResultRequestDto,
                         CreateUserDto, UpdateUserDto>, IUsersAppService
     {

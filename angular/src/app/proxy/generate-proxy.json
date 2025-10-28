@@ -1074,7 +1074,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChamCongs.IChamCongsAppService"
             },
             "GetListAllAsync": {
@@ -1089,7 +1089,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.ChamCongs.ChamCongInListDto>",
                 "typeSimple": "[VietLife.Catalog.ChamCongs.ChamCongInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChamCongs.IChamCongsAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -1162,7 +1162,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChamCongs.ChamCongInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChamCongs.ChamCongInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChamCongs.IChamCongsAppService"
             },
             "CheckInAsync": {
@@ -1177,7 +1177,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChamCongs.IChamCongsAppService"
             },
             "CheckOutAsync": {
@@ -1192,7 +1192,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChamCongs.IChamCongsAppService"
             },
             "CreateAsyncByInput": {
@@ -1229,7 +1229,7 @@
                 "type": "VietLife.Catalog.ChamCongs.ChamCongDto",
                 "typeSimple": "VietLife.Catalog.ChamCongs.ChamCongDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.ChamCongs.ChamCongDto,VietLife.Catalog.ChamCongs.CreateUpdateChamCongDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -1286,7 +1286,7 @@
                 "type": "VietLife.Catalog.ChamCongs.ChamCongDto",
                 "typeSimple": "VietLife.Catalog.ChamCongs.ChamCongDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.ChamCongs.ChamCongDto,System.Guid,VietLife.Catalog.ChamCongs.CreateUpdateChamCongDto>"
             },
             "DeleteAsyncById": {
@@ -1323,7 +1323,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -1360,7 +1360,7 @@
                 "type": "VietLife.Catalog.ChamCongs.ChamCongDto",
                 "typeSimple": "VietLife.Catalog.ChamCongs.ChamCongDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.ChamCongs.ChamCongDto,VietLife.Catalog.ChamCongs.ChamCongDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -1409,7 +1409,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChamCongs.ChamCongDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChamCongs.ChamCongDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.ChamCongs.ChamCongDto,VietLife.Catalog.ChamCongs.ChamCongDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -1599,7 +1599,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.CheDos.CheDoNhanViens.ICheDoNhanViensAppService"
             },
             "GetListAllAsync": {
@@ -1614,7 +1614,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienInListDto>",
                 "typeSimple": "[VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.CheDos.CheDoNhanViens.ICheDoNhanViensAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -1687,7 +1687,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.CheDos.CheDoNhanViens.ICheDoNhanViensAppService"
             },
             "CreateAsyncByInput": {
@@ -1724,7 +1724,7 @@
                 "type": "VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto",
                 "typeSimple": "VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto,VietLife.Catalog.CheDos.CheDoNhanViens.CreateUpdateCheDoNhanVienDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -1781,7 +1781,7 @@
                 "type": "VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto",
                 "typeSimple": "VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto,System.Guid,VietLife.Catalog.CheDos.CheDoNhanViens.CreateUpdateCheDoNhanVienDto>"
             },
             "DeleteAsyncById": {
@@ -1818,7 +1818,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -1855,7 +1855,7 @@
                 "type": "VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto",
                 "typeSimple": "VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto,VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -1904,7 +1904,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto,VietLife.Catalog.CheDos.CheDoNhanViens.CheDoNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -2094,7 +2094,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.CheDos.LoaiCheDos.ILoaiCheDosAppService"
             },
             "GetListAllAsync": {
@@ -2109,7 +2109,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoInListDto>",
                 "typeSimple": "[VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.CheDos.LoaiCheDos.ILoaiCheDosAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -2170,7 +2170,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.CheDos.LoaiCheDos.ILoaiCheDosAppService"
             },
             "CreateAsyncByInput": {
@@ -2207,7 +2207,7 @@
                 "type": "VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto",
                 "typeSimple": "VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto,VietLife.Catalog.CheDos.LoaiCheDos.CreateUpdateLoaiCheDoDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -2264,7 +2264,7 @@
                 "type": "VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto",
                 "typeSimple": "VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto,System.Guid,VietLife.Catalog.CheDos.LoaiCheDos.CreateUpdateLoaiCheDoDto>"
             },
             "DeleteAsyncById": {
@@ -2301,7 +2301,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -2338,7 +2338,7 @@
                 "type": "VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto",
                 "typeSimple": "VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto,VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -2387,7 +2387,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto,VietLife.Catalog.CheDos.LoaiCheDos.LoaiCheDoDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -2577,7 +2577,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChiNhanhs.IChiNhanhsAppService"
             },
             "GetListAllAsync": {
@@ -2592,7 +2592,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.ChiNhanhs.ChiNhanhInListDto>",
                 "typeSimple": "[VietLife.Catalog.ChiNhanhs.ChiNhanhInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChiNhanhs.IChiNhanhsAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -2653,7 +2653,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChiNhanhs.ChiNhanhInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChiNhanhs.ChiNhanhInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChiNhanhs.IChiNhanhsAppService"
             },
             "CreateAsyncByInput": {
@@ -2690,7 +2690,7 @@
                 "type": "VietLife.Catalog.ChiNhanhs.ChiNhanhDto",
                 "typeSimple": "VietLife.Catalog.ChiNhanhs.ChiNhanhDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.ChiNhanhs.ChiNhanhDto,VietLife.Catalog.ChiNhanhs.CreateUpdateChiNhanhDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -2747,7 +2747,7 @@
                 "type": "VietLife.Catalog.ChiNhanhs.ChiNhanhDto",
                 "typeSimple": "VietLife.Catalog.ChiNhanhs.ChiNhanhDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.ChiNhanhs.ChiNhanhDto,System.Guid,VietLife.Catalog.ChiNhanhs.CreateUpdateChiNhanhDto>"
             },
             "DeleteAsyncById": {
@@ -2784,7 +2784,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -2821,7 +2821,7 @@
                 "type": "VietLife.Catalog.ChiNhanhs.ChiNhanhDto",
                 "typeSimple": "VietLife.Catalog.ChiNhanhs.ChiNhanhDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.ChiNhanhs.ChiNhanhDto,VietLife.Catalog.ChiNhanhs.ChiNhanhDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -2870,7 +2870,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChiNhanhs.ChiNhanhDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChiNhanhs.ChiNhanhDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.ChiNhanhs.ChiNhanhDto,VietLife.Catalog.ChiNhanhs.ChiNhanhDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -3060,7 +3060,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChucVus.IChucVusAppService"
             },
             "GetListAllAsync": {
@@ -3075,7 +3075,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.ChucVus.ChucVuInListDto>",
                 "typeSimple": "[VietLife.Catalog.ChucVus.ChucVuInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChucVus.IChucVusAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -3136,7 +3136,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChucVus.ChucVuInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChucVus.ChucVuInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.ChucVus.IChucVusAppService"
             },
             "CreateAsyncByInput": {
@@ -3173,7 +3173,7 @@
                 "type": "VietLife.Catalog.ChucVus.ChucVuDto",
                 "typeSimple": "VietLife.Catalog.ChucVus.ChucVuDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.ChucVus.ChucVuDto,VietLife.Catalog.ChucVus.CreateUpdateChucVuDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -3230,7 +3230,7 @@
                 "type": "VietLife.Catalog.ChucVus.ChucVuDto",
                 "typeSimple": "VietLife.Catalog.ChucVus.ChucVuDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.ChucVus.ChucVuDto,System.Guid,VietLife.Catalog.ChucVus.CreateUpdateChucVuDto>"
             },
             "DeleteAsyncById": {
@@ -3267,7 +3267,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -3304,7 +3304,7 @@
                 "type": "VietLife.Catalog.ChucVus.ChucVuDto",
                 "typeSimple": "VietLife.Catalog.ChucVus.ChucVuDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.ChucVus.ChucVuDto,VietLife.Catalog.ChucVus.ChucVuDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -3353,7 +3353,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChucVus.ChucVuDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.ChucVus.ChucVuDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.ChucVus.ChucVuDto,VietLife.Catalog.ChucVus.ChucVuDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -3543,7 +3543,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.DanhGiaKpis.IDanhGiaKpisAppService"
             },
             "GetListAllAsync": {
@@ -3558,7 +3558,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiInListDto>",
                 "typeSimple": "[VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.DanhGiaKpis.IDanhGiaKpisAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -3619,7 +3619,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.DanhGiaKpis.IDanhGiaKpisAppService"
             },
             "CreateAsyncByInput": {
@@ -3656,7 +3656,7 @@
                 "type": "VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto",
                 "typeSimple": "VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto,VietLife.Catalog.KPIs.DanhGiaKpis.CreateUpdateDanhGiaKpiDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -3713,7 +3713,7 @@
                 "type": "VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto",
                 "typeSimple": "VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto,System.Guid,VietLife.Catalog.KPIs.DanhGiaKpis.CreateUpdateDanhGiaKpiDto>"
             },
             "DeleteAsyncById": {
@@ -3750,7 +3750,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -3787,7 +3787,7 @@
                 "type": "VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto",
                 "typeSimple": "VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto,VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -3836,7 +3836,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto,VietLife.Catalog.KPIs.DanhGiaKpis.DanhGiaKpiDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -4026,7 +4026,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.KeHoachCongViecs.IKeHoachCongViecsAppService"
             },
             "GetListAllAsync": {
@@ -4041,7 +4041,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecInListDto>",
                 "typeSimple": "[VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.KeHoachCongViecs.IKeHoachCongViecsAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -4102,7 +4102,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.KeHoachCongViecs.IKeHoachCongViecsAppService"
             },
             "CreateAsyncByInput": {
@@ -4139,7 +4139,7 @@
                 "type": "VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto",
                 "typeSimple": "VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto,VietLife.Catalog.KPIs.KeHoachCongViecs.CreateUpdateKeHoachCongViecDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -4196,7 +4196,7 @@
                 "type": "VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto",
                 "typeSimple": "VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto,System.Guid,VietLife.Catalog.KPIs.KeHoachCongViecs.CreateUpdateKeHoachCongViecDto>"
             },
             "DeleteAsyncById": {
@@ -4233,7 +4233,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -4270,7 +4270,7 @@
                 "type": "VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto",
                 "typeSimple": "VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto,VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -4319,7 +4319,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto,VietLife.Catalog.KPIs.KeHoachCongViecs.KeHoachCongViecDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -4509,7 +4509,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.KpiNhanViens.IKpiNhanViensAppService"
             },
             "GetListAllAsync": {
@@ -4524,7 +4524,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienInListDto>",
                 "typeSimple": "[VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.KpiNhanViens.IKpiNhanViensAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -4585,7 +4585,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.KpiNhanViens.IKpiNhanViensAppService"
             },
             "CreateAsyncByInput": {
@@ -4622,7 +4622,7 @@
                 "type": "VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto",
                 "typeSimple": "VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto,VietLife.Catalog.KPIs.KpiNhanViens.CreateUpdateKpiNhanVienDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -4679,7 +4679,7 @@
                 "type": "VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto",
                 "typeSimple": "VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto,System.Guid,VietLife.Catalog.KPIs.KpiNhanViens.CreateUpdateKpiNhanVienDto>"
             },
             "DeleteAsyncById": {
@@ -4716,7 +4716,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -4753,7 +4753,7 @@
                 "type": "VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto",
                 "typeSimple": "VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto,VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -4802,7 +4802,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto,VietLife.Catalog.KPIs.KpiNhanViens.KpiNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -4992,7 +4992,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.MucTieuKpis.IMucTieuKpisAppService"
             },
             "GetListAllAsync": {
@@ -5007,7 +5007,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiInListDto>",
                 "typeSimple": "[VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.MucTieuKpis.IMucTieuKpisAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -5068,7 +5068,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.MucTieuKpis.IMucTieuKpisAppService"
             },
             "CreateAsyncByInput": {
@@ -5105,7 +5105,7 @@
                 "type": "VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto",
                 "typeSimple": "VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto,VietLife.Catalog.KPIs.MucTieuKpis.CreateUpdateMucTieuKpiDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -5162,7 +5162,7 @@
                 "type": "VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto",
                 "typeSimple": "VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto,System.Guid,VietLife.Catalog.KPIs.MucTieuKpis.CreateUpdateMucTieuKpiDto>"
             },
             "DeleteAsyncById": {
@@ -5199,7 +5199,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -5236,7 +5236,7 @@
                 "type": "VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto",
                 "typeSimple": "VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto,VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -5285,7 +5285,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto,VietLife.Catalog.KPIs.MucTieuKpis.MucTieuKpiDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -5475,7 +5475,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.TienDoLamViecs.ITienDoLamViecsAppService"
             },
             "GetListAllAsync": {
@@ -5490,7 +5490,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecInListDto>",
                 "typeSimple": "[VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.TienDoLamViecs.ITienDoLamViecsAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -5551,7 +5551,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.KPIs.TienDoLamViecs.ITienDoLamViecsAppService"
             },
             "CreateAsyncByInput": {
@@ -5588,7 +5588,7 @@
                 "type": "VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto",
                 "typeSimple": "VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto,VietLife.Catalog.KPIs.TienDoLamViecs.CreateUpdateTienDoLamViecDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -5645,7 +5645,7 @@
                 "type": "VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto",
                 "typeSimple": "VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto,System.Guid,VietLife.Catalog.KPIs.TienDoLamViecs.CreateUpdateTienDoLamViecDto>"
             },
             "DeleteAsyncById": {
@@ -5682,7 +5682,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -5719,7 +5719,7 @@
                 "type": "VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto",
                 "typeSimple": "VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto,VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -5768,7 +5768,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto,VietLife.Catalog.KPIs.TienDoLamViecs.TienDoLamViecDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -5958,7 +5958,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LichLamViecs.ILichLamViecsAppService"
             },
             "GetListAllAsync": {
@@ -5973,7 +5973,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.LichLamViecs.LichLamViecInListDto>",
                 "typeSimple": "[VietLife.Catalog.LichLamViecs.LichLamViecInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LichLamViecs.ILichLamViecsAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -6058,7 +6058,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LichLamViecs.LichLamViecInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LichLamViecs.LichLamViecInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LichLamViecs.ILichLamViecsAppService"
             },
             "CreateAsyncByInput": {
@@ -6095,7 +6095,7 @@
                 "type": "VietLife.Catalog.LichLamViecs.LichLamViecDto",
                 "typeSimple": "VietLife.Catalog.LichLamViecs.LichLamViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.LichLamViecs.LichLamViecDto,VietLife.Catalog.LichLamViecs.CreateUpdateLichLamViecDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -6152,7 +6152,7 @@
                 "type": "VietLife.Catalog.LichLamViecs.LichLamViecDto",
                 "typeSimple": "VietLife.Catalog.LichLamViecs.LichLamViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.LichLamViecs.LichLamViecDto,System.Guid,VietLife.Catalog.LichLamViecs.CreateUpdateLichLamViecDto>"
             },
             "DeleteAsyncById": {
@@ -6189,7 +6189,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -6226,7 +6226,7 @@
                 "type": "VietLife.Catalog.LichLamViecs.LichLamViecDto",
                 "typeSimple": "VietLife.Catalog.LichLamViecs.LichLamViecDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.LichLamViecs.LichLamViecDto,VietLife.Catalog.LichLamViecs.LichLamViecDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -6275,7 +6275,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LichLamViecs.LichLamViecDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LichLamViecs.LichLamViecDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.LichLamViecs.LichLamViecDto,VietLife.Catalog.LichLamViecs.LichLamViecDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -6443,7 +6443,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.LuongNhanViens.LuongNhanVienInListDto>",
                 "typeSimple": "[VietLife.Catalog.LuongNhanViens.LuongNhanVienInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LuongNhanViens.ILuongNhanViensAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -6540,7 +6540,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LuongNhanViens.LuongNhanVienInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LuongNhanViens.LuongNhanVienInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LuongNhanViens.ILuongNhanViensAppService"
             },
             "DeleteMultipleAsyncByIds": {
@@ -6577,7 +6577,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LuongNhanViens.ILuongNhanViensAppService"
             },
             "TinhLuongHangNgayAsync": {
@@ -6592,7 +6592,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LuongNhanViens.LuongNhanViensAppService"
             },
             "TinhLuongThangAsyncByThangAndNam": {
@@ -6649,7 +6649,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.LuongNhanViens.LuongNhanViensAppService"
             },
             "CreateAsyncByInput": {
@@ -6686,7 +6686,7 @@
                 "type": "VietLife.Catalog.LuongNhanViens.LuongNhanVienDto",
                 "typeSimple": "VietLife.Catalog.LuongNhanViens.LuongNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.LuongNhanViens.LuongNhanVienDto,VietLife.Catalog.LuongNhanViens.CreateUpdateLuongNhanVienDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -6743,7 +6743,7 @@
                 "type": "VietLife.Catalog.LuongNhanViens.LuongNhanVienDto",
                 "typeSimple": "VietLife.Catalog.LuongNhanViens.LuongNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.LuongNhanViens.LuongNhanVienDto,System.Guid,VietLife.Catalog.LuongNhanViens.CreateUpdateLuongNhanVienDto>"
             },
             "DeleteAsyncById": {
@@ -6780,7 +6780,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -6817,7 +6817,7 @@
                 "type": "VietLife.Catalog.LuongNhanViens.LuongNhanVienDto",
                 "typeSimple": "VietLife.Catalog.LuongNhanViens.LuongNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.LuongNhanViens.LuongNhanVienDto,VietLife.Catalog.LuongNhanViens.LuongNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -6866,7 +6866,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LuongNhanViens.LuongNhanVienDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.LuongNhanViens.LuongNhanVienDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.LuongNhanViens.LuongNhanVienDto,VietLife.Catalog.LuongNhanViens.LuongNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -7539,7 +7539,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.PhongBans.IPhongBansAppService"
             },
             "GetListAllAsync": {
@@ -7554,7 +7554,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.PhongBans.PhongBanInListDto>",
                 "typeSimple": "[VietLife.Catalog.PhongBans.PhongBanInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.PhongBans.IPhongBansAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -7615,7 +7615,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhongBans.PhongBanInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhongBans.PhongBanInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.PhongBans.IPhongBansAppService"
             },
             "CreateAsyncByInput": {
@@ -7652,7 +7652,7 @@
                 "type": "VietLife.Catalog.PhongBans.PhongBanDto",
                 "typeSimple": "VietLife.Catalog.PhongBans.PhongBanDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.PhongBans.PhongBanDto,VietLife.Catalog.PhongBans.CreateUpdatePhongBanDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -7709,7 +7709,7 @@
                 "type": "VietLife.Catalog.PhongBans.PhongBanDto",
                 "typeSimple": "VietLife.Catalog.PhongBans.PhongBanDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.PhongBans.PhongBanDto,System.Guid,VietLife.Catalog.PhongBans.CreateUpdatePhongBanDto>"
             },
             "DeleteAsyncById": {
@@ -7746,7 +7746,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -7783,7 +7783,7 @@
                 "type": "VietLife.Catalog.PhongBans.PhongBanDto",
                 "typeSimple": "VietLife.Catalog.PhongBans.PhongBanDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.PhongBans.PhongBanDto,VietLife.Catalog.PhongBans.PhongBanDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -7832,7 +7832,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhongBans.PhongBanDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhongBans.PhongBanDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.PhongBans.PhongBanDto,VietLife.Catalog.PhongBans.PhongBanDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }
@@ -8022,7 +8022,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.PhuCapNhanViens.IPhuCapNhanViensAppService"
             },
             "GetListAllAsync": {
@@ -8037,7 +8037,7 @@
                 "type": "System.Collections.Generic.List<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienInListDto>",
                 "typeSimple": "[VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienInListDto]"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.PhuCapNhanViens.IPhuCapNhanViensAppService"
             },
             "GetListFilterAsyncByInput": {
@@ -8110,7 +8110,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienInListDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienInListDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "VietLife.Catalog.PhuCapNhanViens.IPhuCapNhanViensAppService"
             },
             "CreateAsyncByInput": {
@@ -8147,7 +8147,7 @@
                 "type": "VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto",
                 "typeSimple": "VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto,VietLife.Catalog.PhuCapNhanViens.CreateUpdatePhuCapNhanVienDto>"
             },
             "UpdateAsyncByIdAndInput": {
@@ -8204,7 +8204,7 @@
                 "type": "VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto",
                 "typeSimple": "VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto,System.Guid,VietLife.Catalog.PhuCapNhanViens.CreateUpdatePhuCapNhanVienDto>"
             },
             "DeleteAsyncById": {
@@ -8241,7 +8241,7 @@
                 "type": "System.Void",
                 "typeSimple": "System.Void"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
             },
             "GetAsyncById": {
@@ -8278,7 +8278,7 @@
                 "type": "VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto",
                 "typeSimple": "VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto,VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             },
             "GetListAsyncByInput": {
@@ -8327,7 +8327,7 @@
                 "type": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto>",
                 "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto>"
               },
-              "allowAnonymous": null,
+              "allowAnonymous": false,
               "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto,VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVienDto,System.Guid,Volo.Abp.Application.Dtos.PagedResultRequestDto>"
             }
           }

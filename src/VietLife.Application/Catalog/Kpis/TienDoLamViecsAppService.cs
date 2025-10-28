@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using VietLife.Catalog.KPIs.MucTieuKpis;
 using VietLife.Catalog.KPIs.TienDoLamViecs;
 using VietLife.KPINhanViens;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -16,6 +18,7 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.Kpis
 {
+    [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Default)]
     public class TienDoLamViecsAppService : CrudAppService<
     TienDoLamViec,
     TienDoLamViecDto,
@@ -36,14 +39,22 @@ namespace VietLife.Catalog.Kpis
         {
             _kpiNhanVienRepository = kpiNhanVienRepository;
             _nhanVienRepository = nhanVienRepository;
+
+            GetPolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Default;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Default;
+            CreatePolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Create;
+            UpdatePolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Update;
+            DeletePolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Delete;
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Default)]
         public async Task<List<TienDoLamViecInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -53,6 +64,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<TienDoLamViec>, List<TienDoLamViecInListDto>>(data);
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Default)]
         public async Task<PagedResultDto<TienDoLamViecInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var tienDoQuery = await Repository.GetQueryableAsync();
@@ -81,6 +93,8 @@ namespace VietLife.Catalog.Kpis
 
             return new PagedResultDto<TienDoLamViecInListDto>(totalCount, data);
         }
+
+        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Create)]
         public override async Task<TienDoLamViecDto> CreateAsync(CreateUpdateTienDoLamViecDto input)
         {
             var entity = await base.CreateAsync(input);
@@ -88,6 +102,7 @@ namespace VietLife.Catalog.Kpis
             return entity;
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Update)]
         public override async Task<TienDoLamViecDto> UpdateAsync(Guid id, CreateUpdateTienDoLamViecDto input)
         {
             var entity = await base.UpdateAsync(id, input);
@@ -97,15 +112,20 @@ namespace VietLife.Catalog.Kpis
 
         private async Task CapNhatTienDo(Guid kpiId)
         {
-            var tienDoList = await Repository.GetListAsync(x => x.KpiNhanVienId == kpiId);
-            if (tienDoList.Any())
-            {
-                var avgTienDo = tienDoList.Average(x => x.PhanTramTienDo);
-                var kpi = await _kpiNhanVienRepository.GetAsync(kpiId);
-                kpi.PhanTramHoanThanh = avgTienDo; // hoặc cập nhật riêng trường “TienDoTrungBinh”
-                kpi.TinhThuongKpi();
-                await _kpiNhanVienRepository.UpdateAsync(kpi);
-            }
+            var tienDoList = await Repository.GetListAsync(x => x.KpiNhanVienId == kpiId && !x.IsDeleted);
+            if (tienDoList == null || !tienDoList.Any()) return;
+
+            var avgTienDo = tienDoList
+                .Where(x => x.PhanTramTienDo.HasValue)
+                .Average(x => x.PhanTramTienDo.Value);
+
+            var kpi = await _kpiNhanVienRepository.GetAsync(kpiId);
+            if (kpi == null) return;
+
+            kpi.PhanTramHoanThanh = Math.Round(avgTienDo, 2);
+            kpi.TinhThuongKpi();
+
+            await _kpiNhanVienRepository.UpdateAsync(kpi, autoSave: true);
         }
 
     }

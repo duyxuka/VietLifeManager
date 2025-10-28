@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { RolesService } from '@proxy/viet-life/system/roles';
 import {
   GetPermissionListResultDto,
@@ -8,7 +8,8 @@ import {
   UpdatePermissionDto,
   UpdatePermissionsDto,
 } from '@proxy/volo/abp/permission-management';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { TreeNode } from 'primeng/api';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -16,17 +17,14 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class PermissionGrantComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
-
-  // Default
-  public blockedPanelDetail: boolean = false;
+  public blockedPanelDetail = false;
   public form: FormGroup;
-  public title: string;
   public btnDisabled = false;
-  public saveBtnName: string;
-  public closeBtnName: string;
+  public saveBtnName = 'Cập nhật';
+  public closeBtnName = 'Hủy';
   public groups: PermissionGroupDto[] = [];
-  public permissions: PermissionGrantInfoDto[] = [];
-  public selectedPermissions: string[] = [];
+  public treeData: TreeNode[] = [];
+  public selectedNodes: TreeNode[] = [];
   formSavedEventEmitter: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -36,10 +34,8 @@ export class PermissionGrantComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {}
 
-  ngOnDestroy(): void {
-    if (this.ref) {
-      this.ref.close();
-    }
+  ngOnDestroy() {
+    if (this.ref) this.ref.close();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
@@ -47,8 +43,10 @@ export class PermissionGrantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.buildForm();
     this.loadDetail(this.config.data.name, 'R');
-    this.saveBtnName = 'Cập nhật';
-    this.closeBtnName = 'Hủy';
+  }
+
+  buildForm() {
+    this.form = this.fb.group({});
   }
 
   loadDetail(providerKey: string, providerName: string) {
@@ -57,36 +55,69 @@ export class PermissionGrantComponent implements OnInit, OnDestroy {
       .getPermissions(providerName, providerKey)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
-        next: (response: GetPermissionListResultDto) => {
-          this.groups = response.groups;
-          this.groups.forEach(element => {
-            element.permissions.forEach(permission => {
-              this.permissions.push(permission);
-            });
-          });
-          this.buildForm();
+        next: (res: GetPermissionListResultDto) => {
+          this.groups = res.groups;
+          this.buildTreeData();
           this.toggleBlockUI(false);
         },
-        error: () => {
-          this.toggleBlockUI(false);
-        },
+        error: () => this.toggleBlockUI(false),
       });
   }
-  saveChange() {
-    this.toggleBlockUI(true);
-    this.saveData();
+
+  buildTreeData() {
+    this.treeData = [];
+
+    this.groups.forEach(group => {
+      const groupNode: TreeNode = {
+        label: group.displayName,
+        data: group.name,
+        children: this.buildPermissionTree(group.permissions),
+        expanded: true,
+      };
+      this.treeData.push(groupNode);
+    });
   }
 
-  private saveData() {
-    var permissions: UpdatePermissionDto[] = [];
-    for (let index = 0; index < this.permissions.length; index++) {
-      const isGranted =
-        this.selectedPermissions.filter(x => x == this.permissions[index].name).length > 0;
-      permissions.push({ name: this.permissions[index].name, isGranted: isGranted });
-    }
-    var updateValues: UpdatePermissionsDto = {
-      permissions: permissions,
-    };
+  buildPermissionTree(permissions: PermissionGrantInfoDto[]): TreeNode[] {
+    const map = new Map<string, TreeNode>();
+    const roots: TreeNode[] = [];
+
+    permissions.forEach(p => {
+      map.set(p.name, {
+        label: p.displayName,
+        data: p.name,
+        children: [],
+        selectable: true,
+        expanded: true,
+        partialSelected: false,
+      });
+    });
+
+    permissions.forEach(p => {
+      const node = map.get(p.name)!;
+      if (p.parentName && map.has(p.parentName)) {
+        map.get(p.parentName)!.children!.push(node);
+      } else {
+        roots.push(node);
+      }
+
+      if (p.isGranted) this.selectedNodes.push(node);
+    });
+
+    return roots;
+  }
+
+  saveChange() {
+    this.toggleBlockUI(true);
+    const selectedPermissions = this.selectedNodes.map(x => x.data);
+    const allPermissions = this.groups.map(g => g.permissions).reduce((acc, val) => acc.concat(val), []);
+
+    const permissions: UpdatePermissionDto[] = allPermissions.map(p => ({
+      name: p.name,
+      isGranted: selectedPermissions.includes(p.name),
+    }));
+
+    const updateValues: UpdatePermissionsDto = { permissions };
     this.roleService
       .updatePermissions('R', this.config.data.name, updateValues)
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -96,29 +127,15 @@ export class PermissionGrantComponent implements OnInit, OnDestroy {
       });
   }
 
-  buildForm() {
-    this.form = this.fb.group({});
-    //Fill value
-    for (let index = 0; index < this.groups.length; index++) {
-      const group = this.groups[index];
-      for (let jIndex = 0; jIndex < group.permissions.length; jIndex++) {
-        const permission = group.permissions[jIndex];
-        if (permission.isGranted) {
-          this.selectedPermissions.push(permission.name);
-        }
-      }
-    }
-  }
-
   private toggleBlockUI(enabled: boolean) {
-    if (enabled == true) {
+    if (enabled) {
       this.btnDisabled = true;
       this.blockedPanelDetail = true;
     } else {
       setTimeout(() => {
         this.btnDisabled = false;
         this.blockedPanelDetail = false;
-      }, 1000);
+      }, 500);
     }
   }
 }

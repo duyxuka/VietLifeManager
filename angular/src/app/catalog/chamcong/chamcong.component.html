@@ -117,10 +117,11 @@
         </td>
         <td>
           <p-badge
-            [severity]="row.trangThai == true ? 'success' : 'warning'"
-            [value]="row.trangThai"
+            [severity]="row.trangThai ? 'success' : 'secondary'"
+            [value]="row.trangThai ? 'Đã check-in' : 'Đã check-out'"
           ></p-badge>
         </td>
+
       </tr>
     </ng-template>
 

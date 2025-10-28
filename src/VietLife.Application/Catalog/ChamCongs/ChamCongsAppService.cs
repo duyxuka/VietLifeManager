@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using VietLife.Catalog.PhongBans;
 using VietLife.ChamCongs;
 using VietLife.LichLamViecs;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -16,6 +18,7 @@ using Volo.Abp.Users;
 
 namespace VietLife.Catalog.ChamCongs
 {
+    [Authorize(VietLifePermissions.ChamCong.Default)]
     public class ChamCongsAppService : CrudAppService<ChamCong, ChamCongDto, Guid, PagedResultRequestDto, CreateUpdateChamCongDto, CreateUpdateChamCongDto>,
         IChamCongsAppService
     {
@@ -27,14 +30,22 @@ namespace VietLife.Catalog.ChamCongs
             _currentUser = currentUser;
             _userRepository = userRepository;
             _lichLamViecRepository = lichLamViecRepository;
+
+            GetPolicyName = VietLifePermissions.ChamCong.Default;
+            GetListPolicyName = VietLifePermissions.ChamCong.Default;
+            CreatePolicyName = VietLifePermissions.ChamCong.Create;
+            UpdatePolicyName = VietLifePermissions.ChamCong.Update;
+            DeletePolicyName = VietLifePermissions.ChamCong.Delete;
         }
 
+        [Authorize(VietLifePermissions.ChamCong.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(VietLifePermissions.ChamCong.Default)]
         public async Task<List<ChamCongInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -44,6 +55,7 @@ namespace VietLife.Catalog.ChamCongs
             return ObjectMapper.Map<List<ChamCong>, List<ChamCongInListDto>>(data);
         }
 
+        [Authorize(VietLifePermissions.ChamCong.Default)]
         public async Task<PagedResultDto<ChamCongInListDto>> GetListFilterAsync(ChamCongListFilterDto input)
         {
             var chamCongQuery = await Repository.GetQueryableAsync();
@@ -78,6 +90,7 @@ namespace VietLife.Catalog.ChamCongs
             return new PagedResultDto<ChamCongInListDto>(totalCount, data);
         }
 
+        [Authorize(VietLifePermissions.ChamCong.CheckIn)]
         public async Task CheckInAsync()
         {
             if (_currentUser.Id == null)
@@ -119,6 +132,7 @@ namespace VietLife.Catalog.ChamCongs
             await Repository.InsertAsync(chamCong);
         }
 
+        [Authorize(VietLifePermissions.ChamCong.CheckOut)]
         public async Task CheckOutAsync()
         {
             if (_currentUser.Id == null)

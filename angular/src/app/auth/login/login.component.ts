@@ -10,7 +10,7 @@ import { LoginResponseDto } from 'src/app/shared/models/login-response.dto';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { TokenStorageService } from 'src/app/shared/services/token.service';
-
+import { SessionStateService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-login',
@@ -93,7 +93,9 @@ export class LoginComponent implements OnDestroy {
             next: () => console.log('Check-in thành công'),
             error: (err) => console.error('Lỗi khi check-in', err)
           });
-          this.router.navigate(['']);
+          this.router.navigate(['']).then(() => {
+            window.location.reload();
+          });
         },
         error: (ex) => {
           this.notificationService.showError("Đăng nhập không đúng.")

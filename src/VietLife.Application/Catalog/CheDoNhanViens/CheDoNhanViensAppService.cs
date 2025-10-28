@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using VietLife.Catalog.CheDos.CheDoNhanViens;
 using VietLife.CheDoNhanViens;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -14,6 +16,7 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.CheDoNhanViens
 {
+    [Authorize(VietLifePermissions.CheDoNhanVien.Default)]
     public class CheDoNhanViensAppService : CrudAppService<CheDoNhanVien, CheDoNhanVienDto, Guid, PagedResultRequestDto, CreateUpdateCheDoNhanVienDto, CreateUpdateCheDoNhanVienDto>,
         ICheDoNhanViensAppService
     {
@@ -23,14 +26,22 @@ namespace VietLife.Catalog.CheDoNhanViens
         {
             _userRepository = userRepository;
             _loaiCheDoRepository = loaiCheDoRepository;
+
+            GetPolicyName = VietLifePermissions.CheDoNhanVien.Default;
+            GetListPolicyName = VietLifePermissions.CheDoNhanVien.Default;
+            CreatePolicyName = VietLifePermissions.CheDoNhanVien.Create;
+            UpdatePolicyName = VietLifePermissions.CheDoNhanVien.Update;
+            DeletePolicyName = VietLifePermissions.CheDoNhanVien.Delete;
         }
 
+        [Authorize(VietLifePermissions.CheDoNhanVien.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(VietLifePermissions.CheDoNhanVien.Default)]
         public async Task<List<CheDoNhanVienInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -40,6 +51,7 @@ namespace VietLife.Catalog.CheDoNhanViens
             return ObjectMapper.Map<List<CheDoNhanVien>, List<CheDoNhanVienInListDto>>(data);
         }
 
+        [Authorize(VietLifePermissions.CheDoNhanVien.Default)]
         public async Task<PagedResultDto<CheDoNhanVienInListDto>> GetListFilterAsync(CheDoNhanVienListFilterDto input)
         {
             var cheDoQuery = await Repository.GetQueryableAsync();
@@ -77,6 +89,8 @@ namespace VietLife.Catalog.CheDoNhanViens
 
             return new PagedResultDto<CheDoNhanVienInListDto>(totalCount, data);
         }
+
+        [Authorize(VietLifePermissions.CheDoNhanVien.Create)]
         public override async Task<CheDoNhanVienDto> CreateAsync(CreateUpdateCheDoNhanVienDto input)
         {
             // Gán NhanVienId là người đang đăng nhập
@@ -101,6 +115,7 @@ namespace VietLife.Catalog.CheDoNhanViens
             return await MapToGetOutputDtoAsync(entity);
         }
 
+        [Authorize(VietLifePermissions.CheDoNhanVien.Update)]
         public override async Task<CheDoNhanVienDto> UpdateAsync(Guid id, CreateUpdateCheDoNhanVienDto input)
         {
             // Nếu muốn, bạn có thể tự động gán lại NhanVienId khi chỉnh sửa

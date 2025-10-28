@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using VietLife.Catalog.KPIs.KpiNhanViens;
 using VietLife.CheDoNhanViens;
 using VietLife.KPINhanViens;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -18,6 +20,7 @@ using Volo.Abp.Users;
 
 namespace VietLife.Catalog.Kpis
 {
+    [Authorize(VietLifePermissions.KpiNhanVien.Default)]
     public class KpiNhanViensAppService : CrudAppService<
         KpiNhanVien,
         KpiNhanVienDto,
@@ -41,13 +44,22 @@ namespace VietLife.Catalog.Kpis
             _nhanVienRepository = nhanVienRepository;
             _keHoachRepository = keHoachRepository;
             _mucTieuRepository = mucTieuRepository;
+
+            GetPolicyName = VietLifePermissions.KpiNhanVien.Default;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.Default;
+            CreatePolicyName = VietLifePermissions.KpiNhanVien.Create;
+            UpdatePolicyName = VietLifePermissions.KpiNhanVien.Update;
+            DeletePolicyName = VietLifePermissions.KpiNhanVien.Delete;
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
+
+        [Authorize(VietLifePermissions.KpiNhanVien.Default)]
         public async Task<List<KpiNhanVienInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -56,6 +68,8 @@ namespace VietLife.Catalog.Kpis
 
             return ObjectMapper.Map<List<KpiNhanVien>, List<KpiNhanVienInListDto>>(data);
         }
+
+        [Authorize(VietLifePermissions.KpiNhanVien.Default)]
         public async Task<PagedResultDto<KpiNhanVienInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var kpiQuery = await Repository.GetQueryableAsync();
@@ -91,6 +105,7 @@ namespace VietLife.Catalog.Kpis
             return new PagedResultDto<KpiNhanVienInListDto>(totalCount, data);
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.Create)]
         public override async Task<KpiNhanVienDto> CreateAsync(CreateUpdateKpiNhanVienDto input)
         {
             var entity = await MapToEntityAsync(input);
@@ -106,6 +121,7 @@ namespace VietLife.Catalog.Kpis
             return await MapToGetOutputDtoAsync(entity);
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.Update)]
         public override async Task<KpiNhanVienDto> UpdateAsync(Guid id, CreateUpdateKpiNhanVienDto input)
         {
             var entity = await GetEntityByIdAsync(id);

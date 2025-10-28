@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using VietLife.Catalog.KPIs.KeHoachCongViecs;
 using VietLife.Catalog.KPIs.KpiNhanViens;
 using VietLife.KPINhanViens;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -16,6 +18,7 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.Kpis
 {
+    [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default)]
     public class KeHoachCongViecsAppService : CrudAppService<
         KeHoachCongViec,
         KeHoachCongViecDto,
@@ -39,14 +42,22 @@ namespace VietLife.Catalog.Kpis
             _kpiNhanVienRepository = kpiNhanVienRepository;
             _mucTieuRepository = mucTieuRepository;
             _nhanVienRepository = nhanVienRepository;
+
+            GetPolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default;
+            CreatePolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Create;
+            UpdatePolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Update;
+            DeletePolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Delete;
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default)]
         public async Task<List<KeHoachCongViecInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -56,6 +67,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<KeHoachCongViec>, List<KeHoachCongViecInListDto>>(data);
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default)]
         public async Task<PagedResultDto<KeHoachCongViecInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var keHoachQuery = await Repository.GetQueryableAsync();
@@ -92,6 +104,7 @@ namespace VietLife.Catalog.Kpis
             return new PagedResultDto<KeHoachCongViecInListDto>(totalCount, data);
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Create)]
         public override async Task<KeHoachCongViecDto> CreateAsync(CreateUpdateKeHoachCongViecDto input)
         {
             var entity = await base.CreateAsync(input);
@@ -99,6 +112,7 @@ namespace VietLife.Catalog.Kpis
             return entity;
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Update)]
         public override async Task<KeHoachCongViecDto> UpdateAsync(Guid id, CreateUpdateKeHoachCongViecDto input)
         {
             var entity = await base.UpdateAsync(id, input);
@@ -108,11 +122,10 @@ namespace VietLife.Catalog.Kpis
 
         private async Task CapNhatSoMucTieu(Guid keHoachId)
         {
-            var mucTieuList = await _mucTieuRepository.GetListAsync(x => x.KeHoachCongViecId == keHoachId);
-            var mucTieuCount = mucTieuList.Count;
+            var mucTieuCount = await _mucTieuRepository.CountAsync(x => x.KeHoachCongViecId == keHoachId && !x.IsDeleted);
             var keHoach = await Repository.GetAsync(keHoachId);
             keHoach.SoMucTieu = mucTieuCount;
-            await Repository.UpdateAsync(keHoach);
+            await Repository.UpdateAsync(keHoach, autoSave: true);
         }
     }
 }

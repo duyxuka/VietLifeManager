@@ -17,7 +17,7 @@ using VietLife.Roles;
 
 namespace VietLife.System.Roles
 {
-    [Authorize(IdentityPermissions.Roles.Default, Policy = "AdminOnly")]
+    [Authorize(IdentityPermissions.Roles.Default)]
     public class RolesAppService : CrudAppService<
         IdentityRole,
         RoleDto,
@@ -127,58 +127,43 @@ namespace VietLife.System.Roles
                 EntityDisplayName = providerKey,
                 Groups = new List<PermissionGroupDto>()
             };
+
             var groups = await PermissionDefinitionManager.GetGroupsAsync();
 
             foreach (var group in groups.Where(x => x.Name.StartsWith("AbpIdentity") || x.Name.StartsWith("VietLifeAdmin")))
-
             {
                 var groupDto = CreatePermissionGroupDto(group);
-
-                var neededCheckPermissions = new List<PermissionDefinition>();
-
-                foreach (var permission in group.GetPermissionsWithChildren()
-                                                .Where(x => x.IsEnabled)
-                                                .Where(x => !x.Providers.Any() || x.Providers.Contains(providerName)))
-                {
-                    if (await SimpleStateCheckerManager.IsEnabledAsync(permission))
-                    {
-                        neededCheckPermissions.Add(permission);
-                    }
-                }
-
-                if (!neededCheckPermissions.Any())
-                {
-                    continue;
-                }
-
-                var grantInfoDtos = neededCheckPermissions
-                    .Select(CreatePermissionGrantInfoDto)
+                var permissions = group.GetPermissionsWithChildren()
+                    .Where(p => p.IsEnabled && (!p.Providers.Any() || p.Providers.Contains(providerName)))
                     .ToList();
 
-                var multipleGrantInfo = await PermissionManager.GetAsync(neededCheckPermissions.Select(x => x.Name).ToArray(), providerName, providerKey);
+                var enabledPermissions = new List<PermissionDefinition>();
+                foreach (var p in permissions)
+                {
+                    if (await SimpleStateCheckerManager.IsEnabledAsync(p))
+                        enabledPermissions.Add(p);
+                }
+
+                if (!enabledPermissions.Any()) continue;
+
+                var grantInfoDtos = enabledPermissions.Select(CreatePermissionGrantInfoDto).ToList();
+                var multipleGrantInfo = await PermissionManager.GetAsync(enabledPermissions.Select(x => x.Name).ToArray(), providerName, providerKey);
 
                 foreach (var grantInfo in multipleGrantInfo.Result)
                 {
-                    var grantInfoDto = grantInfoDtos.First(x => x.Name == grantInfo.Name);
-
-                    grantInfoDto.IsGranted = grantInfo.IsGranted;
-
-                    foreach (var provider in grantInfo.Providers)
+                    var dto = grantInfoDtos.First(x => x.Name == grantInfo.Name);
+                    dto.IsGranted = grantInfo.IsGranted;
+                    dto.GrantedProviders = grantInfo.Providers.Select(p => new ProviderInfoDto
                     {
-                        grantInfoDto.GrantedProviders.Add(new ProviderInfoDto
-                        {
-                            ProviderName = provider.Name,
-                            ProviderKey = provider.Key,
-                        });
-                    }
-
-                    groupDto.Permissions.Add(grantInfoDto);
+                        ProviderName = p.Name,
+                        ProviderKey = p.Key
+                    }).ToList();
                 }
 
+                // Gắn vào groupDto
+                groupDto.Permissions.AddRange(grantInfoDtos);
                 if (groupDto.Permissions.Any())
-                {
                     result.Groups.Add(groupDto);
-                }
             }
 
             return result;

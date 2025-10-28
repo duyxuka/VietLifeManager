@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Internal.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using VietLife.Catalog.KPIs.DanhGiaKpis;
 using VietLife.Catalog.KPIs.TienDoLamViecs;
 using VietLife.KPINhanViens;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -16,6 +18,7 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.Kpis
 {
+    [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default)]
     public class DanhGiaKpisAppService : CrudAppService<
     DanhGiaKpi,
     DanhGiaKpiDto,
@@ -35,14 +38,22 @@ namespace VietLife.Catalog.Kpis
         {
             _kpiNhanVienRepository = kpiNhanVienRepository;
             _nhanVienRepository = nhanVienRepository;
+
+            GetPolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default;
+            CreatePolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Create;
+            UpdatePolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Update;
+            DeletePolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Delete;
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default)]
         public async Task<List<DanhGiaKpiInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -52,6 +63,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<DanhGiaKpi>, List<DanhGiaKpiInListDto>>(data);
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default)]
         public async Task<PagedResultDto<DanhGiaKpiInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var danhGiaQuery = await Repository.GetQueryableAsync();
@@ -83,6 +95,7 @@ namespace VietLife.Catalog.Kpis
             return new PagedResultDto<DanhGiaKpiInListDto>(totalCount, data);
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Create)]
         public override async Task<DanhGiaKpiDto> CreateAsync(CreateUpdateDanhGiaKpiDto input)
         {
             var entity = await base.CreateAsync(input);
@@ -90,6 +103,7 @@ namespace VietLife.Catalog.Kpis
             return entity;
         }
 
+        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Update)]
         public override async Task<DanhGiaKpiDto> UpdateAsync(Guid id, CreateUpdateDanhGiaKpiDto input)
         {
             var entity = await base.UpdateAsync(id, input);
@@ -100,14 +114,13 @@ namespace VietLife.Catalog.Kpis
         // 🔹 Hàm cập nhật điểm trung bình KPI
         private async Task CapNhatDiemKpi(Guid kpiId)
         {
-            var danhGiaList = await Repository.GetListAsync(x => x.KpiNhanVienId == kpiId && x.DiemDanhGia.HasValue);
-            if (danhGiaList.Any())
-            {
-                var diemTrungBinh = danhGiaList.Average(x => x.DiemDanhGia.Value);
-                var kpi = await _kpiNhanVienRepository.GetAsync(kpiId);
-                kpi.DiemKpi = diemTrungBinh;
-                await _kpiNhanVienRepository.UpdateAsync(kpi);
-            }
+            var danhGiaList = await Repository.GetListAsync(x => x.KpiNhanVienId == kpiId && x.DiemDanhGia.HasValue && !x.IsDeleted);
+            if (!danhGiaList.Any()) return;
+
+            var diemTrungBinh = danhGiaList.Average(x => x.DiemDanhGia.Value);
+            var kpi = await _kpiNhanVienRepository.GetAsync(kpiId);
+            kpi.DiemKpi = Math.Round(diemTrungBinh, 2);
+            await _kpiNhanVienRepository.UpdateAsync(kpi, autoSave: true);
         }
     }
 }

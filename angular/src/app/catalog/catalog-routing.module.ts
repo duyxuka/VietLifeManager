@@ -37,49 +37,113 @@ const routes: Routes = [
   },
   {
     path: 'phongban',
-    component: PhongBanComponent
+    component: PhongBanComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.PhongBan',
+    },
   },
   {
     path: 'chucvu',
-    component: ChucVuComponent
+    component: ChucVuComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.ChucVu',
+    },
   },
   {
     path: 'chamcong',
-    component: ChamCongComponent
+    component: ChamCongComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.ChamCong',
+    },
   },
   {
     path: 'chinhanh',
-    component: ChiNhanhComponent
+    component: ChiNhanhComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.ChiNhanh',
+    },
   },
   {
     path: 'lichlamviec',
-    component: LichLamViecComponent
+    component: LichLamViecComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.LichLamViec',
+    },
   },
   {
     path: 'loaichedo',
-    component: LoaiCheDoComponent
+    component: LoaiCheDoComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.LoaiCheDo',
+    },
   },
   {
     path: 'chedonhanvien',
-    component: CheDoNhanVienComponent
+    component: CheDoNhanVienComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.CheDoNhanVien',
+    },
   },
   {
     path: 'phucapnhanvien',
-    component: PhuCapNhanVienComponent
+    component: PhuCapNhanVienComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.PhuCapNhanVien',
+    },
   },
   {
     path: 'kpis',
+    canActivate: [PermissionGuard],
+    data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien' },
     children: [
-      { path: 'kpinhanvien', component: KpiNhanVienComponent },
-      { path: 'kehoachcongviec', component: KeHoachCongViecComponent },
-      { path: 'muctieukpi', component: MucTieuKpiComponent },
-      { path: 'tiendolamviec', component: TienDoLamViecComponent },
-      { path: 'danhgiakpi', component: DanhGiaKpiComponent },
+      {
+        path: 'kpinhanvien',
+        component: KpiNhanVienComponent,
+        canActivate: [PermissionGuard],
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien' },
+      },
+      {
+        path: 'kehoachcongviec',
+        component: KeHoachCongViecComponent,
+        canActivate: [PermissionGuard],
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.KeHoachCongViec' },
+      },
+      {
+        path: 'muctieukpi',
+        component: MucTieuKpiComponent,
+        canActivate: [PermissionGuard],
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.MucTieuKpi' },
+      },
+      {
+        path: 'tiendolamviec',
+        component: TienDoLamViecComponent,
+        canActivate: [PermissionGuard],
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.TienDoLamViec' },
+      },
+      {
+        path: 'danhgiakpi',
+        component: DanhGiaKpiComponent,
+        canActivate: [PermissionGuard],
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.DanhGiaKpi' },
+      },
     ],
   },
+
   {
     path: 'luongnhanvien',
-    component: LuongNhanvienComponent
+    component: LuongNhanvienComponent,
+    canActivate: [PermissionGuard],
+    data: {
+      requiredPolicy: 'VietLifeAdminCatalog.LuongNhanvien',
+    },
   },
 ];
 
@@ -87,4 +151,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CatalogRoutingModule {}
+export class CatalogRoutingModule { }

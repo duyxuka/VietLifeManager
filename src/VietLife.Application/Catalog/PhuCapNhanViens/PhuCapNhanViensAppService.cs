@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using VietLife.Catalog.PhongBans;
 using VietLife.Chucvus;
 using VietLife.NhanViens;
+using VietLife.Permissions;
 using VietLife.PhongBans;
 using VietLife.PhuCapNhanViens;
 using Volo.Abp.Application.Dtos;
@@ -15,6 +17,7 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.PhuCapNhanViens
 {
+    [Authorize(VietLifePermissions.PhuCapNhanVien.Default)]
     public class PhuCapNhanViensAppService : CrudAppService<PhuCapNhanVien, PhuCapNhanVienDto, Guid, PagedResultRequestDto, CreateUpdatePhuCapNhanVienDto, CreateUpdatePhuCapNhanVienDto>,
         IPhuCapNhanViensAppService
     {
@@ -22,14 +25,22 @@ namespace VietLife.Catalog.PhuCapNhanViens
         public PhuCapNhanViensAppService(IRepository<PhuCapNhanVien, Guid> repository, IRepository<ChucVu, Guid> chucvuRepository) : base(repository)
         {
             _chucvuRepository = chucvuRepository;
+
+            GetPolicyName = VietLifePermissions.PhuCapNhanVien.Default;
+            GetListPolicyName = VietLifePermissions.PhuCapNhanVien.Default;
+            CreatePolicyName = VietLifePermissions.PhuCapNhanVien.Create;
+            UpdatePolicyName = VietLifePermissions.PhuCapNhanVien.Update;
+            DeletePolicyName = VietLifePermissions.PhuCapNhanVien.Delete;
         }
 
+        [Authorize(VietLifePermissions.PhuCapNhanVien.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
+        [Authorize(VietLifePermissions.PhuCapNhanVien.Default)]
         public async Task<List<PhuCapNhanVienInListDto>> GetListAllAsync()
         {
             var phucapnhanvienQuery = await Repository.GetQueryableAsync();
@@ -51,6 +62,7 @@ namespace VietLife.Catalog.PhuCapNhanViens
             return data;
         }
 
+        [Authorize(VietLifePermissions.PhuCapNhanVien.Default)]
         public async Task<PagedResultDto<PhuCapNhanVienInListDto>> GetListFilterAsync(PhuCapNhanVienFilterListDto input)
         {
             var phuCapQuery = await Repository.GetQueryableAsync();

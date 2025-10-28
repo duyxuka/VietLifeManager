@@ -28,6 +28,7 @@ import { RoleAssignComponent } from './user/role-assign.component';
 import {PickListModule} from 'primeng/picklist';
 import { SetPasswordComponent } from './user/set-password.component';
 import {KeyFilterModule} from 'primeng/keyfilter';
+import { TreeModule } from 'primeng/tree';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {KeyFilterModule} from 'primeng/keyfilter';
     CalendarModule,
     SystemRoutingModule,
     PickListModule,
-    KeyFilterModule
+    KeyFilterModule,
+    TreeModule
   ],
   entryComponents: [
     RoleDetailComponent,
