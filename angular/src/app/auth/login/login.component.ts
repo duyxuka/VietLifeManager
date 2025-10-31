@@ -10,7 +10,6 @@ import { LoginResponseDto } from 'src/app/shared/models/login-response.dto';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { TokenStorageService } from 'src/app/shared/services/token.service';
-import { SessionStateService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-login',
@@ -88,13 +87,19 @@ export class LoginComponent implements OnDestroy {
         next: (res: LoginResponseDto) => {
           this.tokenService.saveToken(res.access_token);
           this.tokenService.saveRefreshToken(res.refresh_token);
-          this.toggleBlockUI(false);
           this.chamcongService.checkIn().subscribe({
-            next: () => console.log('Check-in thành công'),
-            error: (err) => console.error('Lỗi khi check-in', err)
-          });
-          this.router.navigate(['']).then(() => {
-            window.location.reload();
+            next: (res: any) => {
+              this.notificationService.showSuccess(res);
+              console.log('✅ Check-in thành công');
+              setTimeout(() => {
+                this.toggleBlockUI(false);
+                window.location.href = '';
+              }, 800);
+            },
+            error: (err) => {
+              this.notificationService.showError('Lỗi hệ thống khi check-in!');
+              console.error(err);
+            },
           });
         },
         error: (ex) => {

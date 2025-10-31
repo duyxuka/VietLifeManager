@@ -45,16 +45,15 @@
       </div>
 
       <!-- Thành tiền -->
-      <div class="field col-12 md:col-6">
-        <label for="thanhTien">Thành tiền</label>
-        <input
-          id="thanhTien"
-          type="number"
-          pInputText
-          formControlName="thanhTien"
-          placeholder="Nhập thành tiền"
+      <div *ngIf="isManager" class="field col-12 md:col-6">
+        <label for="nguoiDuyetId">Người duyệt</label>
+          <p-dropdown
+          [options]="userslist"
+          formControlName="nguoiDuyetId"
+          placeholder="Chọn người duyệt"
+          [showClear]="true"
           [style]="{ width: '100%' }"
-        />
+        ></p-dropdown>
       </div>
 
       <!-- Lý do -->
@@ -95,7 +94,7 @@
       </div>
 
       <!-- Ghi chú -->
-      <div class="field col-12">
+      <div class="field col-12 md:col-6">
         <label for="ghiChu">Ghi chú</label>
         <textarea
           id="ghiChu"

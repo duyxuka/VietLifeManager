@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Catalog.KPINhanViens;
 using VietLife.Catalog.KPIs.KeHoachCongViecs;
 using VietLife.Catalog.KPIs.MucTieuKpis;
-using VietLife.KPINhanViens;
-using VietLife.NhanViens;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -18,7 +17,6 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.Kpis
 {
-    [Authorize(VietLifePermissions.KpiNhanVien.MucTieuKpi.Default)]
     public class MucTieuKpisAppService : CrudAppService<
     MucTieuKpi,
     MucTieuKpiDto,
@@ -41,8 +39,8 @@ namespace VietLife.Catalog.Kpis
             _kpiNhanVienRepository = kpiNhanVienRepository;
             _keHoachCongViecRepository = keHoachCongViecRepository;
 
-            GetPolicyName = VietLifePermissions.KpiNhanVien.MucTieuKpi.Default;
-            GetListPolicyName = VietLifePermissions.KpiNhanVien.MucTieuKpi.Default;
+            GetPolicyName = VietLifePermissions.KpiNhanVien.MucTieuKpi.View;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.MucTieuKpi.View;
             CreatePolicyName = VietLifePermissions.KpiNhanVien.MucTieuKpi.Create;
             UpdatePolicyName = VietLifePermissions.KpiNhanVien.MucTieuKpi.Update;
             DeletePolicyName = VietLifePermissions.KpiNhanVien.MucTieuKpi.Delete;
@@ -56,7 +54,7 @@ namespace VietLife.Catalog.Kpis
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.MucTieuKpi.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.MucTieuKpi.View)]
         public async Task<List<MucTieuKpiInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -66,7 +64,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<MucTieuKpi>, List<MucTieuKpiInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.MucTieuKpi.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.MucTieuKpi.View)]
         public async Task<PagedResultDto<MucTieuKpiInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var mucTieuQuery = await Repository.GetQueryableAsync();

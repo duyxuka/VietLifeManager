@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Catalog.KPINhanViens;
 using VietLife.Catalog.KPIs.MucTieuKpis;
 using VietLife.Catalog.KPIs.TienDoLamViecs;
-using VietLife.KPINhanViens;
-using VietLife.NhanViens;
+using VietLife.Catalog.NhanViens;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -18,7 +18,6 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.Kpis
 {
-    [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Default)]
     public class TienDoLamViecsAppService : CrudAppService<
     TienDoLamViec,
     TienDoLamViecDto,
@@ -40,8 +39,8 @@ namespace VietLife.Catalog.Kpis
             _kpiNhanVienRepository = kpiNhanVienRepository;
             _nhanVienRepository = nhanVienRepository;
 
-            GetPolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Default;
-            GetListPolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Default;
+            GetPolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.View;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.View;
             CreatePolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Create;
             UpdatePolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Update;
             DeletePolicyName = VietLifePermissions.KpiNhanVien.TienDoLamViec.Delete;
@@ -54,7 +53,7 @@ namespace VietLife.Catalog.Kpis
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.View)]
         public async Task<List<TienDoLamViecInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -64,7 +63,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<TienDoLamViec>, List<TienDoLamViecInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.TienDoLamViec.View)]
         public async Task<PagedResultDto<TienDoLamViecInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var tienDoQuery = await Repository.GetQueryableAsync();

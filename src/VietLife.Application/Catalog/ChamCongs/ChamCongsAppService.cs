@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Catalog.LichLamViecs;
+using VietLife.Catalog.NhanViens;
 using VietLife.Catalog.PhongBans;
-using VietLife.ChamCongs;
-using VietLife.LichLamViecs;
-using VietLife.NhanViens;
 using VietLife.Permissions;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -18,7 +17,6 @@ using Volo.Abp.Users;
 
 namespace VietLife.Catalog.ChamCongs
 {
-    [Authorize(VietLifePermissions.ChamCong.Default)]
     public class ChamCongsAppService : CrudAppService<ChamCong, ChamCongDto, Guid, PagedResultRequestDto, CreateUpdateChamCongDto, CreateUpdateChamCongDto>,
         IChamCongsAppService
     {
@@ -31,8 +29,8 @@ namespace VietLife.Catalog.ChamCongs
             _userRepository = userRepository;
             _lichLamViecRepository = lichLamViecRepository;
 
-            GetPolicyName = VietLifePermissions.ChamCong.Default;
-            GetListPolicyName = VietLifePermissions.ChamCong.Default;
+            GetPolicyName = VietLifePermissions.ChamCong.View;
+            GetListPolicyName = VietLifePermissions.ChamCong.View;
             CreatePolicyName = VietLifePermissions.ChamCong.Create;
             UpdatePolicyName = VietLifePermissions.ChamCong.Update;
             DeletePolicyName = VietLifePermissions.ChamCong.Delete;
@@ -45,7 +43,7 @@ namespace VietLife.Catalog.ChamCongs
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.ChamCong.Default)]
+        [Authorize(VietLifePermissions.ChamCong.View)]
         public async Task<List<ChamCongInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -55,7 +53,7 @@ namespace VietLife.Catalog.ChamCongs
             return ObjectMapper.Map<List<ChamCong>, List<ChamCongInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.ChamCong.Default)]
+        [Authorize(VietLifePermissions.ChamCong.View)]
         public async Task<PagedResultDto<ChamCongInListDto>> GetListFilterAsync(ChamCongListFilterDto input)
         {
             var chamCongQuery = await Repository.GetQueryableAsync();
@@ -91,7 +89,7 @@ namespace VietLife.Catalog.ChamCongs
         }
 
         [Authorize(VietLifePermissions.ChamCong.CheckIn)]
-        public async Task CheckInAsync()
+        public async Task<string> CheckInAsync()
         {
             if (_currentUser.Id == null)
                 throw new UserFriendlyException("Không thể xác định người dùng hiện tại!");
@@ -103,17 +101,17 @@ namespace VietLife.Catalog.ChamCongs
             var lichLamViec = await _lichLamViecRepository
                 .FirstOrDefaultAsync(l => l.Thang == today.Month && l.Nam == today.Year);
             if (lichLamViec == null)
-                throw new UserFriendlyException("Không tìm thấy lịch làm việc cho tháng này!");
+                return "Không tìm thấy lịch làm việc cho tháng này!";
 
             // Kiểm tra ngày làm việc
             var ngayLamList = lichLamViec.NgayLam?.Split(',').Select(int.Parse).ToList() ?? new List<int>();
             if (!ngayLamList.Contains(today.Day))
-                throw new UserFriendlyException("Hôm nay không phải ngày làm việc!");
+                return "Hôm nay không phải ngày làm việc!";
 
             // Kiểm tra đã check-in chưa
             var existing = await Repository.FirstOrDefaultAsync(x => x.NhanVienId == _currentUser.Id && x.NgayLam == today);
             if (existing != null)
-                throw new UserFriendlyException("Bạn đã check-in hôm nay!");
+                return "Bạn đã check-in hôm nay!";
 
             // Tính toán đi muộn
             var gioBatDau = lichLamViec.GioBatDauMacDinh ?? new TimeSpan(8, 30, 0); // Mặc định 8:30 AM
@@ -130,6 +128,7 @@ namespace VietLife.Catalog.ChamCongs
             };
 
             await Repository.InsertAsync(chamCong);
+            return "Check-in thành công hôm nay!";
         }
 
         [Authorize(VietLifePermissions.ChamCong.CheckOut)]

@@ -40,7 +40,7 @@ const routes: Routes = [
     component: PhongBanComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.PhongBan',
+      requiredPolicy: 'VietLifeAdminCatalog.PhongBan.View',
     },
   },
   {
@@ -48,7 +48,7 @@ const routes: Routes = [
     component: ChucVuComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.ChucVu',
+      requiredPolicy: 'VietLifeAdminCatalog.ChucVu.View',
     },
   },
   {
@@ -56,7 +56,7 @@ const routes: Routes = [
     component: ChamCongComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.ChamCong',
+      requiredPolicy: 'VietLifeAdminCatalog.ChamCong.View',
     },
   },
   {
@@ -64,7 +64,7 @@ const routes: Routes = [
     component: ChiNhanhComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.ChiNhanh',
+      requiredPolicy: 'VietLifeAdminCatalog.ChiNhanh.View',
     },
   },
   {
@@ -72,7 +72,7 @@ const routes: Routes = [
     component: LichLamViecComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.LichLamViec',
+      requiredPolicy: 'VietLifeAdminCatalog.LichLamViec.View',
     },
   },
   {
@@ -80,7 +80,7 @@ const routes: Routes = [
     component: LoaiCheDoComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.LoaiCheDo',
+      requiredPolicy: 'VietLifeAdminCatalog.LoaiCheDo.View',
     },
   },
   {
@@ -88,7 +88,7 @@ const routes: Routes = [
     component: CheDoNhanVienComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.CheDoNhanVien',
+      requiredPolicy: 'VietLifeAdminCatalog.CheDoNhanVien.View',
     },
   },
   {
@@ -96,43 +96,43 @@ const routes: Routes = [
     component: PhuCapNhanVienComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.PhuCapNhanVien',
+      requiredPolicy: 'VietLifeAdminCatalog.PhuCapNhanVien.View',
     },
   },
   {
     path: 'kpis',
     canActivate: [PermissionGuard],
-    data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien' },
+    data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.View' },
     children: [
       {
         path: 'kpinhanvien',
         component: KpiNhanVienComponent,
         canActivate: [PermissionGuard],
-        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien' },
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.View' },
       },
       {
         path: 'kehoachcongviec',
         component: KeHoachCongViecComponent,
         canActivate: [PermissionGuard],
-        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.KeHoachCongViec' },
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.KeHoachCongViec.View' },
       },
       {
         path: 'muctieukpi',
         component: MucTieuKpiComponent,
         canActivate: [PermissionGuard],
-        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.MucTieuKpi' },
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.MucTieuKpi.View' },
       },
       {
         path: 'tiendolamviec',
         component: TienDoLamViecComponent,
         canActivate: [PermissionGuard],
-        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.TienDoLamViec' },
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.TienDoLamViec.View' },
       },
       {
         path: 'danhgiakpi',
         component: DanhGiaKpiComponent,
         canActivate: [PermissionGuard],
-        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.DanhGiaKpi' },
+        data: { requiredPolicy: 'VietLifeAdminCatalog.KpiNhanVien.DanhGiaKpi.View' },
       },
     ],
   },
@@ -142,7 +142,7 @@ const routes: Routes = [
     component: LuongNhanvienComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'VietLifeAdminCatalog.LuongNhanvien',
+      requiredPolicy: 'VietLifeAdminCatalog.LuongNhanVien.View',
     },
   },
 ];

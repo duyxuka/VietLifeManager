@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.PhuCapNhanViens;
-using VietLife.Chucvus;
+using VietLife.Catalog.Chucvus;
+using VietLife.Catalog.PhuCapNhanViens;
 
 namespace VietLife.Configurations.PhuCapNhanViens
 {

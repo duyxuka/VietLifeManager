@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VietLife.Catalog.CheDos.CheDoNhanViens;
+using VietLife.Catalog.KPINhanViens;
 using VietLife.Catalog.KPIs.KpiNhanViens;
-using VietLife.CheDoNhanViens;
-using VietLife.KPINhanViens;
-using VietLife.NhanViens;
+using VietLife.Catalog.NhanViens;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -20,7 +19,6 @@ using Volo.Abp.Users;
 
 namespace VietLife.Catalog.Kpis
 {
-    [Authorize(VietLifePermissions.KpiNhanVien.Default)]
     public class KpiNhanViensAppService : CrudAppService<
         KpiNhanVien,
         KpiNhanVienDto,
@@ -45,8 +43,8 @@ namespace VietLife.Catalog.Kpis
             _keHoachRepository = keHoachRepository;
             _mucTieuRepository = mucTieuRepository;
 
-            GetPolicyName = VietLifePermissions.KpiNhanVien.Default;
-            GetListPolicyName = VietLifePermissions.KpiNhanVien.Default;
+            GetPolicyName = VietLifePermissions.KpiNhanVien.View;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.View;
             CreatePolicyName = VietLifePermissions.KpiNhanVien.Create;
             UpdatePolicyName = VietLifePermissions.KpiNhanVien.Update;
             DeletePolicyName = VietLifePermissions.KpiNhanVien.Delete;
@@ -59,7 +57,7 @@ namespace VietLife.Catalog.Kpis
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.View)]
         public async Task<List<KpiNhanVienInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -69,7 +67,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<KpiNhanVien>, List<KpiNhanVienInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.View)]
         public async Task<PagedResultDto<KpiNhanVienInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var kpiQuery = await Repository.GetQueryableAsync();

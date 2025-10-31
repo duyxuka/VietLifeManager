@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.LuongNhanViens;
-using VietLife.NhanViens;
+using VietLife.Catalog.NhanViens;
+using VietLife.Catalog.LuongNhanViens;
 
 namespace VietLife.Configurations.LuongNhanViens
 {

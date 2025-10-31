@@ -10,7 +10,7 @@ const routes: Routes = [
     component: RoleComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'AbpIdentity.Roles',
+      requiredPolicy: 'AbpIdentity.Roles.View',
     },
   },
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     component: UserComponent,
     canActivate: [PermissionGuard],
     data: {
-      requiredPolicy: 'AbpIdentity.Users',
+      requiredPolicy: 'AbpIdentity.Users.View',
     },
   },
 ];

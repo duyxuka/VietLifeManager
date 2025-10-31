@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.LichLamViecs;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -14,14 +13,13 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.LichLamViecs
 {
-    [Authorize(VietLifePermissions.LichLamViec.Default)]
     public class LichLamViecsAppService : CrudAppService<LichLamViec, LichLamViecDto, Guid, PagedResultRequestDto, CreateUpdateLichLamViecDto, CreateUpdateLichLamViecDto>,
         ILichLamViecsAppService
     {
         public LichLamViecsAppService(IRepository<LichLamViec, Guid> repository) : base(repository)
         {
-            GetPolicyName = VietLifePermissions.LichLamViec.Default;
-            GetListPolicyName = VietLifePermissions.LichLamViec.Default;
+            GetPolicyName = VietLifePermissions.LichLamViec.View;
+            GetListPolicyName = VietLifePermissions.LichLamViec.View;
             CreatePolicyName = VietLifePermissions.LichLamViec.Create;
             UpdatePolicyName = VietLifePermissions.LichLamViec.Update;
             DeletePolicyName = VietLifePermissions.LichLamViec.Delete;
@@ -34,7 +32,7 @@ namespace VietLife.Catalog.LichLamViecs
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.LichLamViec.Default)]
+        [Authorize(VietLifePermissions.LichLamViec.View)]
         public async Task<List<LichLamViecInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -44,7 +42,7 @@ namespace VietLife.Catalog.LichLamViecs
             return ObjectMapper.Map<List<LichLamViec>, List<LichLamViecInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.LichLamViec.Default)]
+        [Authorize(VietLifePermissions.LichLamViec.View)]
         public async Task<PagedResultDto<LichLamViecInListDto>> GetListFilterAsync(LichLamViecListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();

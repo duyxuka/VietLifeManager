@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.Chucvus;
+using VietLife.Catalog.Chucvus;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -14,14 +14,13 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.ChucVus
 {
-    [Authorize(VietLifePermissions.ChucVu.Default)]
     public class ChucVusAppService : CrudAppService<ChucVu, ChucVuDto, Guid, PagedResultRequestDto, CreateUpdateChucVuDto, CreateUpdateChucVuDto>,
         IChucVusAppService
     {
         public ChucVusAppService(IRepository<ChucVu, Guid> repository) : base(repository)
         {
-            GetPolicyName = VietLifePermissions.ChucVu.Default;
-            GetListPolicyName = VietLifePermissions.ChucVu.Default;
+            GetPolicyName = VietLifePermissions.ChucVu.View;
+            GetListPolicyName = VietLifePermissions.ChucVu.View;
             CreatePolicyName = VietLifePermissions.ChucVu.Create;
             UpdatePolicyName = VietLifePermissions.ChucVu.Update;
             DeletePolicyName = VietLifePermissions.ChucVu.Delete;
@@ -34,7 +33,7 @@ namespace VietLife.Catalog.ChucVus
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.ChucVu.Default)]
+        [Authorize(VietLifePermissions.ChucVu.View)]
         public async Task<List<ChucVuInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -44,7 +43,7 @@ namespace VietLife.Catalog.ChucVus
             return ObjectMapper.Map<List<ChucVu>, List<ChucVuInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.ChucVu.Default)]
+        [Authorize(VietLifePermissions.ChucVu.View)]
         public async Task<PagedResultDto<ChucVuInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();

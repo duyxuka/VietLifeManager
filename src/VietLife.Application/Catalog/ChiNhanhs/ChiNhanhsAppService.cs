@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.ChiNhanhs;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -13,14 +12,13 @@ using Volo.Abp.Domain.Repositories;
 
 namespace VietLife.Catalog.ChiNhanhs
 {
-    [Authorize(VietLifePermissions.ChiNhanh.Default)]
     public class ChiNhanhsAppService : CrudAppService<ChiNhanh, ChiNhanhDto, Guid, PagedResultRequestDto, CreateUpdateChiNhanhDto, CreateUpdateChiNhanhDto>,
         IChiNhanhsAppService
     {
         public ChiNhanhsAppService(IRepository<ChiNhanh, Guid> repository) : base(repository)
         {
-            GetPolicyName = VietLifePermissions.ChiNhanh.Default;
-            GetListPolicyName = VietLifePermissions.ChiNhanh.Default;
+            GetPolicyName = VietLifePermissions.ChiNhanh.View;
+            GetListPolicyName = VietLifePermissions.ChiNhanh.View;
             CreatePolicyName = VietLifePermissions.ChiNhanh.Create;
             UpdatePolicyName = VietLifePermissions.ChiNhanh.Update;
             DeletePolicyName = VietLifePermissions.ChiNhanh.Delete;
@@ -33,7 +31,7 @@ namespace VietLife.Catalog.ChiNhanhs
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.ChiNhanh.Default)]
+        [Authorize(VietLifePermissions.ChiNhanh.View)]
         public async Task<List<ChiNhanhInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -43,7 +41,7 @@ namespace VietLife.Catalog.ChiNhanhs
             return ObjectMapper.Map<List<ChiNhanh>, List<ChiNhanhInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.ChiNhanh.Default)]
+        [Authorize(VietLifePermissions.ChiNhanh.View)]
         public async Task<PagedResultDto<ChiNhanhInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();

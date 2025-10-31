@@ -7,6 +7,8 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { forkJoin, Subject, takeUntil } from 'rxjs';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { UtilityService } from 'src/app/shared/services/utility.service';
+import { UserInListDto, UsersService } from '@proxy/viet-life/system/users';
+import { PermissionService } from '@abp/ng.core';
 
 @Component({
   selector: 'app-chedonhanvien-detail',
@@ -21,6 +23,8 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
   //Dropdown
   selectedEntity = {} as CheDoNhanVienDto;
   loaiCheDoList: any[] = [];
+  isManager = false;
+  userslist: any[] = [];
 
   constructor(
     private chedonhanvienService: CheDoNhanViensService,
@@ -30,6 +34,8 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
     private ref: DynamicDialogRef,
     private utilService: UtilityService,
     private notificationSerivce: NotificationService,
+    private userService: UsersService,
+    private permissionService: PermissionService,
   ) { }
 
   validationMessages = {
@@ -48,6 +54,10 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.buildForm();
     this.initFormData();
+    this.permissionService.getGrantedPolicy$('VietLifeAdminCatalog.CheDoNhanVien.Approve')
+      .subscribe(isGranted => {
+        this.isManager = isGranted;
+      });
   }
 
 
@@ -55,8 +65,9 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
     this.toggleBlockUI(true);
 
     const loaiCheDoList = this.loaichedoService.getListAll();
+    const userslist = this.userService.getListAll('');
     forkJoin({
-      loaiCheDoList,
+      loaiCheDoList, userslist
     })
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
@@ -64,6 +75,10 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
           this.loaiCheDoList = response.loaiCheDoList.map((l: any) => ({
             value: l.id,
             label: l.tenLoaiCheDo,
+          }));
+          this.userslist = response.userslist.map((l: any) => ({
+            value: l.id,
+            label: l.hoTen ?? l.name,
           }));
           //Load edit data to form
           if (this.utilService.isEmpty(this.config.data?.id) == true) {
@@ -87,6 +102,11 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
         next: (response: CheDoNhanVienDto) => {
           this.selectedEntity = response;
           this.buildForm();
+          if (!this.isManager) {
+            this.form.get('loaiCheDoId')?.disable();
+            this.form.get('nguoiDuyetId')?.disable();
+            this.form.get('trangThai')?.disable();
+          }
           this.toggleBlockUI(false);
         },
         error: () => {
@@ -97,7 +117,11 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
 
   saveChange() {
     this.toggleBlockUI(true);
-
+    const formData = this.form.value;
+    if (!this.isManager) {
+      formData.trangThai = false;
+      formData.nguoiDuyetId = null;
+    }
     if (this.utilService.isEmpty(this.config.data?.id) == true) {
       this.chedonhanvienService
         .create(this.form.value)
@@ -141,7 +165,8 @@ export class CheDoNhanVienDetailComponent implements OnInit, OnDestroy {
       ngayBatDau: new FormControl(this.selectedEntity.ngayBatDau ? new Date(this.selectedEntity.ngayBatDau) : null),
       ngayKetThuc: new FormControl(this.selectedEntity.ngayKetThuc ? new Date(this.selectedEntity.ngayKetThuc) : null),
       ghiChu: new FormControl(this.selectedEntity.ghiChu || ''),
-      trangThai: new FormControl(this.selectedEntity.trangThai || false)
+      trangThai: new FormControl(this.selectedEntity.trangThai || false),
+      nguoiDuyetId: new FormControl(this.selectedEntity.nguoiDuyetId || null),
     });
   }
 

@@ -10,6 +10,7 @@ const oAuthConfig = {
   responseType: 'code',
   scope: 'offline_access VietLife.Admin',
   requireHttps: true,
+  useRefreshToken: true,
 };
 
 export const environment = {

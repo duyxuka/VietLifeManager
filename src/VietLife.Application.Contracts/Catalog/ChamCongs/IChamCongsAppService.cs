@@ -15,7 +15,7 @@ namespace VietLife.Catalog.ChamCongs
         Task<List<ChamCongInListDto>> GetListAllAsync();
         Task DeleteMultipleAsync(IEnumerable<Guid> ids);
 
-        Task CheckInAsync();
+        Task<string> CheckInAsync();
         Task CheckOutAsync();
     }
 }

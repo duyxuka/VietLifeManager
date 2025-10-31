@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Catalog.KPINhanViens;
 using VietLife.Catalog.KPIs.KeHoachCongViecs;
 using VietLife.Catalog.KPIs.KpiNhanViens;
-using VietLife.KPINhanViens;
-using VietLife.NhanViens;
+using VietLife.Catalog.NhanViens;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -18,7 +18,6 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.Kpis
 {
-    [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default)]
     public class KeHoachCongViecsAppService : CrudAppService<
         KeHoachCongViec,
         KeHoachCongViecDto,
@@ -43,8 +42,8 @@ namespace VietLife.Catalog.Kpis
             _mucTieuRepository = mucTieuRepository;
             _nhanVienRepository = nhanVienRepository;
 
-            GetPolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default;
-            GetListPolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default;
+            GetPolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.View;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.View;
             CreatePolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Create;
             UpdatePolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Update;
             DeletePolicyName = VietLifePermissions.KpiNhanVien.KeHoachCongViec.Delete;
@@ -57,7 +56,7 @@ namespace VietLife.Catalog.Kpis
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.View)]
         public async Task<List<KeHoachCongViecInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -67,7 +66,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<KeHoachCongViec>, List<KeHoachCongViecInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.KeHoachCongViec.View)]
         public async Task<PagedResultDto<KeHoachCongViecInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var keHoachQuery = await Repository.GetQueryableAsync();

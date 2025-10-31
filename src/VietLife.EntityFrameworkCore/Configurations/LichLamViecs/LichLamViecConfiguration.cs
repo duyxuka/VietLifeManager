@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.LichLamViecs;
-using VietLife.NhanViens;
+using VietLife.Catalog.LichLamViecs;
 
 namespace VietLife.Configurations.LichLamViecs
 {

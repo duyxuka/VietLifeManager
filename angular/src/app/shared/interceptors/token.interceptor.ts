@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { BehaviorSubject, catchError, filter, Observable, switchMap, take, throwError } from 'rxjs';
+import { BehaviorSubject, catchError,finalize, filter, Observable, switchMap, take, throwError } from 'rxjs';
 import { TokenStorageService } from '../services/token.service';
 import { AuthService } from '../services/auth.service';
 import { LoginResponseDto } from '../models/login-response.dto';
@@ -17,7 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private tokenService: TokenStorageService, private authService: AuthService) {}
+  constructor(private tokenService: TokenStorageService, private authService: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
     let authReq = req;
@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError(error => {
         if (
           error instanceof HttpErrorResponse &&
-          !authReq.url.includes('auth/login') &&
+          !authReq.url.includes('connect/token') &&
           error.status === 401
         ) {
           return this.handle401Error(authReq, next);
@@ -48,23 +48,26 @@ export class TokenInterceptor implements HttpInterceptor {
 
       const token = this.tokenService.getRefreshToken();
 
-      if (token)
+      if (token) {
         return this.authService.refreshToken(token).pipe(
           switchMap((res: LoginResponseDto) => {
-            this.isRefreshing = false;
-
             this.tokenService.saveToken(res.access_token);
+            if (res.refresh_token) {
+              this.tokenService.saveRefreshToken(res.refresh_token);
+            }
             this.refreshTokenSubject.next(res.access_token);
 
             return next.handle(this.addTokenHeader(request, res.access_token));
           }),
           catchError(err => {
-            this.isRefreshing = false;
-
             this.tokenService.signOut();
-            return throwError(err);
-          })
+            return throwError(() => err);
+          }),
+          finalize(() => (this.isRefreshing = false))
         );
+      } else {
+        this.tokenService.signOut();
+      }
     }
 
     return this.refreshTokenSubject.pipe(
@@ -75,6 +78,6 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private addTokenHeader(request: HttpRequest<any>, token: string) {
-    return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY,`Bearer ${token}`) });
+    return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, `Bearer ${token}`) });
   }
 }

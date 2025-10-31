@@ -4,27 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Catalog.ChamCongs;
+using VietLife.Catalog.CheDoNhanViens;
 using VietLife.Catalog.ChucVus;
+using VietLife.Catalog.KPINhanViens;
+using VietLife.Catalog.NhanViens;
 using VietLife.Catalog.PhongBans;
-using VietLife.ChamCongs;
-using VietLife.CheDoNhanViens;
-using VietLife.Chucvus;
-using VietLife.KPINhanViens;
-using VietLife.LuongNhanViens;
-using VietLife.NhanViens;
+using VietLife.Catalog.PhuCapNhanViens;
 using VietLife.Permissions;
-using VietLife.PhuCapNhanViens;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Uow;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VietLife.Catalog.LuongNhanViens
 {
-    [Authorize(VietLifePermissions.LuongNhanVien.Default)]
     public class LuongNhanViensAppService : CrudAppService<
         LuongNhanVien,
         LuongNhanVienDto,
@@ -55,14 +51,14 @@ namespace VietLife.Catalog.LuongNhanViens
             _cheDoRepository = cheDoRepository;
             _phuCapRepository = phuCapRepository;
 
-            GetPolicyName = VietLifePermissions.LuongNhanVien.Default;
-            GetListPolicyName = VietLifePermissions.LuongNhanVien.Default;
+            GetPolicyName = VietLifePermissions.LuongNhanVien.View;
+            GetListPolicyName = VietLifePermissions.LuongNhanVien.View;
             CreatePolicyName = VietLifePermissions.LuongNhanVien.Create;
             UpdatePolicyName = VietLifePermissions.LuongNhanVien.Update;
             DeletePolicyName = VietLifePermissions.LuongNhanVien.Delete;
         }
 
-        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
+        [Authorize(VietLifePermissions.LuongNhanVien.View)]
         public async Task<List<LuongNhanVienInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -72,7 +68,7 @@ namespace VietLife.Catalog.LuongNhanViens
             return ObjectMapper.Map<List<LuongNhanVien>, List<LuongNhanVienInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
+        [Authorize(VietLifePermissions.LuongNhanVien.View)]
         public async Task<PagedResultDto<LuongNhanVienInListDto>> GetListFilterAsync(LuongNhanVienListFilterDto input)
         {
             var luongQuery = await Repository.GetQueryableAsync();
@@ -122,7 +118,7 @@ namespace VietLife.Catalog.LuongNhanViens
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
+        [Authorize(VietLifePermissions.LuongNhanVien.View)]
         [UnitOfWork]
         public async Task TinhLuongHangNgayAsync()
         {
@@ -192,7 +188,7 @@ namespace VietLife.Catalog.LuongNhanViens
             }
         }
 
-        [Authorize(VietLifePermissions.LuongNhanVien.Default)]
+        [Authorize(VietLifePermissions.LuongNhanVien.View)]
         public async Task TinhLuongThangAsync(int thang, int nam)
         {
             // Tổng hợp logic tương tự, chỉ khác là tính trên toàn bộ tháng

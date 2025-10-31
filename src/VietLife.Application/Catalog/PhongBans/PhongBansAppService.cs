@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.NhanViens;
+using VietLife.Catalog.NhanViens;
 using VietLife.Permissions;
-using VietLife.PhongBans;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -15,7 +14,6 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.PhongBans
 {
-    [Authorize(VietLifePermissions.PhongBan.Default)]
     public class PhongBansAppService : CrudAppService<PhongBan, PhongBanDto, Guid, PagedResultRequestDto, CreateUpdatePhongBanDto, CreateUpdatePhongBanDto>,
         IPhongBansAppService
     {
@@ -23,8 +21,8 @@ namespace VietLife.Catalog.PhongBans
         public PhongBansAppService(IRepository<PhongBan, Guid> repository, IRepository<NhanVien, Guid> userRepository) : base(repository)
         {
             _userRepository = userRepository;
-            GetPolicyName = VietLifePermissions.PhongBan.Default;
-            GetListPolicyName = VietLifePermissions.PhongBan.Default;
+            GetPolicyName = VietLifePermissions.PhongBan.View;
+            GetListPolicyName = VietLifePermissions.PhongBan.View;
             CreatePolicyName = VietLifePermissions.PhongBan.Create;
             UpdatePolicyName = VietLifePermissions.PhongBan.Update;
             DeletePolicyName = VietLifePermissions.PhongBan.Delete;
@@ -37,7 +35,7 @@ namespace VietLife.Catalog.PhongBans
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.PhongBan.Default)]
+        [Authorize(VietLifePermissions.PhongBan.View)]
         public async Task<List<PhongBanInListDto>> GetListAllAsync()
         {
             var phongBanQuery = await Repository.GetQueryableAsync();
@@ -59,7 +57,7 @@ namespace VietLife.Catalog.PhongBans
             return data;
         }
 
-        [Authorize(VietLifePermissions.PhongBan.Default)]
+        [Authorize(VietLifePermissions.PhongBan.View)]
         public async Task<PagedResultDto<PhongBanInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var phongBanQuery = await Repository.GetQueryableAsync();

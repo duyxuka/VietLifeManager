@@ -25,6 +25,8 @@ import {ToastModule} from 'primeng/toast';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { GlobalHttpInterceptorService } from './shared/interceptors/error-handler.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { GlobalHttpInterceptorService } from './shared/interceptors/error-handle
     ThemeLeptonXModule.forRoot(),
     SideMenuLayoutModule.forRoot(),
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    HttpClientModule
   ],
   declarations: [AppComponent],
   providers: [

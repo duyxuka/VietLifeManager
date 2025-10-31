@@ -11,11 +11,11 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
-using VietLife.NhanViens;
+using VietLife.Permissions;
+using VietLife.Catalog.NhanViens;
 
 namespace VietLife.System.Users
 {
-    [Authorize(IdentityPermissions.Users.Default)]
     public class UsersAppService : CrudAppService<NhanVien, UserDto, Guid, PagedResultRequestDto,
                         CreateUserDto, UpdateUserDto>, IUsersAppService
     {
@@ -26,8 +26,8 @@ namespace VietLife.System.Users
         {
             _nhanVienManager = nhanVienManager;
 
-            GetPolicyName = IdentityPermissions.Users.Default;
-            GetListPolicyName = IdentityPermissions.Users.Default;
+            GetPolicyName = ExtendedIdentityPermissions.Users.View;
+            GetListPolicyName = ExtendedIdentityPermissions.Users.View;
             CreatePolicyName = IdentityPermissions.Users.Create;
             UpdatePolicyName = IdentityPermissions.Users.Update;
             DeletePolicyName = IdentityPermissions.Users.Delete;
@@ -40,7 +40,7 @@ namespace VietLife.System.Users
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(IdentityPermissions.Users.Default)]
+        [Authorize(ExtendedIdentityPermissions.Users.View)]
         public async Task<List<UserInListDto>> GetListAllAsync(string filterKeyword)
         {
             var query = await Repository.GetQueryableAsync();
@@ -55,7 +55,7 @@ namespace VietLife.System.Users
             return ObjectMapper.Map<List<NhanVien>, List<UserInListDto>>(data);
         }
 
-        [Authorize(IdentityPermissions.Users.Default)]
+        [Authorize(ExtendedIdentityPermissions.Users.View)]
         public async Task<PagedResultDto<UserInListDto>> GetListWithFilterAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
@@ -178,7 +178,7 @@ namespace VietLife.System.Users
             }
         }
 
-        [Authorize(IdentityPermissions.Users.Default)]
+        [Authorize(ExtendedIdentityPermissions.Users.View)]
         public async override Task<UserDto> GetAsync(Guid id)
         {
             var user = await _nhanVienManager.FindByIdAsync(id.ToString());

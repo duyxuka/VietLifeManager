@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using VietLife.Catalog.ProductAttributes;
+using VietLife.Catalog.ProductCategories;
 using VietLife.Catalog.Products.Attributes;
 using VietLife.Permissions;
 using VietLife.ProductAttributes;
-using VietLife.ProductCategories;
-using VietLife.Products;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -18,7 +18,6 @@ using Volo.Abp.Domain.Repositories;
 
 namespace VietLife.Catalog.Products
 {
-    [Authorize(VietLifePermissions.Product.Default, Policy = "AdminOnly")]
     public class ProductsAppService : CrudAppService<Product, ProductDto, Guid, PagedResultRequestDto, CreateUpdateProductDto, CreateUpdateProductDto>,
         IProductsAppService
     {
@@ -53,15 +52,8 @@ namespace VietLife.Catalog.Products
             _productAttributeIntRepository = productAttributeIntRepository;
             _productAttributeTextRepository = productAttributeTextRepository;
             _productAttributeVarcharRepository = productAttributeVarcharRepository;
-
-            GetPolicyName = VietLifePermissions.Product.Default;
-            GetListPolicyName = VietLifePermissions.Product.Default;
-            CreatePolicyName = VietLifePermissions.Product.Create;
-            UpdatePolicyName = VietLifePermissions.Product.Update;
-            DeletePolicyName = VietLifePermissions.Product.Delete;
         }
 
-        [Authorize(VietLifePermissions.Product.Update)]
         public override async Task<ProductDto> CreateAsync(CreateUpdateProductDto input)
         {
             var product = await _productManager.CreateAsync(
@@ -90,7 +82,6 @@ namespace VietLife.Catalog.Products
             return ObjectMapper.Map<Product, ProductDto>(result);
         }
 
-        [Authorize(VietLifePermissions.Product.Update)]
         public override async Task<ProductDto> UpdateAsync(Guid id, CreateUpdateProductDto input)
         {
             var product = await Repository.GetAsync(id);
@@ -128,14 +119,12 @@ namespace VietLife.Catalog.Products
             return ObjectMapper.Map<Product, ProductDto>(product);
         }
 
-        [Authorize(VietLifePermissions.Product.Delete)]
         public async Task DeleteMultipleAsync(IEnumerable<Guid> ids)
         {
             await Repository.DeleteManyAsync(ids);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.Product.Default)]
         public async Task<List<ProductInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -145,7 +134,6 @@ namespace VietLife.Catalog.Products
             return ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.Product.Default)]
         public async Task<PagedResultDto<ProductInListDto>> GetListFilterAsync(ProductListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
@@ -162,7 +150,6 @@ namespace VietLife.Catalog.Products
             return new PagedResultDto<ProductInListDto>(totalCount, ObjectMapper.Map<List<Product>, List<ProductInListDto>>(data));
         }
 
-        [Authorize(VietLifePermissions.Product.Update)]
         private async Task SaveThumbnailImageAsync(string fileName, string base64)
         {
             Regex regex = new Regex(@"^[\w/\:.-]+;base64,");
@@ -171,7 +158,6 @@ namespace VietLife.Catalog.Products
             await _fileContainer.SaveAsync(fileName, bytes, overrideExisting: true);
         }
 
-        [Authorize(VietLifePermissions.Product.Default)]
         public async Task<string> GetThumbnailImageAsync(string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
@@ -188,7 +174,6 @@ namespace VietLife.Catalog.Products
             return await _productCodeGenerator.GenerateAsync();
         }
 
-        [Authorize(VietLifePermissions.Product.Update)]
         public async Task<ProductAttributeValueDto> AddProductAttributeAsync(AddUpdateProductAttributeDto input)
         {
             var product = await Repository.GetAsync(input.ProductId);
@@ -257,7 +242,6 @@ namespace VietLife.Catalog.Products
             };
         }
 
-        [Authorize(VietLifePermissions.Product.Update)]
         public async Task<ProductAttributeValueDto> UpdateProductAttributeAsync(Guid id, AddUpdateProductAttributeDto input)
         {
             var product = await Repository.GetAsync(input.ProductId);
@@ -351,8 +335,6 @@ namespace VietLife.Catalog.Products
                 TextValue = input.TextValue
             };
         }
-
-        [Authorize(VietLifePermissions.Product.Update)]
         public async Task RemoveProductAttributeAsync(Guid attributeId, Guid id)
         {
             var attribute = await _productAttributeRepository.GetAsync(x => x.Id == attributeId);
@@ -405,7 +387,6 @@ namespace VietLife.Catalog.Products
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.Product.Default)]
         public async Task<List<ProductAttributeValueDto>> GetListProductAttributeAllAsync(Guid productId)
         {
             var attributeQuery = await _productAttributeRepository.GetQueryableAsync();
@@ -458,7 +439,6 @@ namespace VietLife.Catalog.Products
             return await AsyncExecuter.ToListAsync(query);
         }
 
-        [Authorize(VietLifePermissions.Product.Default)]
         public async Task<PagedResultDto<ProductAttributeValueDto>> GetListProductAttributesAsync(ProductAttributeListFilterDto input)
         {
             var attributeQuery = await _productAttributeRepository.GetQueryableAsync();

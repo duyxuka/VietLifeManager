@@ -1,13 +1,11 @@
-﻿using AutoMapper.Internal.Mappers;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VietLife.Catalog.CheDos.CheDoNhanViens;
-using VietLife.CheDoNhanViens;
-using VietLife.NhanViens;
+using VietLife.Catalog.NhanViens;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -16,22 +14,23 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.CheDoNhanViens
 {
-    [Authorize(VietLifePermissions.CheDoNhanVien.Default)]
     public class CheDoNhanViensAppService : CrudAppService<CheDoNhanVien, CheDoNhanVienDto, Guid, PagedResultRequestDto, CreateUpdateCheDoNhanVienDto, CreateUpdateCheDoNhanVienDto>,
         ICheDoNhanViensAppService
     {
         private readonly IRepository<NhanVien, Guid> _userRepository;
         private readonly IRepository<LoaiCheDo, Guid> _loaiCheDoRepository;
-        public CheDoNhanViensAppService(IRepository<CheDoNhanVien, Guid> repository, IRepository<NhanVien, Guid> userRepository, IRepository<LoaiCheDo, Guid> loaiCheDoRepository) : base(repository)
+        private readonly IAuthorizationService _authService;
+        public CheDoNhanViensAppService(IRepository<CheDoNhanVien, Guid> repository, IRepository<NhanVien, Guid> userRepository, IRepository<LoaiCheDo, Guid> loaiCheDoRepository, IAuthorizationService authService) : base(repository)
         {
             _userRepository = userRepository;
             _loaiCheDoRepository = loaiCheDoRepository;
 
-            GetPolicyName = VietLifePermissions.CheDoNhanVien.Default;
-            GetListPolicyName = VietLifePermissions.CheDoNhanVien.Default;
+            GetPolicyName = VietLifePermissions.CheDoNhanVien.View;
+            GetListPolicyName = VietLifePermissions.CheDoNhanVien.View;
             CreatePolicyName = VietLifePermissions.CheDoNhanVien.Create;
             UpdatePolicyName = VietLifePermissions.CheDoNhanVien.Update;
             DeletePolicyName = VietLifePermissions.CheDoNhanVien.Delete;
+            _authService = authService;
         }
 
         [Authorize(VietLifePermissions.CheDoNhanVien.Delete)]
@@ -41,7 +40,7 @@ namespace VietLife.Catalog.CheDoNhanViens
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.CheDoNhanVien.Default)]
+        [Authorize(VietLifePermissions.CheDoNhanVien.View)]
         public async Task<List<CheDoNhanVienInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -51,7 +50,7 @@ namespace VietLife.Catalog.CheDoNhanViens
             return ObjectMapper.Map<List<CheDoNhanVien>, List<CheDoNhanVienInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.CheDoNhanVien.Default)]
+        [Authorize(VietLifePermissions.CheDoNhanVien.View)]
         public async Task<PagedResultDto<CheDoNhanVienInListDto>> GetListFilterAsync(CheDoNhanVienListFilterDto input)
         {
             var cheDoQuery = await Repository.GetQueryableAsync();
@@ -64,7 +63,6 @@ namespace VietLife.Catalog.CheDoNhanViens
                         join lcd in loaiCheDoQuery on cd.LoaiCheDoId equals lcd.Id into joinedLcd
                         from lcd in joinedLcd.DefaultIfEmpty()
                         where !cd.IsDeleted
-                              && cd.NhanVienId == CurrentUser.Id.Value
                         orderby cd.CreationTime descending
                         select new CheDoNhanVienInListDto
                         {
@@ -79,8 +77,14 @@ namespace VietLife.Catalog.CheDoNhanViens
                             NgayKetThuc = cd.NgayKetThuc,
                             LyDo = cd.LyDo,
                             GhiChu = cd.GhiChu,
-                            TrangThai = cd.TrangThai
+                            TrangThai = cd.TrangThai,
+                            NguoiDuyetId = cd.NguoiDuyetId
                         };
+            var canApprove = await _authService.IsGrantedAsync(VietLifePermissions.CheDoNhanVien.Approve);
+            if (!canApprove && CurrentUser.Id.HasValue)
+            {
+                query = query.Where(x => x.NhanVienId == CurrentUser.Id.Value);
+            }
 
             var totalCount = await AsyncExecuter.LongCountAsync(query);
             var data = await AsyncExecuter.ToListAsync(query
@@ -98,6 +102,9 @@ namespace VietLife.Catalog.CheDoNhanViens
             {
                 input.NhanVienId = CurrentUser.Id.Value;
             }
+
+            input.TrangThai = false;
+
             var entity = await base.MapToEntityAsync(input);
             var loaiCheDo = await _loaiCheDoRepository.GetAsync(input.LoaiCheDoId);
             entity.LoaiCheDo = loaiCheDo;
@@ -125,6 +132,16 @@ namespace VietLife.Catalog.CheDoNhanViens
             }
 
             var entity = await GetEntityByIdAsync(id);
+
+            var canApprove = await _authService.IsGrantedAsync(VietLifePermissions.CheDoNhanVien.Approve);
+
+            if (!canApprove)
+            {
+                input.TrangThai = entity.TrangThai;
+                input.NguoiDuyetId = entity.NguoiDuyetId;
+                input.LoaiCheDoId = entity.LoaiCheDoId;
+            }
+
             await MapToEntityAsync(input, entity);
 
             // 🔹 Load lại LoaiCheDo

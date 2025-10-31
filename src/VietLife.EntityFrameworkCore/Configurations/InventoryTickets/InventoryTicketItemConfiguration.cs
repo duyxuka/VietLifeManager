@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VietLife.InventoryTickets;
+using VietLife.Catalog.InventoryTickets;
 
 namespace VietLife.InventoryTickets
 {

@@ -14,10 +14,10 @@ using Volo.Abp.PermissionManagement;
 using Volo.Abp.SimpleStateChecking;
 using Volo.Abp;
 using VietLife.Roles;
+using VietLife.Permissions;
 
 namespace VietLife.System.Roles
 {
-    [Authorize(IdentityPermissions.Roles.Default)]
     public class RolesAppService : CrudAppService<
         IdentityRole,
         RoleDto,
@@ -43,8 +43,8 @@ namespace VietLife.System.Roles
             PermissionDefinitionManager = permissionDefinitionManager;
             SimpleStateCheckerManager = simpleStateCheckerManager;
 
-            GetPolicyName = IdentityPermissions.Roles.Default;
-            GetListPolicyName = IdentityPermissions.Roles.Default;
+            GetPolicyName = ExtendedIdentityPermissions.Roles.View;
+            GetListPolicyName = ExtendedIdentityPermissions.Roles.View;
             CreatePolicyName = IdentityPermissions.Roles.Create;
             UpdatePolicyName = IdentityPermissions.Roles.Update;
             DeletePolicyName = IdentityPermissions.Roles.Delete;
@@ -57,7 +57,7 @@ namespace VietLife.System.Roles
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(IdentityPermissions.Roles.Default)]
+        [Authorize(ExtendedIdentityPermissions.Roles.View)]
         public async Task<List<RoleInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -67,7 +67,7 @@ namespace VietLife.System.Roles
 
         }
 
-        [Authorize(IdentityPermissions.Roles.Default)]
+        [Authorize(ExtendedIdentityPermissions.Roles.View)]
         public async Task<PagedResultDto<RoleInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
@@ -117,7 +117,7 @@ namespace VietLife.System.Roles
             return ObjectMapper.Map<IdentityRole, RoleDto>(data);
         }
 
-        [Authorize(IdentityPermissions.Roles.Default)]
+        [Authorize(ExtendedIdentityPermissions.Roles.View)]
         public async Task<GetPermissionListResultDto> GetPermissionsAsync(string providerName, string providerKey)
         {
             //await CheckProviderPolicy(providerName);

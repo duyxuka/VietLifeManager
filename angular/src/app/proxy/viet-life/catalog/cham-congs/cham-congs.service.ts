@@ -11,8 +11,9 @@ export class ChamCongsService {
   
 
   checkIn = () =>
-    this.restService.request<any, void>({
+    this.restService.request<any, string>({
       method: 'POST',
+      responseType: 'text',
       url: '/api/app/cham-congs/check-in',
     },
     { apiName: this.apiName });
@@ -25,36 +26,6 @@ export class ChamCongsService {
     },
     { apiName: this.apiName });
   
-    // Dành riêng cho sendBeacon
-  getCheckOutBeaconUrl(): string {
-    return '/api/app/cham-congs/check-out';
-  }
-
-  // Gửi check-out bằng sendBeacon (gọi từ component)
-  sendCheckOutBeacon(): boolean {
-    const url = this.getCheckOutBeaconUrl();
-    const token = this.getBearerToken();
-    if (!token) return false;
-
-    const data = new FormData();
-    data.append('access_token', token); // Backend sẽ đọc từ Form
-
-    return navigator.sendBeacon(url, data);
-  }
-
-  private getBearerToken(): string | null {
-    // ABP tự động lưu token trong localStorage với key: abp-auth-token
-    const auth = sessionStorage.getItem('auth-token');
-    if (auth) {
-      try {
-        const parsed = JSON.parse(auth);
-        return parsed?.value || null;
-      } catch {
-        return null;
-      }
-    }
-    return null;
-  }
 
   create = (input: CreateUpdateChamCongDto) =>
     this.restService.request<any, ChamCongDto>({

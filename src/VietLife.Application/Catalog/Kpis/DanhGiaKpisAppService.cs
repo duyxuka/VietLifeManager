@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Catalog.KPINhanViens;
 using VietLife.Catalog.KPIs.DanhGiaKpis;
 using VietLife.Catalog.KPIs.TienDoLamViecs;
-using VietLife.KPINhanViens;
-using VietLife.NhanViens;
+using VietLife.Catalog.NhanViens;
 using VietLife.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -18,7 +18,6 @@ using Volo.Abp.Uow;
 
 namespace VietLife.Catalog.Kpis
 {
-    [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default)]
     public class DanhGiaKpisAppService : CrudAppService<
     DanhGiaKpi,
     DanhGiaKpiDto,
@@ -39,8 +38,8 @@ namespace VietLife.Catalog.Kpis
             _kpiNhanVienRepository = kpiNhanVienRepository;
             _nhanVienRepository = nhanVienRepository;
 
-            GetPolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default;
-            GetListPolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default;
+            GetPolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.View;
+            GetListPolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.View;
             CreatePolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Create;
             UpdatePolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Update;
             DeletePolicyName = VietLifePermissions.KpiNhanVien.DanhGiaKpi.Delete;
@@ -53,7 +52,7 @@ namespace VietLife.Catalog.Kpis
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.View)]
         public async Task<List<DanhGiaKpiInListDto>> GetListAllAsync()
         {
             var query = await Repository.GetQueryableAsync();
@@ -63,7 +62,7 @@ namespace VietLife.Catalog.Kpis
             return ObjectMapper.Map<List<DanhGiaKpi>, List<DanhGiaKpiInListDto>>(data);
         }
 
-        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.Default)]
+        [Authorize(VietLifePermissions.KpiNhanVien.DanhGiaKpi.View)]
         public async Task<PagedResultDto<DanhGiaKpiInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var danhGiaQuery = await Repository.GetQueryableAsync();

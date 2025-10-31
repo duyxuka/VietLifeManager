@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.NhanViens;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
+using VietLife.Catalog.NhanViens;
 
 namespace VietLife.Configurations.Users
 {
