@@ -20,8 +20,8 @@ import { MessageService } from 'primeng/api';
 import { NotificationService } from './shared/services/notification.service';
 import { UtilityService } from './shared/services/utility.service';
 import { ConfirmationService } from 'primeng/api';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ToastModule} from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { GlobalHttpInterceptorService } from './shared/interceptors/error-handler.interceptor';
@@ -35,7 +35,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppLayoutModule,
     CoreModule.forRoot({
       environment,
-      registerLocaleFn: registerLocale(),
+      registerLocaleFn: registerLocale({
+        cultureNameLocaleFileMap: {
+          vi: 'assets/abp-localization/vi.json'
+        },
+      }),
     }),
     ThemeSharedModule.forRoot(),
     AccountConfigModule.forRoot(),
@@ -46,7 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     SideMenuLayoutModule.forRoot(),
     ConfirmDialogModule,
     ToastModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [AppComponent],
   providers: [
@@ -69,4 +73,5 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+
+export class AppModule { }

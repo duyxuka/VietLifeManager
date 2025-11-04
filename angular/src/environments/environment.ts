@@ -30,4 +30,8 @@ export const environment = {
       rootNamespace: 'AbpAccountPublic',
     },
   },
+  localization: {
+    defaultResourceName: 'VietLife',
+    supportedLocales: ['en', 'vi'],
+  },
 } as Environment;

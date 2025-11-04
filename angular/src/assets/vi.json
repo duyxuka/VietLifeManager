@@ -1,5 +1,5 @@
 {
-  "Culture": "en",
+  "culture": "vi",
   "texts": {
     "Permission:Identity.Users.View": "Xem người dùng",
     "Permission:Identity.Roles.View": "Xem vai trò",

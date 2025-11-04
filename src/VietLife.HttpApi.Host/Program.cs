@@ -42,6 +42,8 @@ public class Program
             await builder.AddApplicationAsync<VietLifeHttpApiHostModule>();
             var app = builder.Build();
             await app.InitializeApplicationAsync();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             await app.RunAsync();
             return 0;
         }

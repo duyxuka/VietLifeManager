@@ -42,6 +42,8 @@ using Volo.Abp.Security.Claims;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using Microsoft.AspNetCore.Identity;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace VietLife;
 
@@ -255,7 +257,10 @@ public class VietLifeHttpApiHostModule : AbpModule
         var app = context.GetApplicationBuilder();
         var env = context.GetEnvironment();
 
-        app.UseForwardedHeaders();
+        app.UseForwardedHeaders(new ForwardedHeadersOptions
+        {
+            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+        });
 
         if (env.IsDevelopment())
         {
@@ -282,14 +287,28 @@ public class VietLifeHttpApiHostModule : AbpModule
             app.UseErrorPage();
         }
 
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
         app.UseRouting();
+        app.UseHealthChecks("/health-status", new HealthCheckOptions
+        {
+            Predicate = _ => true,
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse, // JSON chu?n cho UI
+            AllowCachingResponses = false
+        });
+        app.UseHealthChecksUI(options =>
+        {
+            options.UIPath = "/health-ui";
+            options.ApiPath = "/health-ui-api";
+        });
+
         app.MapAbpStaticAssets();
         app.UseAbpStudioLink();
         app.UseAbpSecurityHeaders();
         app.UseCors();
         app.UseAuthentication();
         app.UseAbpOpenIddictValidation();
-
+        
         if (MultiTenancyConsts.IsEnabled)
         {
             app.UseMultiTenancy();
@@ -310,6 +329,27 @@ public class VietLifeHttpApiHostModule : AbpModule
         });
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapFallbackToFile("index.html", new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    var path = ctx.Context.Request.Path.Value;
+                    if (path != null &&
+                        (path.StartsWith("/api") ||
+                         path.StartsWith("/swagger") ||
+                         path.StartsWith("/health-status") ||
+                         path.StartsWith("/health-ui") ||
+                         path.StartsWith("/health-ui-api") ||
+                         path.Contains(".")))
+                    {
+                        ctx.Context.Response.StatusCode = 404;
+                    }
+                }
+            });
+        });
         app.UseConfiguredEndpoints();
     }
 }

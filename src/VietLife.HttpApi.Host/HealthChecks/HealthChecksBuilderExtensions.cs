@@ -12,34 +12,60 @@ public static class HealthChecksBuilderExtensions
 {
     public static void AddVietLifeHealthChecks(this IServiceCollection services)
     {
-        // Add your health checks here
-        var healthChecksBuilder = services.AddHealthChecks();
-        healthChecksBuilder.AddCheck<VietLifeDatabaseCheck>("VietLife DbContext Check", tags: new string[] { "database" });
-
-        services.ConfigureHealthCheckEndpoint("/health-status");
-
         var configuration = services.GetConfiguration();
-        var healthCheckUrl = configuration["App:HealthCheckUrl"];
+        var appSelfUrl = configuration["App:SelfUrl"] ?? "http://localhost:8012";
+        var healthCheckPath = configuration["App:HealthCheckUrl"] ?? "/health-status";
 
-        if (string.IsNullOrEmpty(healthCheckUrl))
+        // Nếu cấu hình có chứa http:// thì chỉ lấy phần path thôi
+        if (healthCheckPath.StartsWith("http", StringComparison.OrdinalIgnoreCase))
         {
-            healthCheckUrl = "/health-status";
+            var uri = new Uri(healthCheckPath);
+            healthCheckPath = uri.AbsolutePath; // chỉ còn "/health-status"
         }
 
-        var healthChecksUiBuilder = services.AddHealthChecksUI(settings =>
+        var healthChecksBuilder = services.AddHealthChecks();
+        healthChecksBuilder.AddCheck<VietLifeDatabaseCheck>(
+            "VietLife DbContext Check",
+            tags: new[] { "database" }
+        );
+
+        // Map endpoint cho health check
+        services.Configure<AbpEndpointRouterOptions>(options =>
         {
-            settings.AddHealthCheckEndpoint("VietLife Health Status", configuration["App:HealthUiCheckUrl"] ?? healthCheckUrl);
+            options.EndpointConfigureActions.Add(endpointContext =>
+            {
+                endpointContext.Endpoints.MapHealthChecks(healthCheckPath, new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+                    AllowCachingResponses = false
+                });
+            });
         });
 
-        // Set your HealthCheck UI Storage here
-        healthChecksUiBuilder.AddInMemoryStorage();
-
-        services.MapHealthChecksUiEndpoints(options =>
+        // HealthChecks UI
+        var fullHealthCheckUrl = $"{appSelfUrl.TrimEnd('/')}{healthCheckPath}";
+        var uiBuilder = services.AddHealthChecksUI(settings =>
         {
-            options.UIPath = "/health-ui";
-            options.ApiPath = "/health-api";
+            settings.AddHealthCheckEndpoint("VietLife Health Status", fullHealthCheckUrl);
+        });
+        uiBuilder.AddInMemoryStorage();
+
+        // Map UI endpoints
+        services.Configure<AbpEndpointRouterOptions>(routerOptions =>
+        {
+            routerOptions.EndpointConfigureActions.Add(endpointContext =>
+            {
+                endpointContext.Endpoints.MapHealthChecksUI(options =>
+                {
+                    options.UIPath = "/health-ui";
+                    options.ApiPath = "/health-ui-api";
+                });
+            });
         });
     }
+
+
 
     private static IServiceCollection ConfigureHealthCheckEndpoint(this IServiceCollection services, string path)
     {
