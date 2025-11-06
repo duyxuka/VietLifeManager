@@ -36,7 +36,7 @@
       <div class="formgroup-inline">
         <div class="field">
           <p-dropdown
-            [options]="userslist"
+            [options]="userslist || []"
             [(ngModel)]="nhanVienId"
             optionLabel="name"
             optionValue="id"
@@ -82,7 +82,7 @@
   </div>
 
   <!-- Table -->
-  <p-table #pnl [value]="items" [(selection)]="selectedItems" selectionMode="multiple">
+  <p-table #pnl [value]="items || []" [(selection)]="selectedItems" selectionMode="multiple">
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 10px">

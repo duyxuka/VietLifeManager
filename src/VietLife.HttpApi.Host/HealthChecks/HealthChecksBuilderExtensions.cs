@@ -13,7 +13,7 @@ public static class HealthChecksBuilderExtensions
     public static void AddVietLifeHealthChecks(this IServiceCollection services)
     {
         var configuration = services.GetConfiguration();
-        var appSelfUrl = configuration["App:SelfUrl"] ?? "http://localhost:8012";
+        var appSelfUrl = configuration["App:SelfUrl"] ?? "http://localhost:8099";
         var healthCheckPath = configuration["App:HealthCheckUrl"] ?? "/health-status";
 
         // Nếu cấu hình có chứa http:// thì chỉ lấy phần path thôi

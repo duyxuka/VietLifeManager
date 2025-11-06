@@ -54,7 +54,7 @@ export class ChamCongComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (res: any) => {
-          this.userslist = res.map((x: any) => ({
+          this.userslist = (res || []).map((x: any) => ({
             id: x.id,
             name: x.userName
           }));
@@ -76,8 +76,8 @@ export class ChamCongComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: PagedResultDto<ChamCongInListDto>) => {
-          this.items = response.items;
-          this.totalCount = response.totalCount;
+          this.items = response?.items || [];
+          this.totalCount = response?.totalCount || 0;
           this.toggleBlockUI(false);
         },
         error: () => {
