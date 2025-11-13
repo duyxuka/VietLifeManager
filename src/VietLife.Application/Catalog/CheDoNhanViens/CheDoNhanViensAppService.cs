@@ -20,10 +20,12 @@ namespace VietLife.Catalog.CheDoNhanViens
         private readonly IRepository<NhanVien, Guid> _userRepository;
         private readonly IRepository<LoaiCheDo, Guid> _loaiCheDoRepository;
         private readonly IAuthorizationService _authService;
-        public CheDoNhanViensAppService(IRepository<CheDoNhanVien, Guid> repository, IRepository<NhanVien, Guid> userRepository, IRepository<LoaiCheDo, Guid> loaiCheDoRepository, IAuthorizationService authService) : base(repository)
+        private readonly IRepository<HopDongNhanVien, Guid> _hopDongRepository;
+        public CheDoNhanViensAppService(IRepository<CheDoNhanVien, Guid> repository, IRepository<HopDongNhanVien, Guid> hopDongRepository, IRepository<NhanVien, Guid> userRepository, IRepository<LoaiCheDo, Guid> loaiCheDoRepository, IAuthorizationService authService) : base(repository)
         {
             _userRepository = userRepository;
             _loaiCheDoRepository = loaiCheDoRepository;
+            _hopDongRepository = hopDongRepository;
 
             GetPolicyName = VietLifePermissions.CheDoNhanVien.View;
             GetListPolicyName = VietLifePermissions.CheDoNhanVien.View;
@@ -56,13 +58,17 @@ namespace VietLife.Catalog.CheDoNhanViens
             var cheDoQuery = await Repository.GetQueryableAsync();
             var nhanVienQuery = await _userRepository.GetQueryableAsync();
             var loaiCheDoQuery = await _loaiCheDoRepository.GetQueryableAsync();
+            var hopDongQuery = await _hopDongRepository.GetQueryableAsync();
 
             var query = from cd in cheDoQuery
                         join nv in nhanVienQuery on cd.NhanVienId equals nv.Id into joinedNv
                         from nv in joinedNv.DefaultIfEmpty()
                         join lcd in loaiCheDoQuery on cd.LoaiCheDoId equals lcd.Id into joinedLcd
                         from lcd in joinedLcd.DefaultIfEmpty()
+                        join hd in hopDongQuery on cd.NhanVienId equals hd.NhanVienId into joinedHd
+                        from hd in joinedHd.DefaultIfEmpty()
                         where !cd.IsDeleted
+                           && (hd == null || hd.LaHienHanh)
                         orderby cd.CreationTime descending
                         select new CheDoNhanVienInListDto
                         {
@@ -78,7 +84,8 @@ namespace VietLife.Catalog.CheDoNhanViens
                             LyDo = cd.LyDo,
                             GhiChu = cd.GhiChu,
                             TrangThai = cd.TrangThai,
-                            NguoiDuyetId = cd.NguoiDuyetId
+                            NguoiDuyetId = cd.NguoiDuyetId,
+                            DonGiaCong = hd != null ? hd.DonGiaCong : 0
                         };
             var canApprove = await _authService.IsGrantedAsync(VietLifePermissions.CheDoNhanVien.Approve);
             if (!canApprove && CurrentUser.Id.HasValue)
@@ -108,13 +115,13 @@ namespace VietLife.Catalog.CheDoNhanViens
             var entity = await base.MapToEntityAsync(input);
             var loaiCheDo = await _loaiCheDoRepository.GetAsync(input.LoaiCheDoId);
             entity.LoaiCheDo = loaiCheDo;
+            var hopDongHienHanh = await _hopDongRepository
+                .FirstOrDefaultAsync(hd => hd.NhanVienId == input.NhanVienId && hd.LaHienHanh);
 
-            // 🔹 Lấy hệ số lương từ nhân viên (DonGiaCong)
-            var nhanVien = await _userRepository.GetAsync(entity.NhanVienId);
-            var heSoLuong = nhanVien?.DonGiaCong ?? 0;
+            var donGiaCong = hopDongHienHanh?.DonGiaCong ?? 0;
 
             // 🔹 Gọi hàm tính Thành tiền
-            entity.TinhThanhTien(heSoLuong);
+            entity.TinhThanhTien(donGiaCong);
 
             await Repository.InsertAsync(entity);
             await UnitOfWorkManager.Current.SaveChangesAsync();
@@ -148,11 +155,13 @@ namespace VietLife.Catalog.CheDoNhanViens
             var loaiCheDo = await _loaiCheDoRepository.GetAsync(input.LoaiCheDoId);
             entity.LoaiCheDo = loaiCheDo;
 
-            var nhanVien = await _userRepository.GetAsync(entity.NhanVienId);
-            var heSoLuong = nhanVien?.DonGiaCong ?? 0;
+            var hopDongHienHanh = await _hopDongRepository
+                .FirstOrDefaultAsync(hd => hd.NhanVienId == entity.NhanVienId && hd.LaHienHanh);
+
+            var donGiaCong = hopDongHienHanh?.DonGiaCong ?? 0;
 
             // 🔹 Tính lại Thành tiền
-            entity.TinhThanhTien(heSoLuong);
+            entity.TinhThanhTien(donGiaCong);
 
             await Repository.UpdateAsync(entity);
             await UnitOfWorkManager.Current.SaveChangesAsync();

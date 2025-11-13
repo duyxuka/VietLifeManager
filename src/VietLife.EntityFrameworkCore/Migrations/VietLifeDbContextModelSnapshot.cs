@@ -24,7 +24,1341 @@ namespace VietLife.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("VietLife.ChamCongs.ChamCong", b =>
+            modelBuilder.Entity("VietLife.Business.BaoGias.BaoGia", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ChietKhau")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<bool>("DaChuyenDonHang")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<Guid?>("KhachHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("MaBaoGia")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("NgayBaoGia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayHetHan")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("NhanVienId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("NhanVienId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("TienTeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("TieuDe")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("TongTien")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VAT")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KhachHangId");
+
+                    b.HasIndex("NhanVienId");
+
+                    b.HasIndex("NhanVienId1");
+
+                    b.HasIndex("TienTeId");
+
+                    b.ToTable("AppBaoGias", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.BaoGias.ChiTietBaoGia", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BaoGiaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ChietKhau")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<decimal>("DonGia")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<Guid>("SanPhamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("SoLuong")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BaoGiaId");
+
+                    b.HasIndex("SanPhamId");
+
+                    b.ToTable("AppChiTietBaoGias", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.DonHangs.ChiTietDonHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ChietKhau")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<decimal>("DonGia")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("DonHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<Guid>("SanPhamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("SoLuong")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VAT")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DonHangId");
+
+                    b.HasIndex("SanPhamId");
+
+                    b.ToTable("AppChiTietDonHangs", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.DonHangs.DonHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BaoGiaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<Guid?>("KhachHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<Guid>("LoaiDonHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaDonHang")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("MaDonHangGoc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("NgayDatHang")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("NhanVienBanHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("NhanVienGiaoHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("NhanVienId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("TongTien")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BaoGiaId");
+
+                    b.HasIndex("KhachHangId");
+
+                    b.HasIndex("LoaiDonHangId");
+
+                    b.HasIndex("NhanVienBanHangId");
+
+                    b.HasIndex("NhanVienGiaoHangId");
+
+                    b.HasIndex("NhanVienId");
+
+                    b.ToTable("AppDonHangs", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.DonHangs.LoaiDonHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("HieuLuc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("TenLoai")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("TuDongXuatKho")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppLoaiDonHangs", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhachHangs.KhachHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("DiaChi")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("DienThoai")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<Guid?>("LoaiKhachHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaKhachHang")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TenCongTy")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("TenGiaoDich")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<Guid?>("ThanhPhoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("TrangThai")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoaiKhachHangId");
+
+                    b.HasIndex("ThanhPhoId");
+
+                    b.ToTable("AppKhachHangs", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhachHangs.LoaiKhachHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("HieuLuc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("MoTa")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Ten")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppLoaiKhachHangs", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhoHangs.KhoHang", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("DiaChi")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("TenKho")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<Guid?>("ThanhPhoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ThanhPhoId");
+
+                    b.ToTable("AppKhoHangs", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.PhieuNhapXuats.ChiTietPhieuNhapXuat", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ChietKhau")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<decimal>("DonGia")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<decimal>("GiaVon")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)")
+                        .HasDefaultValue(0m);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<Guid>("PhieuNhapXuatId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SanPhamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("SoLuong")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("VAT")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)")
+                        .HasDefaultValue(0m);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhieuNhapXuatId");
+
+                    b.HasIndex("SanPhamId");
+
+                    b.ToTable("AppChiTietPhieuNhapXuats", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.PhieuNhapXuats.LoaiNhapXuat", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<int>("KieuNhapXuat")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<bool>("TangGiamTon")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TenLoai")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppLoaiNhapXuats", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.PhieuNhapXuats.PhieuNhapXuat", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BaoGiaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<Guid?>("DonHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<Guid?>("KhoDenId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("KhoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<Guid>("LoaiNhapXuatId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MaPhieu")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("NgayLap")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("NhanVienLapId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BaoGiaId");
+
+                    b.HasIndex("DonHangId");
+
+                    b.HasIndex("KhoDenId");
+
+                    b.HasIndex("KhoId");
+
+                    b.HasIndex("LoaiNhapXuatId");
+
+                    b.HasIndex("NhanVienLapId");
+
+                    b.ToTable("AppPhieuNhapXuats", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.SanPhams.DonViTinh", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<bool>("MacDinh")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("TenDonVi")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppDonViTinhs", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.SanPhams.NhomSanPham", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("HieuLuc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("MaNhom")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TenNhom")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppNhomSanPhams", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.SanPhams.SanPham", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Anh")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<Guid>("DonViTinhId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<decimal>("GiaBan")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("HoatDong")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("Ma")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("MoTa")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Model")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("NhomSanPhamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Ten")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DonViTinhId");
+
+                    b.HasIndex("NhomSanPhamId");
+
+                    b.ToTable("AppSanPhams", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.ThanhPhos.ThanhPho", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("MaVung")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Ten")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppThanhPhos", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.ThuChis.ThuChi", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<Guid?>("KhachHangId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("LaThu")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("MaPhieu")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("NgayGiaoDich")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("SoTien")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("TaiKhoanCoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TaiKhoanNoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KhachHangId");
+
+                    b.ToTable("AppThuChis", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Business.TienTes.TienTe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("MaTienTe")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<bool>("MacDinh")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("TenTienTe")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("TyGia")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 4)
+                        .HasColumnType("decimal(18,4)")
+                        .HasDefaultValue(1m);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppTienTes", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Catalog.ChamCongs.ChamCong", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -105,7 +1439,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppChamCongs", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.CheDoNhanViens.CheDoNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.CheDoNhanViens.CheDoNhanVien", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -194,7 +1528,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppCheDoNhanViens", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.CheDoNhanViens.LoaiCheDo", b =>
+            modelBuilder.Entity("VietLife.Catalog.CheDoNhanViens.LoaiCheDo", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -257,7 +1591,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppLoaiCheDos", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.ChiNhanhs.ChiNhanh", b =>
+            modelBuilder.Entity("VietLife.Catalog.ChiNhanhs.ChiNhanh", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -317,7 +1651,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppChiNhanhs", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.Chucvus.ChucVu", b =>
+            modelBuilder.Entity("VietLife.Catalog.Chucvus.ChucVu", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -377,170 +1711,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppChucVus", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.IdentitySettings.IdentitySetting", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("CurrentNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Prefix")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StepNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppIdentitySettings", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Inventories.Inventory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("SKU")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int>("StockQuantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppInventories", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.InventoryTickets.InventoryTicket", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ApprovedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ApproverId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<int>("TicketType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppInventoryTickets", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.InventoryTickets.InventoryTicketItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BatchNumber")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime?>("ExpiredDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SKU")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<Guid>("TicketId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppInventoryTicketItems", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.KPINhanViens.DanhGiaKpi", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.DanhGiaKpi", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -607,7 +1778,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppDanhGiaKpis", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.KeHoachCongViec", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.KeHoachCongViec", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -685,7 +1856,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppKeHoachCongViecs", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.KpiNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.KpiNhanVien", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -770,7 +1941,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppKpiNhanViens", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.MucTieuKpi", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.MucTieuKpi", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -850,7 +2021,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppMucTieuKpis", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.TienDoLamViec", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.TienDoLamViec", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -917,7 +2088,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppTienDoLamViecs", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.LichLamViecs.LichLamViec", b =>
+            modelBuilder.Entity("VietLife.Catalog.LichLamViecs.LichLamViec", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -995,7 +2166,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppLichLamViecs", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.LuongNhanViens.LuongNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.LuongNhanViens.LuongNhanVien", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -1088,76 +2259,10 @@ namespace VietLife.Migrations
                     b.ToTable("AppLuongNhanViens", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.Manufacturers.Manufacturer", b =>
+            modelBuilder.Entity("VietLife.Catalog.NhanViens.HopDongNhanVien", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CoverPicture")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<bool>("Visibility")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppManufacturers", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Orders.Order", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -1173,24 +2278,6 @@ namespace VietLife.Migrations
                     b.Property<Guid?>("CreatorId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CreatorId");
-
-                    b.Property<string>("CustomerAddress")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CustomerPhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid?>("CustomerUserId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("DeleterId")
                         .HasColumnType("uniqueidentifier")
@@ -1200,16 +2287,114 @@ namespace VietLife.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DeletionTime");
 
-                    b.Property<double>("Discount")
-                        .HasColumnType("float");
+                    b.Property<decimal>("DonGiaCong")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ExtraProperties")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<double>("GrandTotal")
-                        .HasColumnType("float");
+                    b.Property<string>("GhiChu")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<bool>("LaHienHanh")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<Guid>("LoaiHopDongId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("LuongCoBan")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("MaHopDong")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("NgayDuyet")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("NgayHetHan")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayHieuLuc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayKy")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("NguoiDuyetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("NhanVienId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("SoThang")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TrangThai")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoaiHopDongId");
+
+                    b.HasIndex("NguoiDuyetId");
+
+                    b.HasIndex("NhanVienId");
+
+                    b.ToTable("AppHopDongNhanViens", (string)null);
+                });
+
+            modelBuilder.Entity("VietLife.Catalog.NhanViens.LoaiHopDong", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("DeleterId");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletionTime");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -1225,91 +2410,25 @@ namespace VietLife.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<int>("PaymentMethod")
+                    b.Property<bool>("MacDinh")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int?>("SoThangMacDinh")
                         .HasColumnType("int");
 
-                    b.Property<double>("ShippingFee")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Subtotal")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Tax")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Total")
-                        .HasColumnType("float");
+                    b.Property<string>("TenLoai")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppOrders", (string)null);
+                    b.ToTable("AppLoaiHopDongs", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.Orders.OrderItem", b =>
-                {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SKU")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("ProductId", "OrderId");
-
-                    b.ToTable("AppOrderItems", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Orders.OrderTransaction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("TransactionType")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppOrderTransactions", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.PhongBans.PhongBan", b =>
+            modelBuilder.Entity("VietLife.Catalog.PhongBans.PhongBan", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -1372,7 +2491,7 @@ namespace VietLife.Migrations
                     b.ToTable("AppPhongBans", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.PhuCapNhanViens.PhuCapNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVien", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -1425,550 +2544,28 @@ namespace VietLife.Migrations
                     b.ToTable("AppPhuCapNhanViens", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.ProductAttributes.ProductAttribute", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<int>("DataType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsUnique")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Visibility")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductAttributes", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.ProductCategories.ProductCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<string>("CoverPicture")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid?>("ParentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("SeoMetaDescription")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Visibility")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductCategories", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.Product", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CategoryName")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("CategorySlug")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<Guid>("ManufacturerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("ProductType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SKU")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<double>("SellPrice")
-                        .HasColumnType("float");
-
-                    b.Property<string>("SeoMetaDescription")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ThumbnailPicture")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("Visibility")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProducts", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductAttributeDateTime", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AttributeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("Value")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductAttributeDateTimes", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductAttributeDecimal", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AttributeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductAttributeDecimals", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductAttributeInt", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AttributeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductAttributeInts", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductAttributeText", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AttributeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductAttributeTexts", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductAttributeVarchar", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AttributeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Value")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductAttributeVarchars", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductLink", b =>
-                {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LinkedProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProductId", "LinkedProductId");
-
-                    b.ToTable("AppProductLinks", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductReview", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ParentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("PublishedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppProductReviews", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.ProductTag", b =>
-                {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("TagId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ProductId", "TagId");
-
-                    b.ToTable("AppProductTags", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Products.Tag", b =>
+            modelBuilder.Entity("VietLife.IdentitySettings.IdentitySetting", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppTags", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Promotions.Promotion", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<string>("CouponCode")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<double>("DiscountAmount")
-                        .HasColumnType("float");
-
-                    b.Property<int>("DiscountUnit")
+                    b.Property<int>("CurrentNumber")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ExpiredDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ExtraProperties")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<bool>("LimitedUsageTimes")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("MaximumDiscountAmount")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
-                    b.Property<bool>("RequireUseCouponCode")
-                        .HasColumnType("bit");
+                    b.Property<string>("Prefix")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ValidDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppPromotions", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Promotions.PromotionCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PromotionId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("StepNumber")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppPromotionCategories", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Promotions.PromotionManufacturer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ManufactureId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PromotionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppPromotionManufacturers", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Promotions.PromotionProduct", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PromotionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppPromotionProducts", (string)null);
-                });
-
-            modelBuilder.Entity("VietLife.Promotions.PromotionUsageHistory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PromotionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppPromotionUsageHistories", (string)null);
+                    b.ToTable("AppIdentitySettings", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -3837,7 +4434,7 @@ namespace VietLife.Migrations
                     b.ToTable("AbpTenantConnectionStrings", (string)null);
                 });
 
-            modelBuilder.Entity("VietLife.NhanViens.NhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.NhanViens.NhanVien", b =>
                 {
                     b.HasBaseType("Volo.Abp.Identity.IdentityUser");
 
@@ -3851,18 +4448,12 @@ namespace VietLife.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<decimal>("DonGiaCong")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<bool>("GioiTinh")
                         .HasColumnType("bit");
 
                     b.Property<string>("HoTen")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<decimal>("LuongCoBan")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MaNv")
                         .HasMaxLength(50)
@@ -3903,9 +4494,240 @@ namespace VietLife.Migrations
                     b.HasDiscriminator().HasValue("NhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.ChamCongs.ChamCong", b =>
+            modelBuilder.Entity("VietLife.Business.BaoGias.BaoGia", b =>
                 {
-                    b.HasOne("VietLife.NhanViens.NhanVien", "NhanVien")
+                    b.HasOne("VietLife.Business.KhachHangs.KhachHang", "KhachHang")
+                        .WithMany("BaoGias")
+                        .HasForeignKey("KhachHangId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVien")
+                        .WithMany()
+                        .HasForeignKey("NhanVienId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", null)
+                        .WithMany("BaoGias")
+                        .HasForeignKey("NhanVienId1");
+
+                    b.HasOne("VietLife.Business.TienTes.TienTe", "TienTe")
+                        .WithMany("BaoGias")
+                        .HasForeignKey("TienTeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("KhachHang");
+
+                    b.Navigation("NhanVien");
+
+                    b.Navigation("TienTe");
+                });
+
+            modelBuilder.Entity("VietLife.Business.BaoGias.ChiTietBaoGia", b =>
+                {
+                    b.HasOne("VietLife.Business.BaoGias.BaoGia", "BaoGia")
+                        .WithMany("ChiTietBaoGias")
+                        .HasForeignKey("BaoGiaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Business.SanPhams.SanPham", "SanPham")
+                        .WithMany("ChiTietBaoGias")
+                        .HasForeignKey("SanPhamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("BaoGia");
+
+                    b.Navigation("SanPham");
+                });
+
+            modelBuilder.Entity("VietLife.Business.DonHangs.ChiTietDonHang", b =>
+                {
+                    b.HasOne("VietLife.Business.DonHangs.DonHang", "DonHang")
+                        .WithMany("ChiTietDonHangs")
+                        .HasForeignKey("DonHangId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Business.SanPhams.SanPham", "SanPham")
+                        .WithMany("ChiTietDonHangs")
+                        .HasForeignKey("SanPhamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DonHang");
+
+                    b.Navigation("SanPham");
+                });
+
+            modelBuilder.Entity("VietLife.Business.DonHangs.DonHang", b =>
+                {
+                    b.HasOne("VietLife.Business.BaoGias.BaoGia", "BaoGia")
+                        .WithMany("DonHangs")
+                        .HasForeignKey("BaoGiaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Business.KhachHangs.KhachHang", "KhachHang")
+                        .WithMany("DonHangs")
+                        .HasForeignKey("KhachHangId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Business.DonHangs.LoaiDonHang", "LoaiDonHang")
+                        .WithMany("DonHangs")
+                        .HasForeignKey("LoaiDonHangId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVienBanHang")
+                        .WithMany()
+                        .HasForeignKey("NhanVienBanHangId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVienGiaoHang")
+                        .WithMany()
+                        .HasForeignKey("NhanVienGiaoHangId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", null)
+                        .WithMany("DonHangs")
+                        .HasForeignKey("NhanVienId");
+
+                    b.Navigation("BaoGia");
+
+                    b.Navigation("KhachHang");
+
+                    b.Navigation("LoaiDonHang");
+
+                    b.Navigation("NhanVienBanHang");
+
+                    b.Navigation("NhanVienGiaoHang");
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhachHangs.KhachHang", b =>
+                {
+                    b.HasOne("VietLife.Business.KhachHangs.LoaiKhachHang", "LoaiKhachHang")
+                        .WithMany("KhachHangs")
+                        .HasForeignKey("LoaiKhachHangId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Business.ThanhPhos.ThanhPho", "ThanhPho")
+                        .WithMany("KhachHangs")
+                        .HasForeignKey("ThanhPhoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("LoaiKhachHang");
+
+                    b.Navigation("ThanhPho");
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhoHangs.KhoHang", b =>
+                {
+                    b.HasOne("VietLife.Business.ThanhPhos.ThanhPho", "ThanhPho")
+                        .WithMany("KhoHangs")
+                        .HasForeignKey("ThanhPhoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ThanhPho");
+                });
+
+            modelBuilder.Entity("VietLife.Business.PhieuNhapXuats.ChiTietPhieuNhapXuat", b =>
+                {
+                    b.HasOne("VietLife.Business.PhieuNhapXuats.PhieuNhapXuat", "PhieuNhapXuat")
+                        .WithMany("ChiTietPhieuNhapXuats")
+                        .HasForeignKey("PhieuNhapXuatId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Business.SanPhams.SanPham", "SanPham")
+                        .WithMany("ChiTietPhieuNhapXuats")
+                        .HasForeignKey("SanPhamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("PhieuNhapXuat");
+
+                    b.Navigation("SanPham");
+                });
+
+            modelBuilder.Entity("VietLife.Business.PhieuNhapXuats.PhieuNhapXuat", b =>
+                {
+                    b.HasOne("VietLife.Business.BaoGias.BaoGia", "BaoGia")
+                        .WithMany("PhieuNhapXuats")
+                        .HasForeignKey("BaoGiaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Business.DonHangs.DonHang", "DonHang")
+                        .WithMany("PhieuNhapXuats")
+                        .HasForeignKey("DonHangId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Business.KhoHangs.KhoHang", "KhoDen")
+                        .WithMany("PhieuNhapXuatsDen")
+                        .HasForeignKey("KhoDenId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Business.KhoHangs.KhoHang", "KhoHang")
+                        .WithMany("PhieuNhapXuatsGoc")
+                        .HasForeignKey("KhoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Business.PhieuNhapXuats.LoaiNhapXuat", "LoaiNhapXuat")
+                        .WithMany("PhieuNhapXuats")
+                        .HasForeignKey("LoaiNhapXuatId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVienLap")
+                        .WithMany("PhieuNhapXuats")
+                        .HasForeignKey("NhanVienLapId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("BaoGia");
+
+                    b.Navigation("DonHang");
+
+                    b.Navigation("KhoDen");
+
+                    b.Navigation("KhoHang");
+
+                    b.Navigation("LoaiNhapXuat");
+
+                    b.Navigation("NhanVienLap");
+                });
+
+            modelBuilder.Entity("VietLife.Business.SanPhams.SanPham", b =>
+                {
+                    b.HasOne("VietLife.Business.SanPhams.DonViTinh", "DonViTinh")
+                        .WithMany("SanPhams")
+                        .HasForeignKey("DonViTinhId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Business.SanPhams.NhomSanPham", "NhomSanPham")
+                        .WithMany("SanPhams")
+                        .HasForeignKey("NhomSanPhamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("DonViTinh");
+
+                    b.Navigation("NhomSanPham");
+                });
+
+            modelBuilder.Entity("VietLife.Business.ThuChis.ThuChi", b =>
+                {
+                    b.HasOne("VietLife.Business.KhachHangs.KhachHang", "KhachHang")
+                        .WithMany("ThuChis")
+                        .HasForeignKey("KhachHangId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("KhachHang");
+                });
+
+            modelBuilder.Entity("VietLife.Catalog.ChamCongs.ChamCong", b =>
+                {
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVien")
                         .WithMany("ChamCongs")
                         .HasForeignKey("NhanVienId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -3914,15 +4736,15 @@ namespace VietLife.Migrations
                     b.Navigation("NhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.CheDoNhanViens.CheDoNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.CheDoNhanViens.CheDoNhanVien", b =>
                 {
-                    b.HasOne("VietLife.CheDoNhanViens.LoaiCheDo", "LoaiCheDo")
+                    b.HasOne("VietLife.Catalog.CheDoNhanViens.LoaiCheDo", "LoaiCheDo")
                         .WithMany("CheDoNhanViens")
                         .HasForeignKey("LoaiCheDoId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("VietLife.NhanViens.NhanVien", "NhanVien")
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVien")
                         .WithMany("CheDoNhanViens")
                         .HasForeignKey("NhanVienId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -3933,9 +4755,9 @@ namespace VietLife.Migrations
                     b.Navigation("NhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.DanhGiaKpi", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.DanhGiaKpi", b =>
                 {
-                    b.HasOne("VietLife.KPINhanViens.KpiNhanVien", "KpiNhanVien")
+                    b.HasOne("VietLife.Catalog.KPINhanViens.KpiNhanVien", "KpiNhanVien")
                         .WithMany("DanhGiaKpis")
                         .HasForeignKey("KpiNhanVienId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -3944,9 +4766,9 @@ namespace VietLife.Migrations
                     b.Navigation("KpiNhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.KeHoachCongViec", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.KeHoachCongViec", b =>
                 {
-                    b.HasOne("VietLife.KPINhanViens.KpiNhanVien", "KpiNhanVien")
+                    b.HasOne("VietLife.Catalog.KPINhanViens.KpiNhanVien", "KpiNhanVien")
                         .WithMany("KeHoachCongViecs")
                         .HasForeignKey("KpiNhanVienId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -3955,9 +4777,9 @@ namespace VietLife.Migrations
                     b.Navigation("KpiNhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.KpiNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.KpiNhanVien", b =>
                 {
-                    b.HasOne("VietLife.NhanViens.NhanVien", "NhanVien")
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVien")
                         .WithMany("KpiNhanViens")
                         .HasForeignKey("NhanVienId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3966,14 +4788,14 @@ namespace VietLife.Migrations
                     b.Navigation("NhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.MucTieuKpi", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.MucTieuKpi", b =>
                 {
-                    b.HasOne("VietLife.KPINhanViens.KeHoachCongViec", "KeHoachCongViec")
+                    b.HasOne("VietLife.Catalog.KPINhanViens.KeHoachCongViec", "KeHoachCongViec")
                         .WithMany("MucTieuKpis")
                         .HasForeignKey("KeHoachCongViecId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("VietLife.KPINhanViens.KpiNhanVien", "KpiNhanVien")
+                    b.HasOne("VietLife.Catalog.KPINhanViens.KpiNhanVien", "KpiNhanVien")
                         .WithMany("MucTieuKpis")
                         .HasForeignKey("KpiNhanVienId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -3984,9 +4806,9 @@ namespace VietLife.Migrations
                     b.Navigation("KpiNhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.TienDoLamViec", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.TienDoLamViec", b =>
                 {
-                    b.HasOne("VietLife.KPINhanViens.KpiNhanVien", "KpiNhanVien")
+                    b.HasOne("VietLife.Catalog.KPINhanViens.KpiNhanVien", "KpiNhanVien")
                         .WithMany("TienDoLamViecs")
                         .HasForeignKey("KpiNhanVienId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -3995,9 +4817,9 @@ namespace VietLife.Migrations
                     b.Navigation("KpiNhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.LuongNhanViens.LuongNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.LuongNhanViens.LuongNhanVien", b =>
                 {
-                    b.HasOne("VietLife.NhanViens.NhanVien", "NhanVien")
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVien")
                         .WithMany("LuongNhanViens")
                         .HasForeignKey("NhanVienId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -4006,9 +4828,35 @@ namespace VietLife.Migrations
                     b.Navigation("NhanVien");
                 });
 
-            modelBuilder.Entity("VietLife.PhuCapNhanViens.PhuCapNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.NhanViens.HopDongNhanVien", b =>
                 {
-                    b.HasOne("VietLife.Chucvus.ChucVu", "ChucVu")
+                    b.HasOne("VietLife.Catalog.NhanViens.LoaiHopDong", "LoaiHopDong")
+                        .WithMany("HopDongNhanViens")
+                        .HasForeignKey("LoaiHopDongId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NguoiDuyet")
+                        .WithMany()
+                        .HasForeignKey("NguoiDuyetId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("VietLife.Catalog.NhanViens.NhanVien", "NhanVien")
+                        .WithMany("HopDongNhanViens")
+                        .HasForeignKey("NhanVienId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("LoaiHopDong");
+
+                    b.Navigation("NguoiDuyet");
+
+                    b.Navigation("NhanVien");
+                });
+
+            modelBuilder.Entity("VietLife.Catalog.PhuCapNhanViens.PhuCapNhanVien", b =>
+                {
+                    b.HasOne("VietLife.Catalog.Chucvus.ChucVu", "ChucVu")
                         .WithMany("PhuCapNhanViens")
                         .HasForeignKey("ChucVuId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -4168,19 +5016,19 @@ namespace VietLife.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VietLife.NhanViens.NhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.NhanViens.NhanVien", b =>
                 {
-                    b.HasOne("VietLife.ChiNhanhs.ChiNhanh", "ChiNhanh")
+                    b.HasOne("VietLife.Catalog.ChiNhanhs.ChiNhanh", "ChiNhanh")
                         .WithMany("NhanViens")
                         .HasForeignKey("ChiNhanhId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("VietLife.Chucvus.ChucVu", "ChucVu")
+                    b.HasOne("VietLife.Catalog.Chucvus.ChucVu", "ChucVu")
                         .WithMany("NhanViens")
                         .HasForeignKey("ChucVuId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("VietLife.PhongBans.PhongBan", "PhongBan")
+                    b.HasOne("VietLife.Catalog.PhongBans.PhongBan", "PhongBan")
                         .WithMany("NhanViens")
                         .HasForeignKey("PhongBanId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -4192,29 +5040,112 @@ namespace VietLife.Migrations
                     b.Navigation("PhongBan");
                 });
 
-            modelBuilder.Entity("VietLife.CheDoNhanViens.LoaiCheDo", b =>
+            modelBuilder.Entity("VietLife.Business.BaoGias.BaoGia", b =>
+                {
+                    b.Navigation("ChiTietBaoGias");
+
+                    b.Navigation("DonHangs");
+
+                    b.Navigation("PhieuNhapXuats");
+                });
+
+            modelBuilder.Entity("VietLife.Business.DonHangs.DonHang", b =>
+                {
+                    b.Navigation("ChiTietDonHangs");
+
+                    b.Navigation("PhieuNhapXuats");
+                });
+
+            modelBuilder.Entity("VietLife.Business.DonHangs.LoaiDonHang", b =>
+                {
+                    b.Navigation("DonHangs");
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhachHangs.KhachHang", b =>
+                {
+                    b.Navigation("BaoGias");
+
+                    b.Navigation("DonHangs");
+
+                    b.Navigation("ThuChis");
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhachHangs.LoaiKhachHang", b =>
+                {
+                    b.Navigation("KhachHangs");
+                });
+
+            modelBuilder.Entity("VietLife.Business.KhoHangs.KhoHang", b =>
+                {
+                    b.Navigation("PhieuNhapXuatsDen");
+
+                    b.Navigation("PhieuNhapXuatsGoc");
+                });
+
+            modelBuilder.Entity("VietLife.Business.PhieuNhapXuats.LoaiNhapXuat", b =>
+                {
+                    b.Navigation("PhieuNhapXuats");
+                });
+
+            modelBuilder.Entity("VietLife.Business.PhieuNhapXuats.PhieuNhapXuat", b =>
+                {
+                    b.Navigation("ChiTietPhieuNhapXuats");
+                });
+
+            modelBuilder.Entity("VietLife.Business.SanPhams.DonViTinh", b =>
+                {
+                    b.Navigation("SanPhams");
+                });
+
+            modelBuilder.Entity("VietLife.Business.SanPhams.NhomSanPham", b =>
+                {
+                    b.Navigation("SanPhams");
+                });
+
+            modelBuilder.Entity("VietLife.Business.SanPhams.SanPham", b =>
+                {
+                    b.Navigation("ChiTietBaoGias");
+
+                    b.Navigation("ChiTietDonHangs");
+
+                    b.Navigation("ChiTietPhieuNhapXuats");
+                });
+
+            modelBuilder.Entity("VietLife.Business.ThanhPhos.ThanhPho", b =>
+                {
+                    b.Navigation("KhachHangs");
+
+                    b.Navigation("KhoHangs");
+                });
+
+            modelBuilder.Entity("VietLife.Business.TienTes.TienTe", b =>
+                {
+                    b.Navigation("BaoGias");
+                });
+
+            modelBuilder.Entity("VietLife.Catalog.CheDoNhanViens.LoaiCheDo", b =>
                 {
                     b.Navigation("CheDoNhanViens");
                 });
 
-            modelBuilder.Entity("VietLife.ChiNhanhs.ChiNhanh", b =>
+            modelBuilder.Entity("VietLife.Catalog.ChiNhanhs.ChiNhanh", b =>
                 {
                     b.Navigation("NhanViens");
                 });
 
-            modelBuilder.Entity("VietLife.Chucvus.ChucVu", b =>
+            modelBuilder.Entity("VietLife.Catalog.Chucvus.ChucVu", b =>
                 {
                     b.Navigation("NhanViens");
 
                     b.Navigation("PhuCapNhanViens");
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.KeHoachCongViec", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.KeHoachCongViec", b =>
                 {
                     b.Navigation("MucTieuKpis");
                 });
 
-            modelBuilder.Entity("VietLife.KPINhanViens.KpiNhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.KPINhanViens.KpiNhanVien", b =>
                 {
                     b.Navigation("DanhGiaKpis");
 
@@ -4225,7 +5156,12 @@ namespace VietLife.Migrations
                     b.Navigation("TienDoLamViecs");
                 });
 
-            modelBuilder.Entity("VietLife.PhongBans.PhongBan", b =>
+            modelBuilder.Entity("VietLife.Catalog.NhanViens.LoaiHopDong", b =>
+                {
+                    b.Navigation("HopDongNhanViens");
+                });
+
+            modelBuilder.Entity("VietLife.Catalog.PhongBans.PhongBan", b =>
                 {
                     b.Navigation("NhanViens");
                 });
@@ -4270,15 +5206,23 @@ namespace VietLife.Migrations
                     b.Navigation("ConnectionStrings");
                 });
 
-            modelBuilder.Entity("VietLife.NhanViens.NhanVien", b =>
+            modelBuilder.Entity("VietLife.Catalog.NhanViens.NhanVien", b =>
                 {
+                    b.Navigation("BaoGias");
+
                     b.Navigation("ChamCongs");
 
                     b.Navigation("CheDoNhanViens");
 
+                    b.Navigation("DonHangs");
+
+                    b.Navigation("HopDongNhanViens");
+
                     b.Navigation("KpiNhanViens");
 
                     b.Navigation("LuongNhanViens");
+
+                    b.Navigation("PhieuNhapXuats");
                 });
 #pragma warning restore 612, 618
         }

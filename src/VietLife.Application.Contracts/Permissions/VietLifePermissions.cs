@@ -4,6 +4,7 @@ public static class VietLifePermissions
 {
     public const string SystemGroupName = "VietLifeAdminSystem";
     public const string CatalogGroupName = "VietLifeAdminCatalog";
+    public const string BusinessGroupName = "VietLifeAdminBusiness";
 
 
 
@@ -148,6 +149,34 @@ public static class VietLifePermissions
     public static class LuongNhanVien
     {
         public const string Default = CatalogGroupName + ".LuongNhanVien";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    //Business
+    public static class NhomSanPham
+    {
+        public const string Default = BusinessGroupName + ".NhomSanPham";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class DonViTinh
+    {
+        public const string Default = BusinessGroupName + ".DonViTinh";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class SanPham
+    {
+        public const string Default = BusinessGroupName + ".SanPham";
         public const string View = Default + ".View";
         public const string Create = Default + ".Create";
         public const string Update = Default + ".Update";

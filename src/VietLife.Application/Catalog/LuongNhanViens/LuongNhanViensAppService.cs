@@ -35,6 +35,7 @@ namespace VietLife.Catalog.LuongNhanViens
         private readonly IRepository<KpiNhanVien, Guid> _kpiRepository;
         private readonly IRepository<CheDoNhanVien, Guid> _cheDoRepository;
         private readonly IRepository<PhuCapNhanVien, Guid> _phuCapRepository;
+        private readonly IRepository<HopDongNhanVien, Guid> _hopDongRepository;
 
         public LuongNhanViensAppService(
             IRepository<LuongNhanVien, Guid> repository,
@@ -42,7 +43,8 @@ namespace VietLife.Catalog.LuongNhanViens
             IRepository<NhanVien, Guid> nhanVienRepository,
             IRepository<KpiNhanVien, Guid> kpiRepository,
             IRepository<CheDoNhanVien, Guid> cheDoRepository,
-            IRepository<PhuCapNhanVien, Guid> phuCapRepository)
+            IRepository<PhuCapNhanVien, Guid> phuCapRepository,
+            IRepository<HopDongNhanVien, Guid> hopDongRepository)
             : base(repository)
         {
             _chamCongRepository = chamCongRepository;
@@ -56,6 +58,7 @@ namespace VietLife.Catalog.LuongNhanViens
             CreatePolicyName = VietLifePermissions.LuongNhanVien.Create;
             UpdatePolicyName = VietLifePermissions.LuongNhanVien.Update;
             DeletePolicyName = VietLifePermissions.LuongNhanVien.Delete;
+            _hopDongRepository = hopDongRepository;
         }
 
         [Authorize(VietLifePermissions.LuongNhanVien.View)]
@@ -123,22 +126,20 @@ namespace VietLife.Catalog.LuongNhanViens
         public async Task TinhLuongHangNgayAsync()
         {
             var nhanViens = await _nhanVienRepository.GetListAsync();
+            var today = DateTime.Today;
+            var month = today.Month;
+            var year = today.Year;
 
             foreach (var nv in nhanViens)
             {
-                var today = DateTime.Today;
-                var month = today.Month;
-                var year = today.Year;
+                // LẤY HỢP ĐỒNG HIỆN HÀNH
+                var hopDongHienHanh = await _hopDongRepository
+                    .FirstOrDefaultAsync(hd => hd.NhanVienId == nv.Id && hd.LaHienHanh);
 
-                var chamCongs = await _chamCongRepository.GetListAsync(x =>
-                    x.NhanVienId == nv.Id &&
-                    x.NgayLam.Month == month &&
-                    x.NgayLam.Year == year);
+                if (hopDongHienHanh == null) continue; // Không có hợp đồng → bỏ qua
 
                 var luong = await Repository.FirstOrDefaultAsync(x =>
-                    x.NhanVienId == nv.Id &&
-                    x.Thang == month &&
-                    x.Nam == year);
+                    x.NhanVienId == nv.Id && x.Thang == month && x.Nam == year);
 
                 bool isNew = luong == null;
                 if (isNew)
@@ -152,34 +153,41 @@ namespace VietLife.Catalog.LuongNhanViens
                     };
                 }
 
-                // Tính lương theo công
-                var tongCongNgay = chamCongs.Sum(x => x.CongNgay ?? 0);
-                luong.LuongTheoNgayCong = tongCongNgay * nv.DonGiaCong; // ví dụ 100k/công
+                // 1. Lương theo công
+                var chamCongs = await _chamCongRepository.GetListAsync(x =>
+                    x.NhanVienId == nv.Id &&
+                    x.NgayLam.Month == month &&
+                    x.NgayLam.Year == year);
 
-                // Tính khấu trừ đi muộn / về sớm
+                var tongCongNgay = chamCongs.Sum(x => x.CongNgay ?? 0);
+                luong.LuongTheoNgayCong = tongCongNgay * hopDongHienHanh.DonGiaCong;
+
+                // 2. Khấu trừ đi muộn / về sớm
                 var tongPhutTre = chamCongs.Sum(x => x.SoPhutDiMuon ?? 0);
                 var tongPhutSom = chamCongs.Sum(x => x.SoPhutVeSom ?? 0);
-                var luongTheoPhut = nv.LuongCoBan / (26 * 8 * 60); // 26 ngày * 8h * 60 phút
+                var luongTheoPhut = hopDongHienHanh.LuongCoBan / (26 * 8 * 60);
                 luong.KhauTru = (tongPhutTre + tongPhutSom) * luongTheoPhut;
 
-                // Phụ cấp
+                // 3. Phụ cấp theo chức vụ
                 var phuCaps = await _phuCapRepository.GetListAsync(x => x.ChucVuId == nv.ChucVuId);
                 luong.PhuCap = phuCaps.Sum(x => x.SoTien);
 
-                // KPI thưởng
-                var kpi = await _kpiRepository.FirstOrDefaultAsync(x => x.NhanVienId == nv.Id && x.Thang == month && x.Nam == year);
+                // 4. Thưởng KPI
+                var kpi = await _kpiRepository.FirstOrDefaultAsync(x =>
+                    x.NhanVienId == nv.Id && x.Thang == month && x.Nam == year);
                 luong.ThuongKpi = kpi?.ThuongKpi ?? 0;
 
-                // Cộng/trừ từ chế độ
+                // 5. Cộng/trừ từ chế độ
                 var cheDos = await _cheDoRepository.GetListAsync(x =>
                     x.NhanVienId == nv.Id &&
-                    x.NgayBatDau <= today &&
-                    x.NgayKetThuc >= today);
+                    x.NgayBatDau.Value.Month == month &&
+                    x.NgayBatDau.Value.Year == year &&
+                    x.TrangThai == true); // Đã duyệt
+
                 luong.CongTruCheDo = cheDos.Sum(x => x.ThanhTien ?? 0);
 
-                // Tổng lương
-                luong.TinhTongLuong(nv.LuongCoBan);
-
+                // 6. TỔNG LƯƠNG (TỪ HỢP ĐỒNG)
+                luong.TinhTongLuong(hopDongHienHanh);
 
                 if (isNew)
                     await Repository.InsertAsync(luong);

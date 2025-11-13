@@ -25,8 +25,16 @@ namespace VietLife.Catalog.LuongNhanViens
         public string GhiChu { get; set; }
 
         public virtual NhanVien NhanVien { get; set; }
-        public void TinhTongLuong(decimal luongCoBan)
+        public void TinhTongLuong(HopDongNhanVien hopDongHienHanh)
         {
+            if (hopDongHienHanh == null)
+            {
+                TongLuong = 0;
+                return;
+            }
+
+            var luongCoBan = hopDongHienHanh.LuongCoBan;
+
             TongLuong = luongCoBan
                       + (LuongTheoNgayCong ?? 0)
                       + (PhuCap ?? 0)

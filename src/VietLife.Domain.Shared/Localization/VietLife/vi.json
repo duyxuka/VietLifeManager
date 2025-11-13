@@ -89,6 +89,24 @@
     "Permission:Catalog.KpiNhanVien.DanhGiaKpi.View": "Xem đánh giá KPI",
     "Permission:Catalog.KpiNhanVien.DanhGiaKpi.Create": "Tạo đánh giá KPI",
     "Permission:Catalog.KpiNhanVien.DanhGiaKpi.Update": "Cập nhật đánh giá KPI",
-    "Permission:Catalog.KpiNhanVien.DanhGiaKpi.Delete": "Xóa đánh giá KPI"
+    "Permission:Catalog.KpiNhanVien.DanhGiaKpi.Delete": "Xóa đánh giá KPI",
+
+    "Permission:Business.NhomSanPham": "Nhóm sản phẩm",
+    "Permission:Business.NhomSanPham.View": "Xem nhóm sản phẩm",
+    "Permission:Business.NhomSanPham.Create": "Tạo nhóm sản phẩm",
+    "Permission:Business.NhomSanPham.Update": "Cập nhật nhóm sản phẩm",
+    "Permission:Business.NhomSanPham.Delete": "Xóa nhóm sản phẩm",
+
+    "Permission:Business.DonViTinh": "Đơn vị tính",
+    "Permission:Business.DonViTinh.View": "Xem đơn vị tính",
+    "Permission:Business.DonViTinh.Create": "Tạo đơn vị tính",
+    "Permission:Business.DonViTinh.Update": "Cập nhật đơn vị tính",
+    "Permission:Business.DonViTinh.Delete": "Xóa đơn vị tính",
+
+    "Permission:Business.SanPham": "Sản phẩm",
+    "Permission:Business.SanPham.View": "Xem sản phẩm",
+    "Permission:Business.SanPham.Create": "Tạo sản phẩm",
+    "Permission:Business.SanPham.Update": "Cập nhật sản phẩm",
+    "Permission:Business.SanPham.Delete": "Xóa sản phẩm"
   }
 }

@@ -109,9 +109,7 @@ namespace VietLife.System.Users
                 PhongBanId = input.PhongBanId,
                 ChucVuId = input.ChucVuId,
                 NgayVaoLam = DateTime.SpecifyKind((DateTime)input.NgayVaoLam, DateTimeKind.Utc).ToLocalTime(),
-                TrangThai = input.TrangThai,
-                LuongCoBan = input.LuongCoBan, // Thêm LuongCoBan
-                DonGiaCong = input.DonGiaCong // Thêm DonGiaCong
+                TrangThai = input.TrangThai
             };
 
             user.SetPhoneNumber(input.PhoneNumber, true);
@@ -157,8 +155,6 @@ namespace VietLife.System.Users
             user.ChucVuId = input.ChucVuId;
             user.NgayVaoLam = DateTime.SpecifyKind((DateTime)input.NgayVaoLam, DateTimeKind.Utc).ToLocalTime();
             user.TrangThai = input.TrangThai;
-            user.LuongCoBan = input.LuongCoBan; // Cập nhật LuongCoBan
-            user.DonGiaCong = input.DonGiaCong;
 
             var result = await _nhanVienManager.UpdateAsync(user);
             if (result.Succeeded)

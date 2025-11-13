@@ -25,7 +25,5 @@ namespace VietLife.System.Users
         public Guid? ChucVuId { get; set; }
         public DateTime? NgayVaoLam { get; set; }
         public string TrangThai { get; set; }
-        public decimal LuongCoBan { get; set; } // Lương cơ bản cố định, lưu ở đây vì per nhân viên
-        public decimal DonGiaCong { get; set; } // Đơn giá công ngày, dùng để tính LuongTheoNgayCong
     }
 }

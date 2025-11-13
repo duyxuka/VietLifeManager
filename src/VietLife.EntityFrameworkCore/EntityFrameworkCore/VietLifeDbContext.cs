@@ -14,44 +14,46 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
-using VietLife.Inventories;
-using VietLife.InventoryTickets;
-using VietLife.Manufacturers;
-using VietLife.Orders;
-using VietLife.Products;
-using VietLife.ProductCategories;
-using VietLife.Promotions;
 using VietLife.IdentitySettings;
-using VietLife.ProductAttributes;
-using VietLife.Configurations.ChamCongs;
-using VietLife.Configurations.ChucVus;
-using VietLife.Configurations.KpiNhanViens;
-using VietLife.Configurations.LichLamViecs;
-using VietLife.Configurations.LuongNhanViens;
-using VietLife.Configurations.PhongBans;
-using VietLife.Configurations.Users;
-using VietLife.Configurations.CheDoNhanViens;
-using VietLife.Configurations.PhuCapNhanViens;
 using System.Reflection.Emit;
-using VietLife.Configurations.ChiNhanhs;
-using VietLife.Catalog.Products;
-using VietLife.Catalog.Orders;
 using VietLife.Catalog.NhanViens;
-using VietLife.Catalog.Promotions;
-using VietLife.Catalog.Manufacturers;
 using VietLife.Catalog.KPINhanViens;
 using VietLife.Catalog.Chucvus;
 using VietLife.Catalog.LichLamViecs;
 using VietLife.Catalog.LuongNhanViens;
-using VietLife.Catalog.ProductCategories;
 using VietLife.Catalog.PhuCapNhanViens;
 using VietLife.Catalog.PhongBans;
 using VietLife.Catalog.ChiNhanhs;
-using VietLife.Catalog.ProductAttributes;
-using VietLife.Catalog.InventoryTickets;
 using VietLife.Catalog.CheDoNhanViens;
 using VietLife.Catalog.ChamCongs;
-using VietLife.Catalog.Inventories;
+using VietLife.Business.SanPhams;
+using VietLife.Configurations.Business.Sanphams;
+using VietLife.Configurations.Catalog.NhanViens;
+using VietLife.Configurations.Catalog.ChamCongs;
+using VietLife.Configurations.Catalog.PhongBans;
+using VietLife.Configurations.Catalog.ChucVus;
+using VietLife.Configurations.Catalog.LichLamViecs;
+using VietLife.Configurations.Catalog.LuongNhanViens;
+using VietLife.Configurations.Catalog.KpiNhanViens;
+using VietLife.Configurations.Catalog.CheDoNhanViens;
+using VietLife.Configurations.Catalog.PhuCapNhanViens;
+using VietLife.Configurations.Catalog.ChiNhanhs;
+using VietLife.Business.TienTes;
+using VietLife.Business.ThuChis;
+using VietLife.Business.ThanhPhos;
+using VietLife.Business.PhieuNhapXuats;
+using VietLife.Business.KhoHangs;
+using VietLife.Business.KhachHangs;
+using VietLife.Business.DonHangs;
+using VietLife.Business.BaoGias;
+using VietLife.Configurations.Business.BaoGias;
+using VietLife.Configurations.Business.DonHangs;
+using VietLife.Configurations.Business.KhachHangs;
+using VietLife.Configurations.Business.KhoHangs;
+using VietLife.Configurations.Business.PhieuNhapXuats;
+using VietLife.Configurations.Business.ThanhPhos;
+using VietLife.Configurations.Business.TienTes;
+using VietLife.Configurations.Business.ThuChis;
 
 namespace VietLife.EntityFrameworkCore;
 
@@ -94,30 +96,6 @@ public class VietLifeDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     //Vietlife
-    public DbSet<ProductAttribute> ProductAttributes { get; set; }
-    public DbSet<Inventory> Inventories { get; set; }
-    public DbSet<InventoryTicket> InventoryTickets { get; set; }
-    public DbSet<InventoryTicketItem> InventoryTicketItems { get; set; }
-    public DbSet<Manufacturer> Manufacturers { get; set; }
-    public DbSet<Order> Orders { get; set; }
-    public DbSet<OrderItem> OrderItems { get; set; }
-    public DbSet<OrderTransaction> OrderTransactions { get; set; }
-    public DbSet<Product> Products { get; set; }
-    public DbSet<ProductCategory> ProductCategories { get; set; }
-    public DbSet<ProductAttributeDateTime> ProductAttributeDateTimes { get; set; }
-    public DbSet<ProductAttributeDecimal> ProductAttributeDecimals { get; set; }
-    public DbSet<ProductAttributeInt> ProductAttributeInts { get; set; }
-    public DbSet<ProductAttributeVarchar> ProductAttributeVarchars { get; set; }
-    public DbSet<ProductAttributeText> ProductAttributeTexts { get; set; }
-    public DbSet<ProductLink> ProductLinks { get; set; }
-    public DbSet<ProductReview> ProductReviews { get; set; }
-    public DbSet<ProductTag> ProductTags { get; set; }
-    public DbSet<Tag> Tags { get; set; }
-    public DbSet<Promotion> Promotions { get; set; }
-    public DbSet<PromotionCategory> PromotionCategories { get; set; }
-    public DbSet<PromotionManufacturer> PromotionManufacturers { get; set; }
-    public DbSet<PromotionProduct> PromotionProducts { get; set; }
-    public DbSet<PromotionUsageHistory> PromotionUsageHistories { get; set; }
     public DbSet<IdentitySetting> IdentitySettings { get; set; }
     public DbSet<PhongBan> PhongBans { get; set; }
     public DbSet<ChucVu> ChucVus { get; set; }
@@ -134,6 +112,27 @@ public class VietLifeDbContext :
     public DbSet<KeHoachCongViec> KeHoachCongViecs { get; set; }
     public DbSet<MucTieuKpi> MucTieuKpis { get; set; }
     public DbSet<TienDoLamViec> TienDoLamViecs { get; set; }
+
+    //Business
+    public DbSet<SanPham> SanPhams { get; set; }
+    public DbSet<LoaiHopDong> LoaiHopDongs { get; set; }
+    public DbSet<HopDongNhanVien> HopDongNhanViens { get; set; }
+    public DbSet<TienTe> TienTes { get; set; }
+    public DbSet<ThuChi> ThuChis { get; set; }
+    public DbSet<ThanhPho> ThanhPhos { get; set; }
+    public DbSet<NhomSanPham> NhomSanPhams { get; set; }
+    public DbSet<DonViTinh> DonViTinhs { get; set; }
+    public DbSet<LoaiNhapXuat> LoaiNhapXuats { get; set; }
+    public DbSet<PhieuNhapXuat> PhieuNhapXuats { get; set; }
+    public DbSet<ChiTietPhieuNhapXuat> ChiTietPhieuNhapXuats { get; set; }
+    public DbSet<KhoHang> KhoHangs { get; set; }
+    public DbSet<KhachHang> KhachHangs { get; set; }
+    public DbSet<LoaiKhachHang> LoaiKhachHangs { get; set; }
+    public DbSet<DonHang> DonHangs { get; set; }
+    public DbSet<LoaiDonHang> LoaiDonHangs { get; set; }
+    public DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
+    public DbSet<BaoGia> BaoGias { get; set; }
+    public DbSet<ChiTietBaoGia> ChiTietBaoGias { get; set; }
 
     #endregion
 
@@ -160,37 +159,7 @@ public class VietLifeDbContext :
         builder.ConfigureBlobStoring();
 
         /* Configure your own tables/entities inside here */
-        builder.ApplyConfiguration(new ProductAttributeConfiguration());
-
-        builder.ApplyConfiguration(new InventoryConfiguration());
-
-        builder.ApplyConfiguration(new InventoryTicketConfiguration());
-        builder.ApplyConfiguration(new InventoryTicketItemConfiguration());
-
-        builder.ApplyConfiguration(new ManufacturerConfiguration());
-
-        builder.ApplyConfiguration(new OrderConfiguration());
-        builder.ApplyConfiguration(new OrderItemConfiguration());
-        builder.ApplyConfiguration(new OrderTransactionConfiguration());
-
-        builder.ApplyConfiguration(new ProductCategoryConfiguration());
-
-        builder.ApplyConfiguration(new ProductConfiguration());
-        builder.ApplyConfiguration(new ProductLinkConfiguration());
-        builder.ApplyConfiguration(new ProductReviewConfiguration());
-        builder.ApplyConfiguration(new ProductTagConfiguration());
-        builder.ApplyConfiguration(new TagConfiguration());
-        builder.ApplyConfiguration(new ProductAttributeDateTimeConfiguration());
-        builder.ApplyConfiguration(new ProductAttributeDecimalConfiguration());
-        builder.ApplyConfiguration(new ProductAttributeIntConfiguration());
-        builder.ApplyConfiguration(new ProductAttributeTextConfiguration());
-        builder.ApplyConfiguration(new ProductAttributeVarcharConfiguration());
-
-        builder.ApplyConfiguration(new PromotionConfiguration());
-        builder.ApplyConfiguration(new PromotionCategoryConfiguration());
-        builder.ApplyConfiguration(new PromotionManufacturerConfiguration());
-        builder.ApplyConfiguration(new PromotionProductConfiguration());
-        builder.ApplyConfiguration(new PromotionUsageHistoryConfiguration());
+       
         builder.ApplyConfiguration(new IdentitySettingConfiguration());
 
         builder.ApplyConfiguration(new NhanVienConfiguration());
@@ -208,6 +177,27 @@ public class VietLifeDbContext :
         builder.ApplyConfiguration(new DanhGiaKpiConfiguration());
         builder.ApplyConfiguration(new ChiNhanhConfiguration());
         builder.ApplyConfiguration(new LoaiCheDoConfiguration());
+
+        //Business Configurations
+        builder.ApplyConfiguration(new SanPhamConfiguration());
+        builder.ApplyConfiguration(new ChiTietPhieuNhapXuatConfiguration());
+        builder.ApplyConfiguration(new PhieuNhapXuatConfiguration());
+        builder.ApplyConfiguration(new KhoHangConfiguration());
+        builder.ApplyConfiguration(new KhachHangConfiguration());
+        builder.ApplyConfiguration(new BaoGiaConfiguration());
+        builder.ApplyConfiguration(new ChiTietBaoGiaConfiguration());
+        builder.ApplyConfiguration(new DonHangConfiguration());
+        builder.ApplyConfiguration(new ChiTietDonHangConfiguration());
+        builder.ApplyConfiguration(new LoaiDonHangConfiguration());
+        builder.ApplyConfiguration(new LoaiKhachHangConfiguration());
+        builder.ApplyConfiguration(new TienTeConfiguration());
+        builder.ApplyConfiguration(new HopDongNhanVienConfiguration());
+        builder.ApplyConfiguration(new LoaiHopDongConfiguration());
+        builder.ApplyConfiguration(new ThanhPhoConfiguration());
+        builder.ApplyConfiguration(new NhomSanPhamConfiguration());
+        builder.ApplyConfiguration(new DonViTinhConfiguration());
+        builder.ApplyConfiguration(new LoaiNhapXuatConfiguration());
+        builder.ApplyConfiguration(new ThuChiConfiguration());
 
         //builder.Entity<YourEntity>(b =>
         //{

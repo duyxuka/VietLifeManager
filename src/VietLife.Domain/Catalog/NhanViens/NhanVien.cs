@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Business.BaoGias;
+using VietLife.Business.DonHangs;
+using VietLife.Business.PhieuNhapXuats;
 using VietLife.Catalog.ChamCongs;
 using VietLife.Catalog.CheDoNhanViens;
 using VietLife.Catalog.ChiNhanhs;
@@ -29,8 +32,6 @@ namespace VietLife.Catalog.NhanViens
         public Guid? ChiNhanhId { get; set; }
         public DateTime? NgayVaoLam { get; set; }
         public string TrangThai { get; set; }
-        public decimal LuongCoBan { get; set; } // Lương cơ bản cố định, lưu ở đây vì per nhân viên
-        public decimal DonGiaCong { get; set; } // Đơn giá công ngày, dùng để tính LuongTheoNgayCong
         public virtual PhongBan PhongBan { get; set; }
         public virtual ChucVu ChucVu { get; set; }
         public virtual ChiNhanh ChiNhanh { get; set; }
@@ -38,6 +39,10 @@ namespace VietLife.Catalog.NhanViens
         public virtual ICollection<LuongNhanVien> LuongNhanViens { get; set; }
         public virtual ICollection<KpiNhanVien> KpiNhanViens { get; set; }
         public virtual ICollection<CheDoNhanVien> CheDoNhanViens { get; set; }
+        public virtual ICollection<HopDongNhanVien> HopDongNhanViens { get; set; }
+        public virtual ICollection<PhieuNhapXuat> PhieuNhapXuats { get; set; }
+        public virtual ICollection<DonHang> DonHangs { get; set; }
+        public virtual ICollection<BaoGia> BaoGias { get; set; }
 
         public NhanVien(Guid id, string userName, string email)
             : base(id, userName, email)

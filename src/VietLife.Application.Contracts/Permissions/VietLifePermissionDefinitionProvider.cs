@@ -28,6 +28,9 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         //Catalog
         var catalogGroup = context.AddGroup(VietLifePermissions.CatalogGroupName, L("Permission:Catalog"));
 
+        //Business
+        var businessGroup = context.AddGroup(VietLifePermissions.BusinessGroupName, L("Permission:Business"));
+
         // === CHI NHÁNH ===
         var chiNhanhPermission = catalogGroup.AddPermission(VietLifePermissions.ChiNhanh.Default, L("Permission:Catalog.ChiNhanh"));
         chiNhanhPermission.AddChild(VietLifePermissions.ChiNhanh.View, L("Permission:Catalog.ChiNhanh.View"));
@@ -128,6 +131,28 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Create, L("Permission:Catalog.LuongNhanVien.Create"));
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Update, L("Permission:Catalog.LuongNhanVien.Update"));
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Delete, L("Permission:Catalog.LuongNhanVien.Delete"));
+
+        //Business
+        // === NHÓM S?N PH?M ===
+        var nhomSanPhamPermission = businessGroup.AddPermission(VietLifePermissions.NhomSanPham.Default, L("Permission:Business.NhomSanPham"));
+        nhomSanPhamPermission.AddChild(VietLifePermissions.NhomSanPham.View, L("Permission:Business.NhomSanPham.View"));
+        nhomSanPhamPermission.AddChild(VietLifePermissions.NhomSanPham.Create, L("Permission:Business.NhomSanPham.Create"));
+        nhomSanPhamPermission.AddChild(VietLifePermissions.NhomSanPham.Update, L("Permission:Business.NhomSanPham.Update"));
+        nhomSanPhamPermission.AddChild(VietLifePermissions.NhomSanPham.Delete, L("Permission:Business.NhomSanPham.Delete"));
+
+        // === ??N V? TÍNH ===
+        var donViTinhPermission = businessGroup.AddPermission(VietLifePermissions.DonViTinh.Default, L("Permission:Business.DonViTinh"));
+        donViTinhPermission.AddChild(VietLifePermissions.DonViTinh.View, L("Permission:Business.DonViTinh.View"));
+        donViTinhPermission.AddChild(VietLifePermissions.DonViTinh.Create, L("Permission:Business.DonViTinh.Create"));
+        donViTinhPermission.AddChild(VietLifePermissions.DonViTinh.Update, L("Permission:Business.DonViTinh.Update"));
+        donViTinhPermission.AddChild(VietLifePermissions.DonViTinh.Delete, L("Permission:Business.DonViTinh.Delete"));
+
+        // === S?N PH?M ===
+        var sanPhamPermission = businessGroup.AddPermission(VietLifePermissions.SanPham.Default, L("Permission:Business.SanPham"));
+        sanPhamPermission.AddChild(VietLifePermissions.SanPham.View, L("Permission:Business.SanPham.View"));
+        sanPhamPermission.AddChild(VietLifePermissions.SanPham.Create, L("Permission:Business.SanPham.Create"));
+        sanPhamPermission.AddChild(VietLifePermissions.SanPham.Update, L("Permission:Business.SanPham.Update"));
+        sanPhamPermission.AddChild(VietLifePermissions.SanPham.Delete, L("Permission:Business.SanPham.Delete"));
 
     }
 

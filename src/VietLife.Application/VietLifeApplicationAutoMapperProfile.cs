@@ -1,4 +1,27 @@
 using AutoMapper;
+using VietLife.Business.BaoGias;
+using VietLife.Business.BaoGiasList.BaoGias;
+using VietLife.Business.BaoGiasList.ChiTietBaoGias;
+using VietLife.Business.DonHangs;
+using VietLife.Business.DonHangsList.ChiTietDonHangs;
+using VietLife.Business.DonHangsList.DonHangs;
+using VietLife.Business.DonHangsList.LoaiDonHangs;
+using VietLife.Business.KhachHangs;
+using VietLife.Business.KhachHangsList.KhachHangs;
+using VietLife.Business.KhachHangsList.LoaiKhachHangs;
+using VietLife.Business.KhoHangs;
+using VietLife.Business.NhapXuats.ChiTietPhieuNhapXuats;
+using VietLife.Business.NhapXuats.LoaiNhapXuats;
+using VietLife.Business.NhapXuats.PhieuNhapXuats;
+using VietLife.Business.PhieuNhapXuats;
+using VietLife.Business.SanPhams;
+using VietLife.Business.SanPhamsList.DonViTinhs;
+using VietLife.Business.SanPhamsList.NhomSanPhams;
+using VietLife.Business.SanPhamsList.SanPhams;
+using VietLife.Business.ThanhPhos;
+using VietLife.Business.ThiChis;
+using VietLife.Business.ThuChis;
+using VietLife.Business.TienTes;
 using VietLife.Catalog.ChamCongs;
 using VietLife.Catalog.CheDoNhanViens;
 using VietLife.Catalog.CheDos.CheDoNhanViens;
@@ -6,6 +29,8 @@ using VietLife.Catalog.CheDos.LoaiCheDos;
 using VietLife.Catalog.ChiNhanhs;
 using VietLife.Catalog.Chucvus;
 using VietLife.Catalog.ChucVus;
+using VietLife.Catalog.HopDongs.HopDongNhanViens;
+using VietLife.Catalog.HopDongs.LoaiHopDongs;
 using VietLife.Catalog.KPINhanViens;
 using VietLife.Catalog.KPIs.DanhGiaKpis;
 using VietLife.Catalog.KPIs.KeHoachCongViecs;
@@ -14,13 +39,9 @@ using VietLife.Catalog.KPIs.MucTieuKpis;
 using VietLife.Catalog.KPIs.TienDoLamViecs;
 using VietLife.Catalog.LichLamViecs;
 using VietLife.Catalog.LuongNhanViens;
-using VietLife.Catalog.Manufacturers;
 using VietLife.Catalog.NhanViens;
 using VietLife.Catalog.PhongBans;
 using VietLife.Catalog.PhuCapNhanViens;
-using VietLife.Catalog.ProductAttributes;
-using VietLife.Catalog.ProductCategories;
-using VietLife.Catalog.Products;
 using VietLife.Roles;
 using VietLife.System.Roles;
 using VietLife.System.Users;
@@ -36,25 +57,6 @@ public class VietLifeApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
 
-        //ProductCategrory
-        CreateMap<ProductCategory, ProductCategoryDto>();
-        CreateMap<ProductCategory, ProductCategoryInListDto>();
-        CreateMap<CreateUpdateProductCategoryDto, ProductCategory>();
-
-        //Product
-        CreateMap<Product, ProductDto>();
-        CreateMap<Product, ProductInListDto>();
-        CreateMap<CreateUpdateProductDto, Product>();
-
-        //Manufacturer
-        CreateMap<Manufacturer, ManufacturerDto>();
-        CreateMap<Manufacturer, ManufacturerInListDto>();
-        CreateMap<CreateUpdateManufacturerDto, Manufacturer>();
-
-        //ProductAttribute
-        CreateMap<ProductAttribute, ProductAttributeDto>();
-        CreateMap<ProductAttribute, ProductAttributeInListDto>();
-        CreateMap<CreateUpdateProductAttributeDto, ProductAttribute>();
 
         //PhongBan
         CreateMap<PhongBan, PhongBanDto>();
@@ -134,5 +136,103 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         //User
         CreateMap<NhanVien, UserDto>();
         CreateMap<NhanVien, UserInListDto>();
+
+        //Business
+
+        // NhomSanPham
+        CreateMap<NhomSanPham, NhomSanPhamDto>();
+        CreateMap<NhomSanPham, NhomSanPhamInListDto>();
+        CreateMap<CreateUpdateNhomSanPhamDto, NhomSanPham>();
+
+        //Product
+        CreateMap<SanPham, SanPhamDto>();
+        CreateMap<SanPham, SanPhamInListDto>();
+        CreateMap<CreateUpdateSanPhamDto, SanPham>();
+
+        // DonViTinh
+        CreateMap<DonViTinh, DonViTinhDto>();
+        CreateMap<DonViTinh, DonViTinhInListDto>();
+        CreateMap<CreateUpdateDonViTinhDto, DonViTinh>();
+
+        // TienTe
+        CreateMap<TienTe, TienTeDto>();
+        CreateMap<TienTe, TienTeInListDto>();
+        CreateMap<CreateUpdateTienTeDto, TienTe>();
+
+        // ThuChi
+        CreateMap<ThuChi, ThuChiDto>();
+        CreateMap<ThuChi, ThuChiInListDto>();
+        CreateMap<CreateUpdateThuChiDto, ThuChi>();
+
+        // ThanhPho
+        CreateMap<ThanhPho, ThanhPhoDto>();
+        CreateMap<ThanhPho, ThanhPhoInListDto>();
+        CreateMap<CreateUpdateThanhPhoDto, ThanhPho>();
+
+        // LoaiHopDong
+        CreateMap<LoaiHopDong, LoaiHopDongDto>();
+        CreateMap<LoaiHopDong, LoaiHopDongInListDto>();
+        CreateMap<CreateUpdateLoaiHopDongDto, LoaiHopDong>();
+
+        // HopDongNhanVien
+        CreateMap<HopDongNhanVien, HopDongNhanVienDto>();
+        CreateMap<HopDongNhanVien, HopDongNhanVienInListDto>();
+        CreateMap<CreateUpdateHopDongNhanVienDto, HopDongNhanVien>();
+
+        // KhoHang
+        CreateMap<KhoHang, KhoHangDto>();
+        CreateMap<KhoHang, KhoHangInListDto>();
+        CreateMap<CreateUpdateKhoHangDto, KhoHang>();
+
+        // LoaiNhapXuat
+        CreateMap<LoaiNhapXuat, LoaiNhapXuatDto>();
+        CreateMap<LoaiNhapXuat, LoaiNhapXuatInListDto>();
+        CreateMap<CreateUpdateLoaiNhapXuatDto, LoaiNhapXuat>();
+
+        // PhieuNhapXuat
+        CreateMap<PhieuNhapXuat, PhieuNhapXuatDto>();
+        CreateMap<PhieuNhapXuat, PhieuNhapXuatInListDto>();
+        CreateMap<CreateUpdatePhieuNhapXuatDto, PhieuNhapXuat>();
+
+        // ChiTietPhieuNhapXuat
+        CreateMap<ChiTietPhieuNhapXuat, ChiTietPhieuNhapXuatDto>();
+        CreateMap<ChiTietPhieuNhapXuat, ChiTietPhieuNhapXuatInListDto>();
+        CreateMap<CreateUpdateChiTietPhieuNhapXuatDto, ChiTietPhieuNhapXuat>();
+
+        // LoaiKhachHang
+        CreateMap<LoaiKhachHang, LoaiKhachHangDto>();
+        CreateMap<LoaiKhachHang, LoaiKhachHangInListDto>();
+        CreateMap<CreateUpdateLoaiKhachHangDto, LoaiKhachHang>();
+
+        // KhachHang
+        CreateMap<KhachHang, KhachHangDto>();
+        CreateMap<KhachHang, KhachHangInListDto>();
+        CreateMap<CreateUpdateKhachHangDto, KhachHang>();
+
+        // LoaiDonHang
+        CreateMap<LoaiDonHang, LoaiDonHangDto>();
+        CreateMap<LoaiDonHang, LoaiDonHangInListDto>();
+        CreateMap<CreateUpdateLoaiDonHangDto, LoaiDonHang>();
+
+        // DonHang
+        CreateMap<DonHang, DonHangDto>();
+        CreateMap<DonHang, DonHangInListDto>();
+        CreateMap<CreateUpdateDonHangDto, DonHang>();
+
+        // ChiTietDonHang
+        CreateMap<ChiTietDonHang, ChiTietDonHangDto>();
+        CreateMap<ChiTietDonHang, ChiTietDonHangInListDto>();
+        CreateMap<CreateUpdateChiTietDonHangDto, ChiTietDonHang>();
+
+        // BaoGia
+        CreateMap<BaoGia, BaoGiaDto>();
+        CreateMap<BaoGia, BaoGiaInListDto>();
+        CreateMap<CreateUpdateBaoGiaDto, BaoGia>();
+
+        // ChiTietBaoGia
+        CreateMap<ChiTietBaoGia, ChiTietBaoGiaDto>();
+        CreateMap<ChiTietBaoGia, ChiTietBaoGiaInListDto>();
+        CreateMap<CreateUpdateChiTietBaoGiaDto, ChiTietBaoGia>();
+
     }
 }
