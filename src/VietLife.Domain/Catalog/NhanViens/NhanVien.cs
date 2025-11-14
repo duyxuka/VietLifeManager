@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VietLife.Business.BaoGias;
 using VietLife.Business.DonHangs;
 using VietLife.Business.PhieuNhapXuats;
+using VietLife.Business.ThuChis;
 using VietLife.Catalog.ChamCongs;
 using VietLife.Catalog.CheDoNhanViens;
 using VietLife.Catalog.ChiNhanhs;
@@ -43,6 +44,7 @@ namespace VietLife.Catalog.NhanViens
         public virtual ICollection<PhieuNhapXuat> PhieuNhapXuats { get; set; }
         public virtual ICollection<DonHang> DonHangs { get; set; }
         public virtual ICollection<BaoGia> BaoGias { get; set; }
+        public virtual ICollection<ThuChi> ThuChis { get; set; }
 
         public NhanVien(Guid id, string userName, string email)
             : base(id, userName, email)

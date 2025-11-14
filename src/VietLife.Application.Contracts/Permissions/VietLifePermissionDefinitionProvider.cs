@@ -132,6 +132,21 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Update, L("Permission:Catalog.LuongNhanVien.Update"));
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Delete, L("Permission:Catalog.LuongNhanVien.Delete"));
 
+        // === LO?I H?P ??NG ===
+        var loaiHopDongPermission = catalogGroup.AddPermission(VietLifePermissions.LoaiHopDong.Default, L("Permission:Catalog.LoaiHopDong"));
+        loaiHopDongPermission.AddChild(VietLifePermissions.LoaiHopDong.View, L("Permission:Catalog.LoaiHopDong.View"));
+        loaiHopDongPermission.AddChild(VietLifePermissions.LoaiHopDong.Create, L("Permission:Catalog.LoaiHopDong.Create"));
+        loaiHopDongPermission.AddChild(VietLifePermissions.LoaiHopDong.Update, L("Permission:Catalog.LoaiHopDong.Update"));
+        loaiHopDongPermission.AddChild(VietLifePermissions.LoaiHopDong.Delete, L("Permission:Catalog.LoaiHopDong.Delete"));
+
+        // === H?P ??NG NHÂN VIÊN ===
+        var hopDongNhanVienPermission = catalogGroup.AddPermission(VietLifePermissions.HopDongNhanVien.Default, L("Permission:Catalog.HopDongNhanVien"));
+        hopDongNhanVienPermission.AddChild(VietLifePermissions.HopDongNhanVien.View, L("Permission:Catalog.HopDongNhanVien.View"));
+        hopDongNhanVienPermission.AddChild(VietLifePermissions.HopDongNhanVien.Create, L("Permission:Catalog.HopDongNhanVien.Create"));
+        hopDongNhanVienPermission.AddChild(VietLifePermissions.HopDongNhanVien.Update, L("Permission:Catalog.HopDongNhanVien.Update"));
+        hopDongNhanVienPermission.AddChild(VietLifePermissions.HopDongNhanVien.Delete, L("Permission:Catalog.HopDongNhanVien.Delete"));
+        hopDongNhanVienPermission.AddChild(VietLifePermissions.HopDongNhanVien.Approve, L("Permission:Catalog.HopDongNhanVien.Approve")); // n?u c?n duy?t
+
         //Business
         // === NHÓM S?N PH?M ===
         var nhomSanPhamPermission = businessGroup.AddPermission(VietLifePermissions.NhomSanPham.Default, L("Permission:Business.NhomSanPham"));

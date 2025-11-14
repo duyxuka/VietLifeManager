@@ -23,7 +23,9 @@ namespace VietLife.Business.SanPhams
             bool hoatDong,
             string moTa,
             string anh,
-            decimal giaBan)
+            decimal giaBan,
+            Guid donViTinhId,
+            Guid nhomSanPhamId)
         {
             // Kiểm tra trùng tên
             if (await _productRepository.AnyAsync(x => x.Ten == ten))
@@ -47,7 +49,9 @@ namespace VietLife.Business.SanPhams
                 hoatDong,
                 moTa,
                 anh,
-                giaBan
+                giaBan,
+                donViTinhId,
+                nhomSanPhamId
             );
         }
     }

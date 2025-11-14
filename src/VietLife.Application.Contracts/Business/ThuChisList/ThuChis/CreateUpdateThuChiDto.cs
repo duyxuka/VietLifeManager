@@ -1,60 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VietLife.Business.KhachHangs;
-using Volo.Abp.Domain.Entities.Auditing;
 using VietLife.ThuChis;
-using VietLife.Catalog.NhanViens;
 
-namespace VietLife.Business.ThuChis
+namespace VietLife.Business.ThuChisList.ThuChis
 {
-    public class ThuChi : FullAuditedAggregateRoot<Guid>
+    public class CreateUpdateThuChiDto
     {
-        // 1. Thông tin chung
         public string MaPhieu { get; set; }
         public DateTime NgayGiaoDich { get; set; }
         public DateTime NgayHachToan { get; set; }
         public string DienGiai { get; set; }
 
-        // 2. Số tiền
         public decimal SoTien { get; set; }
 
-        // 3. Loại Thu/Chi
         public Guid? LoaiThuChiId { get; set; }
-        public virtual LoaiThuChi LoaiThuChi { get; set; }
-
-        // 4. Tài khoản kế toán (No/Có)
         public Guid? TaiKhoanNoId { get; set; }
-        public virtual TaiKhoanKeToan TaiKhoanNo { get; set; }
-
         public Guid? TaiKhoanCoId { get; set; }
-        public virtual TaiKhoanKeToan TaiKhoanCo { get; set; }
 
-        // 5. Đối tượng liên quan
         public Guid? DoiTuongId { get; set; }
         public DoiTuongType? LoaiDoiTuong { get; set; }
 
-        // 6. Thanh toán & ngân hàng
         public PaymentMethod PhuongThucThanhToan { get; set; }
         public string SoTaiKhoanNganHang { get; set; }
         public string TenNganHang { get; set; }
 
-        // 7. Hóa đơn VAT
         public string SoHoaDon { get; set; }
         public DateTime? NgayHoaDon { get; set; }
         public decimal? ThueSuat { get; set; }
         public decimal? TienThue { get; set; }
         public decimal? ThanhTienSauThue { get; set; }
-
-        // 8. Duyệt chứng từ
-        public ThuChiStatus Status { get; set; }
-        public Guid? NguoiDuyetId { get; set; }
-        public virtual NhanVien NhanVien { get; set; }
-        public DateTime? NgayDuyet { get; set; }
-        public string LyDoHuy { get; set; }
     }
 }

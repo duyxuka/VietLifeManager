@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VietLife.InventoryTickets
+namespace VietLife.ThuChis
 {
-    public enum TicketType
+    public enum ThuChiStatus
     {
-        Import = 1,
-        Export = 2
+        ChoDuyet = 0,
+        DaDuyet = 1,
+        Huy = 2
     }
 }

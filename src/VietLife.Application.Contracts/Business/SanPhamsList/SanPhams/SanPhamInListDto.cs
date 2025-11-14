@@ -18,5 +18,7 @@ namespace VietLife.Business.SanPhamsList.SanPhams
         public bool HoatDong { get; set; } = true;
         public Guid NhomSanPhamId { get; set; }
         public Guid DonViTinhId { get; set; }
+        public string NhomSanPhamTen { get; set; }
+        public string DonViTinhTen { get; set; }
     }
 }

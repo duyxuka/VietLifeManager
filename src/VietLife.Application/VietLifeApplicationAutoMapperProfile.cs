@@ -19,8 +19,10 @@ using VietLife.Business.SanPhamsList.DonViTinhs;
 using VietLife.Business.SanPhamsList.NhomSanPhams;
 using VietLife.Business.SanPhamsList.SanPhams;
 using VietLife.Business.ThanhPhos;
-using VietLife.Business.ThiChis;
 using VietLife.Business.ThuChis;
+using VietLife.Business.ThuChisList.LoaiThuChis;
+using VietLife.Business.ThuChisList.TaiKhoanKeToans;
+using VietLife.Business.ThuChisList.ThuChis;
 using VietLife.Business.TienTes;
 using VietLife.Catalog.ChamCongs;
 using VietLife.Catalog.CheDoNhanViens;
@@ -163,6 +165,16 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         CreateMap<ThuChi, ThuChiDto>();
         CreateMap<ThuChi, ThuChiInListDto>();
         CreateMap<CreateUpdateThuChiDto, ThuChi>();
+
+        //LoaiThuChi
+        CreateMap<LoaiThuChi, LoaiThuChiDto>();
+        CreateMap<LoaiThuChi, LoaiThuChiInListDto>();
+        CreateMap<CreateUpdateLoaiThuChiDto, LoaiThuChi>();
+
+        //TaiKhoanKeToan
+        CreateMap<TaiKhoanKeToan, TaiKhoanKeToanDto>();
+        CreateMap<TaiKhoanKeToan, TaiKhoanKeToanInListDto>();
+        CreateMap<CreateUpdateTaiKhoanKeToanDto, TaiKhoanKeToan>();
 
         // ThanhPho
         CreateMap<ThanhPho, ThanhPhoDto>();

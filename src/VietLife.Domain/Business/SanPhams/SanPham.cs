@@ -20,9 +20,11 @@ namespace VietLife.Business.SanPhams
             bool hoatDong,
             string moTa,
             string anh,
-            decimal giaBan)
+            decimal giaBan,
+            Guid donViTinhId,
+            Guid nhomSanPhamId)
+            : base(id)
         {
-            Id = id;
             Ten = ten;
             Ma = ma;
             Model = model;
@@ -30,6 +32,8 @@ namespace VietLife.Business.SanPhams
             MoTa = moTa;
             Anh = anh;
             GiaBan = giaBan;
+            DonViTinhId = donViTinhId;
+            NhomSanPhamId = nhomSanPhamId;
         }
 
         public string Ma { get; set; } = default!;

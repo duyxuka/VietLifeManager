@@ -119,6 +119,8 @@ public class VietLifeDbContext :
     public DbSet<HopDongNhanVien> HopDongNhanViens { get; set; }
     public DbSet<TienTe> TienTes { get; set; }
     public DbSet<ThuChi> ThuChis { get; set; }
+    public DbSet<LoaiThuChi> LoaiThuChis { get; set; }
+    public DbSet<TaiKhoanKeToan> TaiKhoanKeToans { get; set; }
     public DbSet<ThanhPho> ThanhPhos { get; set; }
     public DbSet<NhomSanPham> NhomSanPhams { get; set; }
     public DbSet<DonViTinh> DonViTinhs { get; set; }
@@ -198,6 +200,8 @@ public class VietLifeDbContext :
         builder.ApplyConfiguration(new DonViTinhConfiguration());
         builder.ApplyConfiguration(new LoaiNhapXuatConfiguration());
         builder.ApplyConfiguration(new ThuChiConfiguration());
+        builder.ApplyConfiguration(new LoaiThuChiConfiguration());
+        builder.ApplyConfiguration(new TaiKhoanKeToanConfiguration());
 
         //builder.Entity<YourEntity>(b =>
         //{

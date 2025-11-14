@@ -154,6 +154,26 @@ public static class VietLifePermissions
         public const string Update = Default + ".Update";
         public const string Delete = Default + ".Delete";
     }
+    // === LO?I H?P ??NG ===
+    public static class LoaiHopDong
+    {
+        public const string Default = CatalogGroupName + ".LoaiHopDong";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    // === H?P ??NG NHÂN VIÊN ===
+    public static class HopDongNhanVien
+    {
+        public const string Default = CatalogGroupName + ".HopDongNhanVien";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+        public const string Approve = Default + ".Approve"; // n?u c?n duy?t h?p ??ng
+    }
 
     //Business
     public static class NhomSanPham

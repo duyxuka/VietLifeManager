@@ -21,17 +21,23 @@ namespace VietLife.Business.SanPhams
         private readonly SanPhamManager _productManager;
         private readonly IBlobContainer<AnhSanPhamContainer> _fileContainer;
         private readonly MaSanPhamGenerator _productCodeGenerator;
+        private readonly IRepository<NhomSanPham, Guid> _nhomSanPhamRepository;
+        private readonly IRepository<DonViTinh, Guid> _donViTinhRepository;
 
         public SanPhamsAppService(
             IRepository<SanPham, Guid> repository,
             SanPhamManager productManager,
             MaSanPhamGenerator productCodeGenerator,
-            IBlobContainer<AnhSanPhamContainer> fileContainer)
+            IBlobContainer<AnhSanPhamContainer> fileContainer,
+            IRepository<NhomSanPham, Guid> nhomSanPhamRepository,
+            IRepository<DonViTinh, Guid> donViTinhRepository)
             : base(repository)
         {
             _productManager = productManager;
             _productCodeGenerator = productCodeGenerator;
             _fileContainer = fileContainer;
+            _nhomSanPhamRepository = nhomSanPhamRepository;
+            _donViTinhRepository = donViTinhRepository;
         }
 
         public override async Task<SanPhamDto> CreateAsync(CreateUpdateSanPhamDto input)
@@ -43,7 +49,9 @@ namespace VietLife.Business.SanPhams
                 input.HoatDong,
                 input.MoTa,
                 input.Anh,
-                input.GiaBan
+                input.GiaBan,
+                input.DonViTinhId,
+                input.NhomSanPhamId
             );
 
             if (!string.IsNullOrEmpty(input.AnhContent))
@@ -52,7 +60,7 @@ namespace VietLife.Business.SanPhams
                 product.Anh = input.AnhName;
             }
 
-            var created = await Repository.InsertAsync(product, autoSave: true);
+            var created = await Repository.InsertAsync(product);
             return ObjectMapper.Map<SanPham, SanPhamDto>(created);
         }
 
@@ -68,6 +76,8 @@ namespace VietLife.Business.SanPhams
             product.HoatDong = input.HoatDong;
             product.MoTa = input.MoTa;
             product.GiaBan = input.GiaBan;
+            product.DonViTinhId = input.DonViTinhId;
+            product.NhomSanPhamId = input.NhomSanPhamId;
 
             if (!string.IsNullOrEmpty(input.AnhContent))
             {
@@ -75,7 +85,7 @@ namespace VietLife.Business.SanPhams
                 product.Anh = input.AnhName;
             }
 
-            await Repository.UpdateAsync(product, autoSave: true);
+            await Repository.UpdateAsync(product);
             return ObjectMapper.Map<SanPham, SanPhamDto>(product);
         }
 
@@ -94,21 +104,35 @@ namespace VietLife.Business.SanPhams
 
         public async Task<PagedResultDto<SanPhamInListDto>> GetListFilterAsync(SanPhamListFilterDto input)
         {
-            var query = await Repository.GetQueryableAsync();
-            query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword),
-                x => x.Ten.Contains(input.Keyword) || x.Ma.Contains(input.Keyword));
+            var query = from sp in await Repository.GetQueryableAsync()
+                        join nhom in await _nhomSanPhamRepository.GetQueryableAsync()
+                            on sp.NhomSanPhamId equals nhom.Id
+                        join dv in await _donViTinhRepository.GetQueryableAsync()
+                            on sp.DonViTinhId equals dv.Id
+                        select new { sp, NhomTen = nhom.TenNhom, DonViTen = dv.TenDonVi };
 
-            var total = await AsyncExecuter.LongCountAsync(query);
+            if (!string.IsNullOrWhiteSpace(input.Keyword))
+            {
+                query = query.Where(x => x.sp.Ten.Contains(input.Keyword) || x.sp.Ma.Contains(input.Keyword));
+            }
+
+            var totalCount = await AsyncExecuter.LongCountAsync(query);
+
             var items = await AsyncExecuter.ToListAsync(
-                query.OrderByDescending(x => x.CreationTime)
+                query.OrderByDescending(x => x.sp.CreationTime)
                      .Skip(input.SkipCount)
                      .Take(input.MaxResultCount)
             );
 
-            return new PagedResultDto<SanPhamInListDto>(
-                total,
-                ObjectMapper.Map<List<SanPham>, List<SanPhamInListDto>>(items)
-            );
+            var result = items.Select(x =>
+            {
+                var dto = ObjectMapper.Map<SanPham, SanPhamInListDto>(x.sp);
+                dto.NhomSanPhamTen = x.NhomTen;
+                dto.DonViTinhTen = x.DonViTen;
+                return dto;
+            }).ToList();
+
+            return new PagedResultDto<SanPhamInListDto>(totalCount, result);
         }
 
         private async Task SaveThumbnailImageAsync(string fileName, string base64)

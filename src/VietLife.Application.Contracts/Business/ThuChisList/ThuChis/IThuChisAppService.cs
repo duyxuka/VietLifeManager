@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
-namespace VietLife.Business.ThiChis
+namespace VietLife.Business.ThuChisList.ThuChis
 {
     public interface IThuChisAppService : ICrudAppService<
         ThuChiDto,

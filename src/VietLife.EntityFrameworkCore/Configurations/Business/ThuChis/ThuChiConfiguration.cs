@@ -11,32 +11,48 @@ namespace VietLife.Configurations.Business.ThuChis
 {
     public class ThuChiConfiguration : IEntityTypeConfiguration<ThuChi>
     {
-        public void Configure(EntityTypeBuilder<ThuChi> builder)
-        {
+            public void Configure(EntityTypeBuilder<ThuChi> builder)
+            {
             builder.ToTable(VietLifeConsts.DbTablePrefix + "ThuChis");
 
             builder.HasKey(x => x.Id);
 
-            // === Cấu hình thuộc tính ===
             builder.Property(x => x.MaPhieu)
-                   .IsRequired()
-                   .HasMaxLength(50);
+                .IsRequired()
+                .HasMaxLength(50);
 
-            builder.Property(x => x.SoTien)
-                   .HasPrecision(18, 2);
+            builder.Property(x => x.DienGiai)
+                .HasMaxLength(500);
 
-            builder.Property(x => x.NgayGiaoDich)
-                   .IsRequired();
+            builder.Property(x => x.SoTaiKhoanNganHang)
+                .HasMaxLength(50);
 
-            builder.Property(x => x.LaThu)
-                   .IsRequired()
-                   .HasDefaultValue(true);
+            builder.Property(x => x.TenNganHang)
+                .HasMaxLength(200);
 
-            // === Quan hệ với KhachHang ===
-            builder.HasOne(x => x.KhachHang)
-                   .WithMany(u => u.ThuChis)  // Nếu KhachHang có ICollection<ThuChi>
-                   .HasForeignKey(x => x.KhachHangId)
-                   .OnDelete(DeleteBehavior.Restrict);
+            builder.Property(x => x.SoHoaDon)
+                .HasMaxLength(50);
+
+            // FK
+            builder.HasOne(x => x.LoaiThuChi)
+                .WithMany(l => l.ThuChis)
+                .HasForeignKey(x => x.LoaiThuChiId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.TaiKhoanNo)
+                .WithMany(l => l.ThuChisNo)
+                .HasForeignKey(x => x.TaiKhoanNoId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.TaiKhoanCo)
+                .WithMany(l => l.ThuChisCo)
+                .HasForeignKey(x => x.TaiKhoanCoId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.NhanVien)
+                .WithMany(l => l.ThuChis)
+                .HasForeignKey(x => x.NguoiDuyetId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
