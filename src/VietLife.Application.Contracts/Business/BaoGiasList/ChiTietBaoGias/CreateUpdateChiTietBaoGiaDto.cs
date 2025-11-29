@@ -8,7 +8,7 @@ namespace VietLife.Business.BaoGiasList.ChiTietBaoGias
 {
     public class CreateUpdateChiTietBaoGiaDto
     {
-        public Guid BaoGiaId { get; set; }
+        public Guid? Id { get; set; }
         public Guid SanPhamId { get; set; }
         public decimal SoLuong { get; set; }
         public decimal DonGia { get; set; }

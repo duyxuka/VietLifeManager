@@ -9,8 +9,10 @@ namespace VietLife.Catalog.HopDongs.HopDongNhanViens
 {
     public class HopDongNhanVienInListDto : EntityDto<Guid>
     {
-        public string MaHopDong { get; set; }
+        public Guid NhanVienId { get; set; }
         public string TenNhanVien { get; set; }
+        public string MaHopDong { get; set; }
+        public Guid LoaiHopDongId { get; set; }
         public string TenLoaiHopDong { get; set; }
 
         public DateTime NgayKy { get; set; }

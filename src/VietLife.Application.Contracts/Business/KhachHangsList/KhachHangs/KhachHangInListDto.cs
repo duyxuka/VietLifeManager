@@ -11,11 +11,15 @@ namespace VietLife.Business.KhachHangsList.KhachHangs
     {
         public string MaKhachHang { get; set; }
         public string TenCongTy { get; set; }
+        public string TenKhachHang { get; set; }
         public string TenGiaoDich { get; set; }
         public string DienThoai { get; set; }
         public string Email { get; set; }
+        public Guid? LoaiKhachHangId { get; set; }
+        public Guid? ThanhPhoId { get; set; }
         public string LoaiKhachHangTen { get; set; }
         public string ThanhPhoTen { get; set; }
+        public string DiaChi { get; set; }
         public bool TrangThai { get; set; }
     }
 }

@@ -24,8 +24,15 @@ namespace VietLife.Catalog.HopDongs
         CreateUpdateHopDongNhanVienDto>,
         IHopDongNhanViensAppService
     {
-        public HopDongNhanViensAppService(IRepository<HopDongNhanVien, Guid> repository) : base(repository)
+        private readonly IRepository<NhanVien, Guid> _nhanVienRepository;
+        private readonly IRepository<LoaiHopDong, Guid> _loaiHopDongRepository;
+        public HopDongNhanViensAppService(IRepository<HopDongNhanVien, Guid> repository,
+            IRepository<NhanVien, Guid> nhanVienRepository,
+            IRepository<LoaiHopDong, Guid> loaiHopDongRepository) : base(repository)
         {
+            _nhanVienRepository = nhanVienRepository;
+            _loaiHopDongRepository = loaiHopDongRepository;
+
             GetPolicyName = VietLifePermissions.HopDongNhanVien.View;
             GetListPolicyName = VietLifePermissions.HopDongNhanVien.View;
             CreatePolicyName = VietLifePermissions.HopDongNhanVien.Create;
@@ -54,17 +61,33 @@ namespace VietLife.Catalog.HopDongs
         public async Task<PagedResultDto<HopDongNhanVienInListDto>> GetListFilterAsync(BaseListFilterDto input)
         {
             var query = await Repository.GetQueryableAsync();
-            query = query.WhereIf(!string.IsNullOrWhiteSpace(input.Keyword),
-                x => x.MaHopDong.Contains(input.Keyword));
+            var joinedQuery = from hd in query
+                              join nv in (await _nhanVienRepository.GetQueryableAsync()) on hd.NhanVienId equals nv.Id
+                              join loai in (await _loaiHopDongRepository.GetQueryableAsync()) on hd.LoaiHopDongId equals loai.Id
+                              where !hd.IsDeleted
+                              select new HopDongNhanVienInListDto
+                              {
+                                  Id = hd.Id,
+                                  MaHopDong = hd.MaHopDong,
+                                  NhanVienId = hd.NhanVienId,
+                                  LoaiHopDongId = hd.LoaiHopDongId,
+                                  TenNhanVien = nv.HoTen,
+                                  TenLoaiHopDong = loai.TenLoai,
+                                  LaHienHanh = hd.LaHienHanh
+                              };
 
-            var totalCount = await AsyncExecuter.LongCountAsync(query);
-            var data = await AsyncExecuter.ToListAsync(query
+            if (!string.IsNullOrWhiteSpace(input.Keyword))
+            {
+                joinedQuery = joinedQuery.Where(x => x.MaHopDong.Contains(input.Keyword)
+                                                  || x.TenNhanVien.Contains(input.Keyword)
+                                                  || x.TenLoaiHopDong.Contains(input.Keyword));
+            }
+            var totalCount = await AsyncExecuter.LongCountAsync(joinedQuery);
+            var data = await AsyncExecuter.ToListAsync(joinedQuery
                 .Skip(input.SkipCount)
                 .Take(input.MaxResultCount));
 
-            return new PagedResultDto<HopDongNhanVienInListDto>(totalCount,
-                ObjectMapper.Map<List<HopDongNhanVien>, List<HopDongNhanVienInListDto>>(data)
-            );
+            return new PagedResultDto<HopDongNhanVienInListDto>(totalCount, data);
         }
     }
 }

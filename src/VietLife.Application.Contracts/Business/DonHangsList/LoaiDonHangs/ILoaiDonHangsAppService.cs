@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace VietLife.Business.DonHangsList.LoaiDonHangs
 {
-    public interface ILoaiDonHangAppService : ICrudAppService<
+    public interface ILoaiDonHangsAppService : ICrudAppService<
         LoaiDonHangDto,
         Guid,
         PagedResultRequestDto,

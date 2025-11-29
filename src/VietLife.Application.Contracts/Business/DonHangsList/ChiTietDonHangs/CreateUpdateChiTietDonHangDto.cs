@@ -8,6 +8,7 @@ namespace VietLife.Business.DonHangsList.ChiTietDonHangs
 {
     public class CreateUpdateChiTietDonHangDto
     {
+        public Guid? Id { get; set; }
         public Guid DonHangId { get; set; }
         public Guid SanPhamId { get; set; }
         public decimal SoLuong { get; set; }

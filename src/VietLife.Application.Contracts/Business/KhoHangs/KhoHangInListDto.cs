@@ -10,6 +10,7 @@ namespace VietLife.Business.KhoHangs
     public class KhoHangInListDto : EntityDto<Guid>
     {
         public string TenKho { get; set; }
+        public Guid? ThanhPhoId { get; set; }
         public string DiaChi { get; set; }
         public string TenThanhPho { get; set; }
     }

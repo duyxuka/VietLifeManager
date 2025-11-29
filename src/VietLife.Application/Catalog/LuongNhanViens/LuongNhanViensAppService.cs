@@ -74,36 +74,76 @@ namespace VietLife.Catalog.LuongNhanViens
         [Authorize(VietLifePermissions.LuongNhanVien.View)]
         public async Task<PagedResultDto<LuongNhanVienInListDto>> GetListFilterAsync(LuongNhanVienListFilterDto input)
         {
+            var currentUserId = CurrentUser.Id;
+            var isAdmin = await AuthorizationService.IsGrantedAsync(VietLifePermissions.LuongNhanVien.ViewAll);
+
+            Guid? nhanVienIdFilter = input.NhanVienId;
+            if (!isAdmin)
+            {
+                // Lấy nhân viên theo UserId của tài khoản hiện tại
+                var nv = await _nhanVienRepository.FirstOrDefaultAsync(x => x.Id == currentUserId);
+                if (nv == null) throw new AbpException("Không tìm thấy nhân viên cho tài khoản hiện tại.");
+
+                nhanVienIdFilter = nv.Id; // luôn chỉ xem chính mình
+            }
+
+            if (input.NhanVienId.HasValue)
+            {
+                await TinhLuongNhanVienAsync(input.NhanVienId.Value);
+            }
+            else if (!isAdmin)
+            {
+                // Nếu user thường thì mặc định cũng tính lương của họ
+                await TinhLuongNhanVienAsync(nhanVienIdFilter.Value);
+            }
+
             var luongQuery = await Repository.GetQueryableAsync();
             var nvQuery = await _nhanVienRepository.GetQueryableAsync();
 
-            var query = from luong in luongQuery
-                        join nv in nvQuery on luong.NhanVienId equals nv.Id into nvJoin
-                        from nv in nvJoin.DefaultIfEmpty()
-                        where !luong.IsDeleted
-                        where string.IsNullOrWhiteSpace(input.Keyword) || (nv != null && nv.HoTen.Contains(input.Keyword))
-                        where input.NhanVienId == Guid.Empty || luong.NhanVienId == input.NhanVienId
-                        where input.Thang <= 0 || luong.Thang == input.Thang
-                        where input.Nam <= 0 || luong.Nam == input.Nam
-                        orderby luong.CreationTime descending
-                        select new LuongNhanVienInListDto
-                        {
-                            Id = luong.Id,
-                            NhanVienId = luong.NhanVienId,
-                            TenNhanVien = nv != null ? nv.HoTen : "N/A",
-                            Thang = luong.Thang,
-                            Nam = luong.Nam,
-                            LuongTheoNgayCong = luong.LuongTheoNgayCong,
-                            PhuCap = luong.PhuCap,
-                            ThuongKpi = luong.ThuongKpi,
-                            ThuongKhac = luong.ThuongKhac,
-                            KhauTru = luong.KhauTru,
-                            CongTruCheDo = luong.CongTruCheDo,
-                            TongLuong = luong.TongLuong,
-                            NgayTinhLuong = luong.NgayTinhLuong,
-                            NguoiTinhLuongId = luong.NguoiTinhLuongId,
-                            GhiChu = luong.GhiChu
-                        };
+            var query =
+                from luong in luongQuery
+                join nv in nvQuery on luong.NhanVienId equals nv.Id into nvJoin
+                from nv in nvJoin.DefaultIfEmpty()
+                where !luong.IsDeleted
+
+                // Filter khi user không phải admin
+                where !isAdmin ? luong.NhanVienId == nhanVienIdFilter : true
+
+                // Filter khi admin chọn nhân viên trong dropdown
+                where input.NhanVienId != null && input.NhanVienId != Guid.Empty
+                    ? luong.NhanVienId == input.NhanVienId
+                    : true
+
+                // Keyword
+                where string.IsNullOrWhiteSpace(input.Keyword)
+                    || (nv != null && nv.HoTen.Contains(input.Keyword))
+
+                // Tháng
+                where (input.Thang > 0 ? luong.Thang == input.Thang : true)
+
+                // Năm
+                where (input.Nam > 0 ? luong.Nam == input.Nam : true)
+
+                orderby luong.CreationTime descending
+
+                select new LuongNhanVienInListDto
+                {
+                    Id = luong.Id,
+                    NhanVienId = luong.NhanVienId,
+                    TenNhanVien = nv != null ? nv.HoTen : "N/A",
+                    Thang = luong.Thang,
+                    Nam = luong.Nam,
+                    LuongTheoNgayCong = luong.LuongTheoNgayCong,
+                    PhuCap = luong.PhuCap,
+                    ThuongKpi = luong.ThuongKpi,
+                    ThuongKhac = luong.ThuongKhac,
+                    KhauTru = luong.KhauTru,
+                    CongTruCheDo = luong.CongTruCheDo,
+                    TongLuong = luong.TongLuong,
+                    NgayTinhLuong = luong.NgayTinhLuong,
+                    NguoiTinhLuongId = luong.NguoiTinhLuongId,
+                    GhiChu = luong.GhiChu
+                };
 
             var totalCount = await AsyncExecuter.LongCountAsync(query);
 
@@ -122,85 +162,69 @@ namespace VietLife.Catalog.LuongNhanViens
         }
 
         [Authorize(VietLifePermissions.LuongNhanVien.View)]
-        [UnitOfWork]
-        public async Task TinhLuongHangNgayAsync()
+        private async Task TinhLuongNhanVienAsync(Guid nhanVienId)
         {
-            var nhanViens = await _nhanVienRepository.GetListAsync();
             var today = DateTime.Today;
             var month = today.Month;
             var year = today.Year;
 
-            foreach (var nv in nhanViens)
+            var nv = await _nhanVienRepository.FirstOrDefaultAsync(x => x.Id == nhanVienId);
+            if (nv == null) return;
+
+            var hopDong = await _hopDongRepository
+                .FirstOrDefaultAsync(hd => hd.NhanVienId == nhanVienId && hd.LaHienHanh);
+
+            if (hopDong == null) return;
+
+            var luong = await Repository.FirstOrDefaultAsync(x =>
+                x.NhanVienId == nhanVienId && x.Thang == month && x.Nam == year);
+
+            bool isNew = luong == null;
+            if (isNew)
             {
-                // LẤY HỢP ĐỒNG HIỆN HÀNH
-                var hopDongHienHanh = await _hopDongRepository
-                    .FirstOrDefaultAsync(hd => hd.NhanVienId == nv.Id && hd.LaHienHanh);
-
-                if (hopDongHienHanh == null) continue; // Không có hợp đồng → bỏ qua
-
-                var luong = await Repository.FirstOrDefaultAsync(x =>
-                    x.NhanVienId == nv.Id && x.Thang == month && x.Nam == year);
-
-                bool isNew = luong == null;
-                if (isNew)
+                luong = new LuongNhanVien
                 {
-                    luong = new LuongNhanVien
-                    {
-                        NhanVienId = nv.Id,
-                        Thang = month,
-                        Nam = year,
-                        NgayTinhLuong = DateTime.Now
-                    };
-                }
-
-                // 1. Lương theo công
-                var chamCongs = await _chamCongRepository.GetListAsync(x =>
-                    x.NhanVienId == nv.Id &&
-                    x.NgayLam.Month == month &&
-                    x.NgayLam.Year == year);
-
-                var tongCongNgay = chamCongs.Sum(x => x.CongNgay ?? 0);
-                luong.LuongTheoNgayCong = tongCongNgay * hopDongHienHanh.DonGiaCong;
-
-                // 2. Khấu trừ đi muộn / về sớm
-                var tongPhutTre = chamCongs.Sum(x => x.SoPhutDiMuon ?? 0);
-                var tongPhutSom = chamCongs.Sum(x => x.SoPhutVeSom ?? 0);
-                var luongTheoPhut = hopDongHienHanh.LuongCoBan / (26 * 8 * 60);
-                luong.KhauTru = (tongPhutTre + tongPhutSom) * luongTheoPhut;
-
-                // 3. Phụ cấp theo chức vụ
-                var phuCaps = await _phuCapRepository.GetListAsync(x => x.ChucVuId == nv.ChucVuId);
-                luong.PhuCap = phuCaps.Sum(x => x.SoTien);
-
-                // 4. Thưởng KPI
-                var kpi = await _kpiRepository.FirstOrDefaultAsync(x =>
-                    x.NhanVienId == nv.Id && x.Thang == month && x.Nam == year);
-                luong.ThuongKpi = kpi?.ThuongKpi ?? 0;
-
-                // 5. Cộng/trừ từ chế độ
-                var cheDos = await _cheDoRepository.GetListAsync(x =>
-                    x.NhanVienId == nv.Id &&
-                    x.NgayBatDau.Value.Month == month &&
-                    x.NgayBatDau.Value.Year == year &&
-                    x.TrangThai == true); // Đã duyệt
-
-                luong.CongTruCheDo = cheDos.Sum(x => x.ThanhTien ?? 0);
-
-                // 6. TỔNG LƯƠNG (TỪ HỢP ĐỒNG)
-                luong.TinhTongLuong(hopDongHienHanh);
-
-                if (isNew)
-                    await Repository.InsertAsync(luong);
-                else
-                    await Repository.UpdateAsync(luong);
+                    NhanVienId = nhanVienId,
+                    Thang = month,
+                    Nam = year,
+                    NgayTinhLuong = DateTime.Now
+                };
             }
+
+            var chamCongs = await _chamCongRepository.GetListAsync(x =>
+                x.NhanVienId == nhanVienId &&
+                x.NgayLam.Month == month &&
+                x.NgayLam.Year == year);
+
+            var tongCongNgay = chamCongs.Sum(x => x.CongNgay ?? 0);
+            luong.LuongTheoNgayCong = tongCongNgay * hopDong.DonGiaCong;
+
+            var tongPhutTre = chamCongs.Sum(x => x.SoPhutDiMuon ?? 0);
+            var tongPhutSom = chamCongs.Sum(x => x.SoPhutVeSom ?? 0);
+            var luongPhut = hopDong.LuongCoBan / (26 * 8 * 60);
+            luong.KhauTru = (tongPhutTre + tongPhutSom) * luongPhut;
+
+            var phuCaps = await _phuCapRepository.GetListAsync(x => x.ChucVuId == nv.ChucVuId);
+            luong.PhuCap = phuCaps.Sum(x => x.SoTien);
+
+            var kpi = await _kpiRepository.FirstOrDefaultAsync(x =>
+                x.NhanVienId == nhanVienId && x.Thang == month && x.Nam == year);
+            luong.ThuongKpi = kpi?.ThuongKpi ?? 0;
+
+            var cheDos = await _cheDoRepository.GetListAsync(x =>
+                x.NhanVienId == nhanVienId &&
+                x.NgayBatDau.Value.Month == month &&
+                x.NgayBatDau.Value.Year == year &&
+                x.TrangThai == true);
+            luong.CongTruCheDo = cheDos.Sum(x => x.ThanhTien ?? 0);
+
+            luong.TinhTongLuong(hopDong);
+
+            if (isNew)
+                await Repository.InsertAsync(luong);
+            else
+                await Repository.UpdateAsync(luong);
         }
 
-        [Authorize(VietLifePermissions.LuongNhanVien.View)]
-        public async Task TinhLuongThangAsync(int thang, int nam)
-        {
-            // Tổng hợp logic tương tự, chỉ khác là tính trên toàn bộ tháng
-            await TinhLuongHangNgayAsync(); // hoặc viết logic riêng chi tiết hơn
-        }
     }
 }

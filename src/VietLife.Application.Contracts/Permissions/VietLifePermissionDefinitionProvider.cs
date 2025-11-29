@@ -128,6 +128,7 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         // ?? L??ng nhân viên
         var luongNhanVienPermission = catalogGroup.AddPermission(VietLifePermissions.LuongNhanVien.Default, L("Permission:Catalog.LuongNhanVien"));
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.View, L("Permission:Catalog.LuongNhanVien.View"));
+        luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.ViewAll, L("Permission:Catalog.LuongNhanVien.ViewAll"));
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Create, L("Permission:Catalog.LuongNhanVien.Create"));
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Update, L("Permission:Catalog.LuongNhanVien.Update"));
         luongNhanVienPermission.AddChild(VietLifePermissions.LuongNhanVien.Delete, L("Permission:Catalog.LuongNhanVien.Delete"));
@@ -168,6 +169,86 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         sanPhamPermission.AddChild(VietLifePermissions.SanPham.Create, L("Permission:Business.SanPham.Create"));
         sanPhamPermission.AddChild(VietLifePermissions.SanPham.Update, L("Permission:Business.SanPham.Update"));
         sanPhamPermission.AddChild(VietLifePermissions.SanPham.Delete, L("Permission:Business.SanPham.Delete"));
+
+        //Kho Hàng
+        var khoHangPermission = businessGroup.AddPermission(VietLifePermissions.KhoHang.Default, L("Permission:Business.KhoHang"));
+        khoHangPermission.AddChild(VietLifePermissions.KhoHang.View, L("Permission:Business.KhoHang.View"));
+        khoHangPermission.AddChild(VietLifePermissions.KhoHang.Create, L("Permission:Business.KhoHang.Create"));
+        khoHangPermission.AddChild(VietLifePermissions.KhoHang.Update, L("Permission:Business.KhoHang.Update"));
+        khoHangPermission.AddChild(VietLifePermissions.KhoHang.Delete, L("Permission:Business.KhoHang.Delete"));
+
+        //Thành Ph?
+        var thanhPhoPermission = businessGroup.AddPermission(VietLifePermissions.ThanhPho.Default, L("Permission:Business.ThanhPho"));
+        thanhPhoPermission.AddChild(VietLifePermissions.ThanhPho.View, L("Permission:Business.ThanhPho.View"));
+        thanhPhoPermission.AddChild(VietLifePermissions.ThanhPho.Create, L("Permission:Business.ThanhPho.Create"));
+        thanhPhoPermission.AddChild(VietLifePermissions.ThanhPho.Update, L("Permission:Business.ThanhPho.Update"));
+        thanhPhoPermission.AddChild(VietLifePermissions.ThanhPho.Delete, L("Permission:Business.ThanhPho.Delete"));
+
+        var tienTePermission = businessGroup.AddPermission(VietLifePermissions.TienTe.Default, L("Permission:Business.TienTe"));
+        tienTePermission.AddChild(VietLifePermissions.TienTe.View, L("Permission:Business.TienTe.View"));
+        tienTePermission.AddChild(VietLifePermissions.TienTe.Create, L("Permission:Business.TienTe.Create"));
+        tienTePermission.AddChild(VietLifePermissions.TienTe.Update, L("Permission:Business.TienTe.Update"));
+        tienTePermission.AddChild(VietLifePermissions.TienTe.Delete, L("Permission:Business.TienTe.Delete"));
+
+        var loaiKhachHangPermission = businessGroup.AddPermission(VietLifePermissions.LoaiKhachHang.Default, L("Permission:Business.LoaiKhachHang"));
+        loaiKhachHangPermission.AddChild(VietLifePermissions.LoaiKhachHang.View, L("Permission:Business.LoaiKhachHang.View"));
+        loaiKhachHangPermission.AddChild(VietLifePermissions.LoaiKhachHang.Create, L("Permission:Business.LoaiKhachHang.Create"));
+        loaiKhachHangPermission.AddChild(VietLifePermissions.LoaiKhachHang.Update, L("Permission:Business.LoaiKhachHang.Update"));
+        loaiKhachHangPermission.AddChild(VietLifePermissions.LoaiKhachHang.Delete, L("Permission:Business.LoaiKhachHang.Delete"));
+
+        var khachHangPermission = businessGroup.AddPermission(VietLifePermissions.KhachHang.Default, L("Permission:Business.KhachHang"));
+        khachHangPermission.AddChild(VietLifePermissions.KhachHang.View, L("Permission:Business.KhachHang.View"));
+        khachHangPermission.AddChild(VietLifePermissions.KhachHang.Create, L("Permission:Business.KhachHang.Create"));
+        khachHangPermission.AddChild(VietLifePermissions.KhachHang.Update, L("Permission:Business.KhachHang.Update"));
+        khachHangPermission.AddChild(VietLifePermissions.KhachHang.Delete, L("Permission:Business.KhachHang.Delete"));
+
+        var loaiThuChiPermission = businessGroup.AddPermission(VietLifePermissions.LoaiThuChi.Default, L("Permission:Business.LoaiThuChi"));
+        loaiThuChiPermission.AddChild(VietLifePermissions.LoaiThuChi.View, L("Permission:Business.LoaiThuChi.View"));
+        loaiCheDoPermission.AddChild(VietLifePermissions.LoaiThuChi.Create, L("Permission:Business.LoaiThuChi.Create"));
+        loaiThuChiPermission.AddChild(VietLifePermissions.LoaiThuChi.Update, L("Permission:Business.LoaiThuChi.Update"));
+        loaiThuChiPermission.AddChild(VietLifePermissions.LoaiThuChi.Delete, L("Permission:Business.LoaiThuChi.Delete"));
+
+        var taiKhoanKeToanPermission = businessGroup.AddPermission(VietLifePermissions.TaiKhoanKeToan.Default, L("Permission:Business.TaiKhoanKeToan"));
+        taiKhoanKeToanPermission.AddChild(VietLifePermissions.TaiKhoanKeToan.View, L("Permission:Business.TaiKhoanKeToan.View"));
+        taiKhoanKeToanPermission.AddChild(VietLifePermissions.TaiKhoanKeToan.Create, L("Permission:Business.TaiKhoanKeToan.Create"));
+        taiKhoanKeToanPermission.AddChild(VietLifePermissions.TaiKhoanKeToan.Update, L("Permission:Business.TaiKhoanKeToan.Update"));
+        taiKhoanKeToanPermission.AddChild(VietLifePermissions.TaiKhoanKeToan.Delete, L("Permission:Business.TaiKhoanKeToan.Delete"));
+
+        var thuChiPermission = businessGroup.AddPermission(VietLifePermissions.ThuChi.Default, L("Permission:Business.ThuChi"));
+        thuChiPermission.AddChild(VietLifePermissions.ThuChi.View, L("Permission:Business.ThuChi.View"));
+        thuChiPermission.AddChild(VietLifePermissions.ThuChi.Create, L("Permission:Business.ThuChi.Create"));
+        thuChiPermission.AddChild(VietLifePermissions.ThuChi.Update, L("Permission:Business.ThuChi.Update"));
+        thuChiPermission.AddChild(VietLifePermissions.ThuChi.Delete, L("Permission:Business.ThuChi.Delete"));
+
+        var baoGiaPermission = businessGroup.AddPermission(VietLifePermissions.BaoGia.Default, L("Permission:Business.BaoGia"));
+        baoGiaPermission.AddChild(VietLifePermissions.BaoGia.View, L("Permission:Business.BaoGia.View"));
+        baoGiaPermission.AddChild(VietLifePermissions.BaoGia.Create, L("Permission:Business.BaoGia.Create"));
+        baoGiaPermission.AddChild(VietLifePermissions.BaoGia.Update, L("Permission:Business.BaoGia.Update"));
+        baoGiaPermission.AddChild(VietLifePermissions.BaoGia.Delete, L("Permission:Business.BaoGia.Delete"));
+
+        var loaiDonHangPermission = businessGroup.AddPermission(VietLifePermissions.LoaiDonHang.Default, L("Permission:Business.LoaiDonHang"));
+        loaiDonHangPermission.AddChild(VietLifePermissions.LoaiDonHang.View, L("Permission:Business.LoaiDonHang.View"));
+        loaiDonHangPermission.AddChild(VietLifePermissions.LoaiDonHang.Create, L("Permission:Business.LoaiDonHang.Create"));
+        loaiDonHangPermission.AddChild(VietLifePermissions.LoaiDonHang.Update, L("Permission:Business.LoaiDonHang.Update"));
+        loaiDonHangPermission.AddChild(VietLifePermissions.LoaiDonHang.Delete, L("Permission:Business.LoaiDonHang.Delete"));
+
+        var donHangPermission = businessGroup.AddPermission(VietLifePermissions.DonHang.Default, L("Permission:Business.DonHang"));
+        donHangPermission.AddChild(VietLifePermissions.DonHang.View, L("Permission:Business.DonHang.View"));
+        donHangPermission.AddChild(VietLifePermissions.DonHang.Create, L("Permission:Business.DonHang.Create"));
+        donHangPermission.AddChild(VietLifePermissions.DonHang.Update, L("Permission:Business.DonHang.Update"));
+        donHangPermission.AddChild(VietLifePermissions.DonHang.Delete, L("Permission:Business.DonHang.Delete"));
+
+        var phieuNhapXuatPermission = businessGroup.AddPermission(VietLifePermissions.PhieuNhapXuat.Default, L("Permission:Business.PhieuNhapXuat"));
+        phieuNhapXuatPermission.AddChild(VietLifePermissions.PhieuNhapXuat.View, L("Permission:Business.PhieuNhapXuat.View"));
+        phieuNhapXuatPermission.AddChild(VietLifePermissions.PhieuNhapXuat.Create, L("Permission:Business.PhieuNhapXuat.Create"));
+        phieuNhapXuatPermission.AddChild(VietLifePermissions.PhieuNhapXuat.Update, L("Permission:Business.PhieuNhapXuat.Update"));
+        phieuNhapXuatPermission.AddChild(VietLifePermissions.PhieuNhapXuat.Delete, L("Permission:Business.PhieuNhapXuat.Delete"));
+
+        var loaiNhapXuatPermission = businessGroup.AddPermission(VietLifePermissions.LoaiNhapXuat.Default, L("Permission:Business.LoaiNhapXuat"));
+        loaiNhapXuatPermission.AddChild(VietLifePermissions.LoaiNhapXuat.View, L("Permission:Business.LoaiNhapXuat.View"));
+        loaiNhapXuatPermission.AddChild(VietLifePermissions.LoaiNhapXuat.Create, L("Permission:Business.LoaiNhapXuat.Create"));
+        loaiNhapXuatPermission.AddChild(VietLifePermissions.LoaiNhapXuat.Update, L("Permission:Business.LoaiNhapXuat.Update"));
+        loaiNhapXuatPermission.AddChild(VietLifePermissions.LoaiNhapXuat.Delete, L("Permission:Business.LoaiNhapXuat.Delete"));
 
     }
 

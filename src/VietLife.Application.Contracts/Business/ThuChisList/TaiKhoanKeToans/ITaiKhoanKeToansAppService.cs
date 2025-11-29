@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace VietLife.Business.ThuChisList.TaiKhoanKeToans
 {
-    public interface ITaiKhoanKeToanAppService : ICrudAppService<
+    public interface ITaiKhoanKeToansAppService : ICrudAppService<
         TaiKhoanKeToanDto,
         Guid,
         PagedResultRequestDto,

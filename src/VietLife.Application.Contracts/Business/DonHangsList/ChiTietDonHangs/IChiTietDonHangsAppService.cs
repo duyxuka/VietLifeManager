@@ -15,8 +15,6 @@ namespace VietLife.Business.DonHangsList.ChiTietDonHangs
         CreateUpdateChiTietDonHangDto,
         CreateUpdateChiTietDonHangDto>
     {
-        Task<PagedResultDto<ChiTietDonHangInListDto>> GetListFilterAsync(BaseListFilterDto input);
-        Task<List<ChiTietDonHangInListDto>> GetListAllAsync();
-        Task DeleteMultipleAsync(IEnumerable<Guid> ids);
+        Task<List<ChiTietDonHangDto>> GetByDonHangIdAsync(Guid donHangId);
     }
 }

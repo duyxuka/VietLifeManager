@@ -34,7 +34,7 @@ namespace VietLife.Configurations.Business.BaoGias
             builder.HasOne(x => x.BaoGia)
                    .WithMany(b => b.ChiTietBaoGias)
                    .HasForeignKey(x => x.BaoGiaId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
 
             // === Quan hệ với SanPham ===
             builder.HasOne(x => x.SanPham)

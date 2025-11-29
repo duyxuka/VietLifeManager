@@ -12,6 +12,7 @@ namespace VietLife.Business.KhachHangsList.KhachHangs
         public Guid Id { get; set; }
         public string MaKhachHang { get; set; }
         public string TenCongTy { get; set; }
+        public string TenKhachHang { get; set; }
         public string TenGiaoDich { get; set; }
         public string DienThoai { get; set; }
         public string Email { get; set; }

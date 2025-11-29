@@ -15,8 +15,6 @@ namespace VietLife.Business.BaoGiasList.ChiTietBaoGias
         CreateUpdateChiTietBaoGiaDto,
         CreateUpdateChiTietBaoGiaDto>
     {
-        Task<PagedResultDto<ChiTietBaoGiaInListDto>> GetListFilterAsync(BaseListFilterDto input);
-        Task<List<ChiTietBaoGiaInListDto>> GetListAllAsync();
-        Task DeleteMultipleAsync(IEnumerable<Guid> ids);
+        Task<List<ChiTietBaoGiaDto>> GetByBaoGiaIdAsync(Guid baoGiaId);
     }
 }

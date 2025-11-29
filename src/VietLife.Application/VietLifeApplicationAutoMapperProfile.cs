@@ -204,7 +204,8 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         // PhieuNhapXuat
         CreateMap<PhieuNhapXuat, PhieuNhapXuatDto>();
         CreateMap<PhieuNhapXuat, PhieuNhapXuatInListDto>();
-        CreateMap<CreateUpdatePhieuNhapXuatDto, PhieuNhapXuat>();
+        CreateMap<CreateUpdatePhieuNhapXuatDto, PhieuNhapXuat>().ForMember(x => x.ChiTietPhieuNhapXuats, opt => opt.Ignore());
+
 
         // ChiTietPhieuNhapXuat
         CreateMap<ChiTietPhieuNhapXuat, ChiTietPhieuNhapXuatDto>();
@@ -229,7 +230,7 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         // DonHang
         CreateMap<DonHang, DonHangDto>();
         CreateMap<DonHang, DonHangInListDto>();
-        CreateMap<CreateUpdateDonHangDto, DonHang>();
+        CreateMap<CreateUpdateDonHangDto, DonHang>().ForMember(x => x.ChiTietDonHangs, opt => opt.Ignore());
 
         // ChiTietDonHang
         CreateMap<ChiTietDonHang, ChiTietDonHangDto>();
@@ -239,7 +240,7 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         // BaoGia
         CreateMap<BaoGia, BaoGiaDto>();
         CreateMap<BaoGia, BaoGiaInListDto>();
-        CreateMap<CreateUpdateBaoGiaDto, BaoGia>();
+        CreateMap<CreateUpdateBaoGiaDto, BaoGia>().ForMember(x => x.ChiTietBaoGias, opt => opt.Ignore());
 
         // ChiTietBaoGia
         CreateMap<ChiTietBaoGia, ChiTietBaoGiaDto>();

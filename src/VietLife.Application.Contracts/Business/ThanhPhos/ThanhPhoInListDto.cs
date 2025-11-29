@@ -11,5 +11,7 @@ namespace VietLife.Business.ThanhPhos
     {
         public string Ten { get; set; }
         public string MaVung { get; set; }
+        public int KhoHangCount { get; set; }
+        public int KhachHangCount { get; set; }
     }
 }

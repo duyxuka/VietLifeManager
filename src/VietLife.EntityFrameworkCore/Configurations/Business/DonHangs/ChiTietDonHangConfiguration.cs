@@ -38,7 +38,7 @@ namespace VietLife.Configurations.Business.DonHangs
             builder.HasOne(x => x.DonHang)
                    .WithMany(d => d.ChiTietDonHangs)
                    .HasForeignKey(x => x.DonHangId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
 
             // === Quan hệ với SanPham ===
             builder.HasOne(x => x.SanPham)

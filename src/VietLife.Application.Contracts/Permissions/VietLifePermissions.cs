@@ -149,6 +149,7 @@ public static class VietLifePermissions
     public static class LuongNhanVien
     {
         public const string Default = CatalogGroupName + ".LuongNhanVien";
+        public const string ViewAll = Default + ".ViewAll";
         public const string View = Default + ".View";
         public const string Create = Default + ".Create";
         public const string Update = Default + ".Update";
@@ -197,6 +198,122 @@ public static class VietLifePermissions
     public static class SanPham
     {
         public const string Default = BusinessGroupName + ".SanPham";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class KhoHang
+    {
+        public const string Default = BusinessGroupName + ".KhoHang";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class ThanhPho
+    {
+        public const string Default = BusinessGroupName + ".ThanhPho";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class TienTe
+    {
+        public const string Default = BusinessGroupName + ".TienTe";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class LoaiKhachHang
+    {
+        public const string Default = BusinessGroupName + ".LoaiKhachHang";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class KhachHang
+    {
+        public const string Default = BusinessGroupName + ".KhachHang";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+    public static class LoaiThuChi
+    {
+        public const string Default = BusinessGroupName + ".LoaiThuChi";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class TaiKhoanKeToan
+    {
+        public const string Default = BusinessGroupName + ".TaiKhoanKeToan";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class ThuChi
+    {
+        public const string Default = BusinessGroupName + ".ThuChi";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class BaoGia
+    {
+        public const string Default = BusinessGroupName + ".BaoGia";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class  LoaiDonHang
+    {
+        public const string Default = BusinessGroupName + ".LoaiDonHang";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class DonHang
+    {
+        public const string Default = BusinessGroupName + ".DonHang";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class LoaiNhapXuat
+    {
+        public const string Default = BusinessGroupName + ".LoaiNhapXuat";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class PhieuNhapXuat
+    {
+        public const string Default = BusinessGroupName + ".PhieuNhapXuat";
         public const string View = Default + ".View";
         public const string Create = Default + ".Create";
         public const string Update = Default + ".Update";

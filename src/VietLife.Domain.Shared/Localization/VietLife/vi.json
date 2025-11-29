@@ -60,6 +60,7 @@
 
     "Permission:Catalog.LuongNhanVien": "Lương nhân viên",
     "Permission:Catalog.LuongNhanVien.View": "Xem Lương nhân viên",
+    "Permission:Catalog.LuongNhanVien.ViewAll": "Xem tất cả Lương nhân viên",
     "Permission:Catalog.LuongNhanVien.Create": "Tạo lương nhân viên",
     "Permission:Catalog.LuongNhanVien.Update": "Cập nhật lương nhân viên",
     "Permission:Catalog.LuongNhanVien.Delete": "Xóa lương nhân viên",
@@ -124,6 +125,85 @@
     "Permission:Business.SanPham.View": "Xem sản phẩm",
     "Permission:Business.SanPham.Create": "Tạo sản phẩm",
     "Permission:Business.SanPham.Update": "Cập nhật sản phẩm",
-    "Permission:Business.SanPham.Delete": "Xóa sản phẩm"
+    "Permission:Business.SanPham.Delete": "Xóa sản phẩm",
+
+    "Permission:Business.KhoHang": "Kho Hàng",
+    "Permission:Business.KhoHang.View": "Xem kho hàng",
+    "Permission:Business.KhoHang.Create": "Tạo kho hàng",
+    "Permission:Business.KhoHang.Update": "Cập nhật kho hàng",
+    "Permission:Business.KhoHang.Delete": "Xóa kho hàng",
+
+    "Permission:Business.ThanhPho": "Thành Phố",
+    "Permission:Business.ThanhPho.View": "Xem thành phố",
+    "Permission:Business.ThanhPho.Create": "Tạo thành phố",
+    "Permission:Business.ThanhPho.Update": "Cập nhật thành phố",
+    "Permission:Business.ThanhPho.Delete": "Xóa thành phố",
+
+    "Permission:Business.TienTe": "Tiền Tệ",
+    "Permission:Business.TienTe.View": "Xem tiền tệ",
+    "Permission:Business.TienTe.Create": "Tạo tiền tệ",
+    "Permission:Business.TienTe.Update": "Cập nhật tiền tệ",
+    "Permission:Business.TienTe.Delete": "Xóa tiền tệ",
+
+    "Permission:Business.LoaiKhachHang": "Loại Khách Hàng",
+    "Permission:Business.LoaiKhachHang.View": "Xem loại khách hàng",
+    "Permission:Business.LoaiKhachHang.Create": "Tạo loại khách hàng",
+    "Permission:Business.LoaiKhachHang.Update": "Cập nhật loại khách hàng",
+    "Permission:Business.LoaiKhachHang.Delete": "Xóa loại khách hàng",
+
+    "Permission:Business.KhachHang": "Khách Hàng",
+    "Permission:Business.KhachHang.View": "Xem khách hàng",
+    "Permission:Business.KhachHang.Create": "Tạo khách hàng",
+    "Permission:Business.KhachHang.Update": "Cập nhật khách hàng",
+    "Permission:Business.KhachHang.Delete": "Xóa khách hàng",
+
+    "Permission:Business.LoaiThuChi": "Loại Thu Chi",
+    "Permission:Business.LoaiThuChi.View": "Xem loại thu chi",
+    "Permission:Business.LoaiThuChi.Create": "Tạo loại thu chi",
+    "Permission:Business.LoaiThuChi.Update": "Cập nhật loại thu chi",
+    "Permission:Business.LoaiThuChi.Delete": "Xóa loại thu chi",
+
+    "Permission:Business.ThuChi": "Thu Chi",
+    "Permission:Business.ThuChi.View": "Xem thu chi",
+    "Permission:Business.ThuChi.Create": "Tạo thu chi",
+    "Permission:Business.ThuChi.Update": "Cập nhật thu chi",
+    "Permission:Business.ThuChi.Delete": "Xóa thu chi",
+
+    "Permission:Business.TaiKhoanKeToan": "Tài khoản kế toán",
+    "Permission:Business.TaiKhoanKeToan.View": "Xem tài khoản kế toán",
+    "Permission:Business.TaiKhoanKeToan.Create": "Tạo tài khoản kế toán",
+    "Permission:Business.TaiKhoanKeToan.Update": "Cập nhật tài khoản kế toán",
+    "Permission:Business.TaiKhoanKeToan.Delete": "Xóa tài khoản kế toán",
+
+    "Permission:Business.BaoGia": "Báo giá",
+    "Permission:Business.BaoGia.View": "Xem báo giá",
+    "Permission:Business.BaoGia.Create": "Tạo báo giá",
+    "Permission:Business.BaoGia.Update": "Cập nhật báo giá",
+    "Permission:Business.BaoGia.Delete": "Xóa báo giá",
+
+    "Permission:Business.LoaiDonHang": "Loại đơn hàng",
+    "Permission:Business.LoaiDonHang.View": "Xem loại đơn hàng",
+    "Permission:Business.LoaiDonHang.Create": "Tạo loại đơn hàng",
+    "Permission:Business.LoaiDonHang.Update": "Cập nhật loại đơn hàng",
+    "Permission:Business.LoaiDonHang.Delete": "Xóa loại đơn hàng",
+
+    "Permission:Business.DonHang": "Đơn hàng",
+    "Permission:Business.DonHang.View": "Xem đơn hàng",
+    "Permission:Business.DonHang.Create": "Tạo đơn hàng",
+    "Permission:Business.DonHang.Update": "Cập nhật đơn hàng",
+    "Permission:Business.DonHang.Delete": "Xóa đơn hàng",
+
+    "Permission:Business.LoaiNhapXuat": "Loại nhập xuất",
+    "Permission:Business.LoaiNhapXuat.View": "Xem loại nhập xuất",
+    "Permission:Business.LoaiNhapXuat.Create": "Tạo loại nhập xuất",
+    "Permission:Business.LoaiNhapXuat.Update": "Cập nhật loại nhập xuất",
+    "Permission:Business.LoaiNhapXuat.Delete": "Xóa loại nhập xuất",
+
+    "Permission:Business.PhieuNhapXuat": "Phiếu nhập xuất",
+    "Permission:Business.PhieuNhapXuat.View": "Xem phiếu nhập xuất",
+    "Permission:Business.PhieuNhapXuat.Create": "Tạo phiếu nhập xuất",
+    "Permission:Business.PhieuNhapXuat.Update": "Cập nhật phiếu nhập xuất",
+    "Permission:Business.PhieuNhapXuat.Delete": "Xóa phiếu nhập xuất"
+
   }
 }

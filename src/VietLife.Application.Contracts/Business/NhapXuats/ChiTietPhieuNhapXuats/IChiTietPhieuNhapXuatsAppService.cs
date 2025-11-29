@@ -15,8 +15,7 @@ namespace VietLife.Business.NhapXuats.ChiTietPhieuNhapXuats
         CreateUpdateChiTietPhieuNhapXuatDto,
         CreateUpdateChiTietPhieuNhapXuatDto>
     {
-        Task<PagedResultDto<ChiTietPhieuNhapXuatInListDto>> GetListFilterAsync(BaseListFilterDto input);
-        Task<List<ChiTietPhieuNhapXuatInListDto>> GetListAllAsync();
+        Task<List<ChiTietPhieuNhapXuatDto>> GetListByPhieuIdAsync(Guid phieuId);
         Task DeleteMultipleAsync(IEnumerable<Guid> ids);
     }
 }

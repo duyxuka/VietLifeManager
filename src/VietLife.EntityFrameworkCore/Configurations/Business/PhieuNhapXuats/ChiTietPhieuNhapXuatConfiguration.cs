@@ -42,7 +42,7 @@ namespace VietLife.Configurations.Business.PhieuNhapXuats
             builder.HasOne(x => x.PhieuNhapXuat)
                    .WithMany(p => p.ChiTietPhieuNhapXuats)
                    .HasForeignKey(x => x.PhieuNhapXuatId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
 
             // === Quan hệ với SanPham ===
             builder.HasOne(x => x.SanPham)

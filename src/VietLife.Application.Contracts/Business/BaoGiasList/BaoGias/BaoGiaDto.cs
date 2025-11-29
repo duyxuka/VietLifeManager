@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VietLife.Business.BaoGiasList.ChiTietBaoGias;
 using Volo.Abp.Application.Dtos;
 
 namespace VietLife.Business.BaoGiasList.BaoGias
@@ -21,5 +22,7 @@ namespace VietLife.Business.BaoGiasList.BaoGias
         public decimal VAT { get; set; }
         public Guid? TienTeId { get; set; }
         public bool DaChuyenDonHang { get; set; }
+
+        public List<ChiTietBaoGiaDto> ChiTietBaoGias { get; set; }
     }
 }

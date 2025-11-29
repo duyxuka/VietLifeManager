@@ -19,6 +19,7 @@ namespace VietLife.Business.KhachHangs
         //CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ VIETLIFE
         public string TenCongTy { get; set; }
         //VietLife Co., Ltd” hoặc “VietLife
+        public string TenKhachHang { get; set; }
         public string TenGiaoDich { get; set; }
         public string DienThoai { get; set; }
         public string Email { get; set; }

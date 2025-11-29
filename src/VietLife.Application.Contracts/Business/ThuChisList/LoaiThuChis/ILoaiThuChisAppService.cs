@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace VietLife.Business.ThuChisList.LoaiThuChis
 {
-    public interface ILoaiThuChiAppService : ICrudAppService<
+    public interface ILoaiThuChisAppService : ICrudAppService<
         LoaiThuChiDto,
         Guid,
         PagedResultRequestDto,

@@ -13,5 +13,7 @@ namespace VietLife.Business.DonHangsList.DonHangs
         public string MaDonHangGoc { get; set; }
         public DateTime NgayDatHang { get; set; }
         public decimal TongTien { get; set; }
+        public string TenKhachHang { get; set; }
+        public string NhanVienBanHang { get; set; }
     }
 }

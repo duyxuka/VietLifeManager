@@ -8,6 +8,7 @@ namespace VietLife.Business.NhapXuats.ChiTietPhieuNhapXuats
 {
     public class CreateUpdateChiTietPhieuNhapXuatDto
     {
+        public Guid Id { get; set; }
         public Guid PhieuNhapXuatId { get; set; }
         public Guid SanPhamId { get; set; }
 
