@@ -3,6 +3,7 @@
   "texts": {
     "Permission:Catalog": "Quản lý nhân sự",
     "Permission:Business": "Quản lý kinh doanh",
+    "Permission:TuongTac": "Quản lý tương tác người dùng",
 
     "Permission:Identity.Users.View": "Xem người dùng",
     "Permission:Identity.Roles.View": "Xem vai trò",
@@ -203,7 +204,21 @@
     "Permission:Business.PhieuNhapXuat.View": "Xem phiếu nhập xuất",
     "Permission:Business.PhieuNhapXuat.Create": "Tạo phiếu nhập xuất",
     "Permission:Business.PhieuNhapXuat.Update": "Cập nhật phiếu nhập xuất",
-    "Permission:Business.PhieuNhapXuat.Delete": "Xóa phiếu nhập xuất"
+    "Permission:Business.PhieuNhapXuat.Delete": "Xóa phiếu nhập xuất",
 
+    //TuongTac
+    //TinTuc
+    "Permission:TuongTac.TinTuc": "Tin tức",
+    "Permission:TuongTac.TinTuc.View": "Xem tin tức",
+    "Permission:TuongTac.TinTuc.Create": "Tạo tin tức",
+    "Permission:TuongTac.TinTuc.Update": "Cập nhật tin tức",
+    "Permission:TuongTac.TinTuc.Delete": "Xóa tin tức",
+
+    //Liehe
+    "Permission:TuongTac.LienHe": "Liên hệ",
+    "Permission:TuongTac.LienHe.View": "Xem liên hệ",
+    "Permission:TuongTac.LienHe.Create": "Tạo liên hệ",
+    "Permission:TuongTac.LienHe.Update": "Cập nhật liên hệ",
+    "Permission:TuongTac.LienHe.Delete": "Xóa liên hệ"
   }
 }

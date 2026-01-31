@@ -47,6 +47,8 @@ using VietLife.Catalog.PhuCapNhanViens;
 using VietLife.Roles;
 using VietLife.System.Roles;
 using VietLife.System.Users;
+using VietLife.TuongTac.LienHes;
+using VietLife.TuongTac.TinTucs;
 using Volo.Abp.Identity;
 
 namespace VietLife;
@@ -246,6 +248,17 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         CreateMap<ChiTietBaoGia, ChiTietBaoGiaDto>();
         CreateMap<ChiTietBaoGia, ChiTietBaoGiaInListDto>();
         CreateMap<CreateUpdateChiTietBaoGiaDto, ChiTietBaoGia>();
+
+        //Tuongtac
+        //TinTuc
+        CreateMap<TinTuc, TinTucDto>();
+        CreateMap<TinTuc, TinTucInListDto>();
+        CreateMap<CreateUpdateTinTucDto, TinTuc>();
+
+        //LienHe
+        CreateMap<LienHe, LienHeDto>();
+        CreateMap<LienHe, LienHeInListDto>();
+        CreateMap<CreateUpdateLienHeDto, LienHe>();
 
     }
 }

@@ -31,6 +31,9 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         //Business
         var businessGroup = context.AddGroup(VietLifePermissions.BusinessGroupName, L("Permission:Business"));
 
+        //TuongTac
+        var tuongTacGroup = context.AddGroup(VietLifePermissions.TuongTacGroupName, L("Permission:TuongTac"));
+
         // === CHI NHÁNH ===
         var chiNhanhPermission = catalogGroup.AddPermission(VietLifePermissions.ChiNhanh.Default, L("Permission:Catalog.ChiNhanh"));
         chiNhanhPermission.AddChild(VietLifePermissions.ChiNhanh.View, L("Permission:Catalog.ChiNhanh.View"));
@@ -250,6 +253,18 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         loaiNhapXuatPermission.AddChild(VietLifePermissions.LoaiNhapXuat.Update, L("Permission:Business.LoaiNhapXuat.Update"));
         loaiNhapXuatPermission.AddChild(VietLifePermissions.LoaiNhapXuat.Delete, L("Permission:Business.LoaiNhapXuat.Delete"));
 
+        //TuongTac
+        var tinTucPermission = tuongTacGroup.AddPermission(VietLifePermissions.TinTuc.Default, L("Permission:TuongTac.TinTuc"));
+        tinTucPermission.AddChild(VietLifePermissions.TinTuc.View, L("Permission:TuongTac.TinTuc.View"));
+        tinTucPermission.AddChild(VietLifePermissions.TinTuc.Create, L("Permission:TuongTac.TinTuc.Create"));
+        tinTucPermission.AddChild(VietLifePermissions.TinTuc.Update, L("Permission:TuongTac.TinTuc.Update"));
+        tinTucPermission.AddChild(VietLifePermissions.TinTuc.Delete, L("Permission:TuongTac.TinTuc.Delete"));
+
+        var lienHePermission = tuongTacGroup.AddPermission(VietLifePermissions.LienHe.Default, L("Permission:TuongTac.LienHe"));
+        lienHePermission.AddChild(VietLifePermissions.LienHe.View, L("Permission:TuongTac.LienHe.View"));
+        lienHePermission.AddChild(VietLifePermissions.LienHe.Create, L("Permission:TuongTac.LienHe.Create"));
+        lienHePermission.AddChild(VietLifePermissions.LienHe.Update, L("Permission:TuongTac.LienHe.Update"));
+        lienHePermission.AddChild(VietLifePermissions.LienHe.Delete, L("Permission:TuongTac.LienHe.Delete"));
     }
 
     private static LocalizableString L(string name)

@@ -54,6 +54,10 @@ using VietLife.Configurations.Business.PhieuNhapXuats;
 using VietLife.Configurations.Business.ThanhPhos;
 using VietLife.Configurations.Business.TienTes;
 using VietLife.Configurations.Business.ThuChis;
+using VietLife.TuongTac.TinTucs;
+using VietLife.TuongTac.LienHes;
+using VietLife.Configurations.TuongTac.TinTucs;
+using VietLife.Configurations.TuongTac.LienHes;
 
 namespace VietLife.EntityFrameworkCore;
 
@@ -136,6 +140,10 @@ public class VietLifeDbContext :
     public DbSet<BaoGia> BaoGias { get; set; }
     public DbSet<ChiTietBaoGia> ChiTietBaoGias { get; set; }
 
+    //TuongTac
+    public DbSet<TinTuc> TinTucs { get; set; }
+    public DbSet<LienHe> LienHes { get; set; }
+
     #endregion
 
     public VietLifeDbContext(DbContextOptions<VietLifeDbContext> options)
@@ -203,6 +211,10 @@ public class VietLifeDbContext :
         builder.ApplyConfiguration(new LoaiThuChiConfiguration());
         builder.ApplyConfiguration(new TaiKhoanKeToanConfiguration());
 
+
+        //TuongTac Configurations
+        builder.ApplyConfiguration(new TinTucConfiguration());
+        builder.ApplyConfiguration(new LienHeConfiguration());  
         //builder.Entity<YourEntity>(b =>
         //{
         //    b.ToTable(VietLifeConsts.DbTablePrefix + "YourEntities", VietLifeConsts.DbSchema);

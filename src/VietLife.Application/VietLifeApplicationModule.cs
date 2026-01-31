@@ -37,7 +37,7 @@ public class VietLifeApplicationModule : AbpModule
             {
                 container.UseFileSystem(fileSystem =>
                 {
-                    fileSystem.BasePath = "D:\\VietLifeFiles\\BlobStorage";
+                    fileSystem.BasePath = "wwwroot/blob-storage";
                 });
             });
         });

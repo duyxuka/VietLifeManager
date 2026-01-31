@@ -44,6 +44,8 @@ using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using OpenIddict.Server;
+using Volo.Abp.AspNetCore.Mvc.AntiForgery;
 
 namespace VietLife;
 
@@ -94,6 +96,7 @@ public class VietLifeHttpApiHostModule : AbpModule
                 serverBuilder.AddEphemeralEncryptionKey();
                 serverBuilder.AddEphemeralSigningKey();
                 serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
+                serverBuilder.AllowPasswordFlow().AllowRefreshTokenFlow().AllowAuthorizationCodeFlow().AllowClientCredentialsFlow().AcceptAnonymousClients();
             });
         }
     }
@@ -131,6 +134,24 @@ public class VietLifeHttpApiHostModule : AbpModule
         ConfigureSwagger(context, configuration);
         ConfigureVirtualFileSystem(context);
         ConfigureCors(context, configuration);
+        Configure<OpenIddictServerOptions>(options =>
+        {
+            // ? ACCESS TOKEN: 1 NGÀY
+            options.AccessTokenLifetime = TimeSpan.FromDays(1);
+
+            // ?? REFRESH TOKEN: 7 NGÀY
+            options.RefreshTokenLifetime = TimeSpan.FromDays(7);
+
+            // ?? AUTHORIZATION CODE
+            options.AuthorizationCodeLifetime = TimeSpan.FromMinutes(10);
+
+            // ?? ID TOKEN
+            options.IdentityTokenLifetime = TimeSpan.FromDays(1);
+        });
+        Configure<AbpAntiForgeryOptions>(options =>
+        {
+            options.AutoValidate = false;
+        });
     }
 
     private void ConfigureAuthentication(ServiceConfigurationContext context)
@@ -327,30 +348,23 @@ public class VietLifeHttpApiHostModule : AbpModule
 
             var configuration = context.ServiceProvider.GetRequiredService<IConfiguration>();
             options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-            options.OAuthScopes("VietLife.Admin");
+            options.OAuthScopes(
+                "openid",
+                "profile",
+                "offline_access",
+                "VietLife.Admin"
+            );
         });
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapFallbackToFile("index.html", new StaticFileOptions
-            {
-                OnPrepareResponse = ctx =>
-                {
-                    var path = ctx.Context.Request.Path.Value;
-                    if (path != null &&
-                        (path.StartsWith("/api") ||
-                         path.StartsWith("/swagger") ||
-                         path.StartsWith("/health-status") ||
-                         path.StartsWith("/health-ui") ||
-                         path.StartsWith("/health-ui-api") ||
-                         path.Contains(".")))
-                    {
-                        ctx.Context.Response.StatusCode = 404;
-                    }
-                }
-            });
+            // ADMIN SPA
+            endpoints.MapFallbackToFile("/admin/{*path:nonfile}", "admin/index.html");
+
+            // USER SPA
+            endpoints.MapFallbackToFile("{*path:nonfile}", "index.html");
         });
         app.UseConfiguredEndpoints();
     }

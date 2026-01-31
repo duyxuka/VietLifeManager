@@ -5,6 +5,7 @@ public static class VietLifePermissions
     public const string SystemGroupName = "VietLifeAdminSystem";
     public const string CatalogGroupName = "VietLifeAdminCatalog";
     public const string BusinessGroupName = "VietLifeAdminBusiness";
+    public const string TuongTacGroupName = "VietLifeAdminTuongTac";
 
 
 
@@ -314,6 +315,24 @@ public static class VietLifePermissions
     public static class PhieuNhapXuat
     {
         public const string Default = BusinessGroupName + ".PhieuNhapXuat";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    //TuongTac
+    public static class TinTuc
+    {
+        public const string Default = TuongTacGroupName + ".TinTuc";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+    public static class LienHe
+    {
+        public const string Default = TuongTacGroupName + ".LienHe";
         public const string View = Default + ".View";
         public const string Create = Default + ".Create";
         public const string Update = Default + ".Update";
