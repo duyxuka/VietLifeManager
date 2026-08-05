@@ -58,6 +58,8 @@ using VietLife.TuongTac.TinTucs;
 using VietLife.TuongTac.LienHes;
 using VietLife.Configurations.TuongTac.TinTucs;
 using VietLife.Configurations.TuongTac.LienHes;
+using VietLife.TuongTac.Insurer;
+using VietLife.Configurations.TuongTac.Insurer;
 
 namespace VietLife.EntityFrameworkCore;
 
@@ -144,6 +146,14 @@ public class VietLifeDbContext :
     public DbSet<TinTuc> TinTucs { get; set; }
     public DbSet<LienHe> LienHes { get; set; }
 
+    //Insurer
+    public DbSet<DanhMuc> DanhMucs { get; set; }
+    public DbSet<Nhom> Nhoms { get; set; }
+    public DbSet<SanPhamInsurer> SanPhamInsurers { get; set; }
+    public DbSet<BaiViet> BaiViets { get; set; }
+    public DbSet<DangKyTuVan> DangKyTuVans { get; set; }
+    public DbSet<SeoConfig> SeoConfigs { get; set; }
+
     #endregion
 
     public VietLifeDbContext(DbContextOptions<VietLifeDbContext> options)
@@ -214,7 +224,19 @@ public class VietLifeDbContext :
 
         //TuongTac Configurations
         builder.ApplyConfiguration(new TinTucConfiguration());
-        builder.ApplyConfiguration(new LienHeConfiguration());  
+        builder.ApplyConfiguration(new LienHeConfiguration());
+
+        // Insurer Configurations
+
+        builder.ApplyConfiguration(new DanhMucConfiguration());
+        builder.ApplyConfiguration(new NhomConfiguration());
+        builder.ApplyConfiguration(new SanPhamInsurerConfiguration());
+        builder.ApplyConfiguration(new BaiVietConfiguration());
+        builder.ApplyConfiguration(new DangKyTuVanConfiguration());
+
+        //SEO
+        builder.ApplyConfiguration(new SEOConfiguration());
+
         //builder.Entity<YourEntity>(b =>
         //{
         //    b.ToTable(VietLifeConsts.DbTablePrefix + "YourEntities", VietLifeConsts.DbSchema);

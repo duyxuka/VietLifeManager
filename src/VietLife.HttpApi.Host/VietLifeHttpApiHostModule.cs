@@ -97,8 +97,18 @@ public class VietLifeHttpApiHostModule : AbpModule
                 serverBuilder.AddEphemeralSigningKey();
                 serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
                 serverBuilder.AllowPasswordFlow().AllowRefreshTokenFlow().AllowAuthorizationCodeFlow().AllowClientCredentialsFlow().AcceptAnonymousClients();
+                serverBuilder.SetAccessTokenLifetime(TimeSpan.FromDays(1));
+                serverBuilder.SetRefreshTokenLifetime(TimeSpan.FromDays(7));
             });
         }
+
+        // ?? Thêm kh?i này ?? kh?p v?i VietlifeStoreWebModule
+        PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
+        {
+            serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
+            serverBuilder.SetAccessTokenLifetime(TimeSpan.FromDays(1));
+            serverBuilder.SetRefreshTokenLifetime(TimeSpan.FromDays(7));
+        });
     }
 
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -134,20 +144,6 @@ public class VietLifeHttpApiHostModule : AbpModule
         ConfigureSwagger(context, configuration);
         ConfigureVirtualFileSystem(context);
         ConfigureCors(context, configuration);
-        Configure<OpenIddictServerOptions>(options =>
-        {
-            // ? ACCESS TOKEN: 1 NGÀY
-            options.AccessTokenLifetime = TimeSpan.FromDays(1);
-
-            // ?? REFRESH TOKEN: 7 NGÀY
-            options.RefreshTokenLifetime = TimeSpan.FromDays(7);
-
-            // ?? AUTHORIZATION CODE
-            options.AuthorizationCodeLifetime = TimeSpan.FromMinutes(10);
-
-            // ?? ID TOKEN
-            options.IdentityTokenLifetime = TimeSpan.FromDays(1);
-        });
         Configure<AbpAntiForgeryOptions>(options =>
         {
             options.AutoValidate = false;

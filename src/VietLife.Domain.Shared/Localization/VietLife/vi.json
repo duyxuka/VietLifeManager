@@ -4,6 +4,7 @@
     "Permission:Catalog": "Quản lý nhân sự",
     "Permission:Business": "Quản lý kinh doanh",
     "Permission:TuongTac": "Quản lý tương tác người dùng",
+    "Permission:Insurer": "Quản lý bảo hiểm",
 
     "Permission:Identity.Users.View": "Xem người dùng",
     "Permission:Identity.Roles.View": "Xem vai trò",
@@ -219,6 +220,50 @@
     "Permission:TuongTac.LienHe.View": "Xem liên hệ",
     "Permission:TuongTac.LienHe.Create": "Tạo liên hệ",
     "Permission:TuongTac.LienHe.Update": "Cập nhật liên hệ",
-    "Permission:TuongTac.LienHe.Delete": "Xóa liên hệ"
+    "Permission:TuongTac.LienHe.Delete": "Xóa liên hệ",
+
+    //Insurer
+    //BaiViet
+    "Permission:Insurer.BaiViet": "Bài viết Insurer",
+    "Permission:Insurer.BaiViet.View": "Xem bài viết Insurer",
+    "Permission:Insurer.BaiViet.Create": "Tạo bài viết Insurer",
+    "Permission:Insurer.BaiViet.Update": "Cập nhật bài viết Insurer",
+    "Permission:Insurer.BaiViet.Delete": "Xóa bài viết Insurer",
+
+    //DanhMuc
+    "Permission:Insurer.DanhMuc": "Danh mục Insurer",
+    "Permission:Insurer.DanhMuc.View": "Xem danh mục Insurer",
+    "Permission:Insurer.DanhMuc.Create": "Tạo danh mục Insurer",
+    "Permission:Insurer.DanhMuc.Update": "Cập nhật danh mục Insurer",
+    "Permission:Insurer.DanhMuc.Delete": "Xóa danh mục Insurer",
+
+    //Nhom
+    "Permission:Insurer.Nhom": "Nhóm Insurer",
+    "Permission:Insurer.Nhom.View": "Xem nhóm Insurer",
+    "Permission:Insurer.Nhom.Create": "Tạo nhóm Insurer",
+    "Permission:Insurer.Nhom.Update": "Cập nhật nhóm Insurer",
+    "Permission:Insurer.Nhom.Delete": "Xóa nhóm Insurer",
+
+    //DangKyTuVan
+    "Permission:Insurer.DangKyTuVan": "Đăng ký tư vấn Insurer",
+    "Permission:Insurer.DangKyTuVan.View": "Xem đăng ký tư vấn Insurer",
+    "Permission:Insurer.DangKyTuVan.Create": "Tạo đăng ký tư vấn Insurer",
+    "Permission:Insurer.DangKyTuVan.Update": "Cập nhật đăng ký tư vấn Insurer",
+    "Permission:Insurer.DangKyTuVan.Delete": "Xóa đăng ký tư vấn Insurer",
+
+    //SanPhamInsurer
+    "Permission:Insurer.SanPhamInsurer": "Sản phẩm Insurer",
+    "Permission:Insurer.SanPhamInsurer.View": "Xem sản phẩm Insurer",
+    "Permission:Insurer.SanPhamInsurer.Create": "Tạo sản phẩm Insurer",
+    "Permission:Insurer.SanPhamInsurer.Update": "Cập nhật sản phẩm Insurer",
+    "Permission:Insurer.SanPhamInsurer.Delete": "Xóa sản phẩm Insurer",
+
+    //SEO
+    "Permission:Insurer.SeoConfig": "Cấu hình SEO",
+    "Permission:Insurer.SeoConfig.View": "Xem cấu hình SEO",
+    "Permission:Insurer.SeoConfig.Create": "Tạo cấu hình SEO",
+    "Permission:Insurer.SeoConfig.Update": "Cập nhật cấu hình SEO",
+    "Permission:Insurer.SeoConfig.Delete": "Xóa cấu hình SEO"
+
   }
 }

@@ -47,6 +47,13 @@ using VietLife.Catalog.PhuCapNhanViens;
 using VietLife.Roles;
 using VietLife.System.Roles;
 using VietLife.System.Users;
+using VietLife.TuongTac.Insurer;
+using VietLife.TuongTac.Insurer.BaiViets;
+using VietLife.TuongTac.Insurer.DangKyTuVans;
+using VietLife.TuongTac.Insurer.DanhMucs;
+using VietLife.TuongTac.Insurer.Nhoms;
+using VietLife.TuongTac.Insurer.SanPhamInsurers;
+using VietLife.TuongTac.Insurer.SEOs;
 using VietLife.TuongTac.LienHes;
 using VietLife.TuongTac.TinTucs;
 using Volo.Abp.Identity;
@@ -260,5 +267,32 @@ public class VietLifeApplicationAutoMapperProfile : Profile
         CreateMap<LienHe, LienHeInListDto>();
         CreateMap<CreateUpdateLienHeDto, LienHe>();
 
+        //Insurance
+        CreateMap<DanhMuc, DanhMucDto>();
+        CreateMap<DanhMuc, DanhMucInListDto>();
+        CreateMap<CreateUpdateDanhMucDto, DanhMuc>();
+
+        CreateMap<Nhom, NhomDto>().ForMember(dest => dest.DanhMucTen, opt => opt.MapFrom(src => src.DanhMuc != null ? src.DanhMuc.Ten : null));
+        CreateMap<Nhom, NhomInListDto>().ForMember(dest => dest.DanhMucTen, opt => opt.MapFrom(src => src.DanhMuc != null ? src.DanhMuc.Ten : null));
+        CreateMap<CreateUpdateNhomDto, Nhom>();
+
+        CreateMap<BaiViet, BaiVietDto>();
+        CreateMap<BaiViet, BaiVietInListDto>();
+        CreateMap<CreateUpdateBaiVietDto, BaiViet>();
+
+        CreateMap<SanPhamInsurer, SanPhamInsurerDto>().ForMember(dest => dest.NhomTen,opt => opt.MapFrom(src => src.Nhom != null ? src.Nhom.Ten : null));
+        CreateMap<SanPhamInsurer, SanPhamInsurerInListDto>().ForMember(dest => dest.NhomTen,opt => opt.MapFrom(src => src.Nhom != null ? src.Nhom.Ten : null));
+        CreateMap<CreateUpdateSanPhamInsurerDto, SanPhamInsurer>();
+
+        CreateMap<DangKyTuVan, DangKyTuVanDto>().ForMember(d => d.SanPhamTen, o => o.MapFrom(s => s.SanPham != null ? s.SanPham.Ten : null))
+                                                .ForMember(d => d.NhomTen, o => o.MapFrom(s => s.Nhom != null ? s.Nhom.Ten : null));
+        CreateMap<DangKyTuVan, DangKyTuVanInListDto>().ForMember(d => d.SanPhamTen, o => o.MapFrom(s => s.SanPham != null ? s.SanPham.Ten : null))
+                                                      .ForMember(d => d.NhomTen, o => o.MapFrom(s => s.Nhom != null ? s.Nhom.Ten : null));
+        CreateMap<CreateUpdateDangKyTuVanDto, DangKyTuVan>();
+
+        //SEO
+        CreateMap<SeoConfig, SeoConfigDto>();
+        CreateMap<CreateUpdateSeoConfigDto, SeoConfig>();
+        CreateMap<SeoConfig, SeoConfigInListDto>();
     }
 }

@@ -6,6 +6,7 @@ public static class VietLifePermissions
     public const string CatalogGroupName = "VietLifeAdminCatalog";
     public const string BusinessGroupName = "VietLifeAdminBusiness";
     public const string TuongTacGroupName = "VietLifeAdminTuongTac";
+    public const string InsurerGroupName = "VietLifeAdminInsurer";
 
 
 
@@ -333,6 +334,60 @@ public static class VietLifePermissions
     public static class LienHe
     {
         public const string Default = TuongTacGroupName + ".LienHe";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    //Insurer
+    public static class SanPhamInsurer
+    {
+        public const string Default = InsurerGroupName + ".SanPhamInsurer";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class Nhom
+    {
+        public const string Default = InsurerGroupName + ".Nhom";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class DanhMuc
+    {
+        public const string Default = InsurerGroupName + ".DanhMuc";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class BaiViet
+    {
+        public const string Default = InsurerGroupName + ".BaiViet";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+
+    public static class DangKyTuVan
+    {
+        public const string Default = InsurerGroupName + ".DangKyTuVan";
+        public const string View = Default + ".View";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
+    public static class SeoConfig
+    {
+        public const string Default = InsurerGroupName + ".SeoConfig";
         public const string View = Default + ".View";
         public const string Create = Default + ".Create";
         public const string Update = Default + ".Update";

@@ -34,6 +34,9 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         //TuongTac
         var tuongTacGroup = context.AddGroup(VietLifePermissions.TuongTacGroupName, L("Permission:TuongTac"));
 
+        //Insurer
+        var insurerGroup = context.AddGroup(VietLifePermissions.InsurerGroupName, L("Permission:Insurer"));
+
         // === CHI NHÁNH ===
         var chiNhanhPermission = catalogGroup.AddPermission(VietLifePermissions.ChiNhanh.Default, L("Permission:Catalog.ChiNhanh"));
         chiNhanhPermission.AddChild(VietLifePermissions.ChiNhanh.View, L("Permission:Catalog.ChiNhanh.View"));
@@ -265,6 +268,44 @@ public class VietLifePermissionDefinitionProvider : PermissionDefinitionProvider
         lienHePermission.AddChild(VietLifePermissions.LienHe.Create, L("Permission:TuongTac.LienHe.Create"));
         lienHePermission.AddChild(VietLifePermissions.LienHe.Update, L("Permission:TuongTac.LienHe.Update"));
         lienHePermission.AddChild(VietLifePermissions.LienHe.Delete, L("Permission:TuongTac.LienHe.Delete"));
+
+        //Insurer
+        var baiVietPermission = insurerGroup.AddPermission(VietLifePermissions.BaiViet.Default, L("Permission:Insurer.BaiViet"));
+        baiVietPermission.AddChild(VietLifePermissions.BaiViet.View, L("Permission:Insurer.BaiViet.View"));
+        baiVietPermission.AddChild(VietLifePermissions.BaiViet.Create, L("Permission:Insurer.BaiViet.Create"));
+        baiVietPermission.AddChild(VietLifePermissions.BaiViet.Update, L("Permission:Insurer.BaiViet.Update"));
+        baiVietPermission.AddChild(VietLifePermissions.BaiViet.Delete, L("Permission:Insurer.BaiViet.Delete"));
+
+        var dangKyTuVanPermission = insurerGroup.AddPermission(VietLifePermissions.DangKyTuVan.Default, L("Permission:Insurer.DangKyTuVan"));
+        dangKyTuVanPermission.AddChild(VietLifePermissions.DangKyTuVan.View, L("Permission:Insurer.DangKyTuVan.View"));
+        dangKyTuVanPermission.AddChild(VietLifePermissions.DangKyTuVan.Create, L("Permission:Insurer.DangKyTuVan.Create"));
+        dangKyTuVanPermission.AddChild(VietLifePermissions.DangKyTuVan.Update, L("Permission:Insurer.DangKyTuVan.Update"));
+        dangKyTuVanPermission.AddChild(VietLifePermissions.DangKyTuVan.Delete, L("Permission:Insurer.DangKyTuVan.Delete"));
+
+        var danhMucPermission = insurerGroup.AddPermission(VietLifePermissions.DanhMuc.Default, L("Permission:Insurer.DanhMuc"));
+        danhMucPermission.AddChild(VietLifePermissions.DanhMuc.View, L("Permission:Insurer.DanhMuc.View"));
+        danhMucPermission.AddChild(VietLifePermissions.DanhMuc.Create, L("Permission:Insurer.DanhMuc.Create"));
+        danhMucPermission.AddChild(VietLifePermissions.DanhMuc.Update, L("Permission:Insurer.DanhMuc.Update"));
+        danhMucPermission.AddChild(VietLifePermissions.DanhMuc.Delete, L("Permission:Insurer.DanhMuc.Delete"));
+
+        var nhomPermission = insurerGroup.AddPermission(VietLifePermissions.Nhom.Default, L("Permission:Insurer.Nhom"));
+        nhomPermission.AddChild(VietLifePermissions.Nhom.View, L("Permission:Insurer.Nhom.View"));
+        nhomPermission.AddChild(VietLifePermissions.Nhom.Create, L("Permission:Insurer.Nhom.Create"));
+        nhomPermission.AddChild(VietLifePermissions.Nhom.Update, L("Permission:Insurer.Nhom.Update"));
+        nhomPermission.AddChild(VietLifePermissions.Nhom.Delete, L("Permission:Insurer.Nhom.Delete"));
+
+        var sanPhamInsurerPermission = insurerGroup.AddPermission(VietLifePermissions.SanPhamInsurer.Default, L("Permission:Insurer.SanPhamInsurer"));
+        sanPhamInsurerPermission.AddChild(VietLifePermissions.SanPhamInsurer.View, L("Permission:Insurer.SanPhamInsurer.View"));
+        sanPhamInsurerPermission.AddChild(VietLifePermissions.SanPhamInsurer.Create, L("Permission:Insurer.SanPhamInsurer.Create"));
+        sanPhamInsurerPermission.AddChild(VietLifePermissions.SanPhamInsurer.Update, L("Permission:Insurer.SanPhamInsurer.Update"));
+        sanPhamInsurerPermission.AddChild(VietLifePermissions.SanPhamInsurer.Delete, L("Permission:Insurer.SanPhamInsurer.Delete"));
+
+        // SEO
+        var seoConfigPermission = insurerGroup.AddPermission(VietLifePermissions.SeoConfig.Default, L("Permission:Insurer.SeoConfig"));
+        seoConfigPermission.AddChild(VietLifePermissions.SeoConfig.View, L("Permission:Insurer.SeoConfig.View"));
+        seoConfigPermission.AddChild(VietLifePermissions.SeoConfig.Create, L("Permission:Insurer.SeoConfig.Create"));
+        seoConfigPermission.AddChild(VietLifePermissions.SeoConfig.Update, L("Permission:Insurer.SeoConfig.Update"));
+        seoConfigPermission.AddChild(VietLifePermissions.SeoConfig.Delete, L("Permission:Insurer.SeoConfig.Delete"));
     }
 
     private static LocalizableString L(string name)
